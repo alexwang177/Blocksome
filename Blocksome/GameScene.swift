@@ -11,7 +11,21 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder) is not used in this app")
+    }
+    
+    override init(size: CGSize) {
+        super.init(size: size)
+        
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let background = SKSpriteNode(imageNamed: "Background")
+        background.size = size
+        addChild(background)
+        }
+    }
+    /*private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
     override func didMove(to view: SKView) {
@@ -85,5 +99,5 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-    }
+    }*/
 }
