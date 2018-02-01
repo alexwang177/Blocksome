@@ -18,8 +18,11 @@ class GameViewController: UIViewController {
         
         // Configure the view.
         
+        //self.view.backgroundColor = UIColor.red
+        
         let skView = view as! SKView
         skView.isMultipleTouchEnabled = false
+        
         
         // Create and configure the scene.
         

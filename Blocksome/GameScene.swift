@@ -15,22 +15,28 @@ class GameScene: SKScene {
         fatalError("init(coder) is not used in this app")
     }
     
+   // backgroundColor = SKColor.red
+    
     override init(size: CGSize) {
         super.init(size: size)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    
         
-        let background = SKSpriteNode(imageNamed: "Background")
+        /*let background = SKSpriteNode(imageNamed: "Background")
+        
         background.size = size
-        addChild(background)
+        addChild(background)*/
         }
-    }
-    /*private var label : SKLabelNode?
+    
+    private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
     override func didMove(to view: SKView) {
         
-        // Get label node from scene and store it for use later
+        self.backgroundColor = UIColor.blue
+        
+        /*// Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.label {
             label.alpha = 0.0
@@ -48,11 +54,11 @@ class GameScene: SKScene {
             spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
-        }
+        }*/
     }
     
     
-    func touchDown(atPoint pos : CGPoint) {
+    /*func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.green
