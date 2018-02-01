@@ -14,6 +14,7 @@
 		F301C3522020F9260035D676 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F301C3512020F9260035D676 /* Assets.xcassets */; };
 		F301C3552020F9260035D676 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F301C3532020F9260035D676 /* LaunchScreen.storyboard */; };
 		F301C35D202249420035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C35C202249420035D676 /* Sprites.atlas */; };
+		F301C35F2023A3B60035D676 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C35E2023A3B60035D676 /* Block.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F301C3542020F9260035D676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F301C3562020F9260035D676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F301C35C202249420035D676 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
+		F301C35E2023A3B60035D676 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				F301C3442020F9260035D676 /* AppDelegate.swift */,
 				F301C34A2020F9260035D676 /* GameScene.swift */,
+				F301C35E2023A3B60035D676 /* Block.swift */,
 				F301C34C2020F9260035D676 /* GameViewController.swift */,
 				F301C34E2020F9260035D676 /* Main.storyboard */,
 				F301C3512020F9260035D676 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F301C34B2020F9260035D676 /* GameScene.swift in Sources */,
+				F301C35F2023A3B60035D676 /* Block.swift in Sources */,
 				F301C34D2020F9260035D676 /* GameViewController.swift in Sources */,
 				F301C3452020F9260035D676 /* AppDelegate.swift in Sources */,
 			);
