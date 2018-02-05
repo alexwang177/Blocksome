@@ -16,6 +16,7 @@
 		F301C35D202249420035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C35C202249420035D676 /* Sprites.atlas */; };
 		F301C35F2023A3B60035D676 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C35E2023A3B60035D676 /* Block.swift */; };
 		F301C3612028E48A0035D676 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C3602028E48A0035D676 /* Array2D.swift */; };
+		F301C3632028E68D0035D676 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C3622028E68D0035D676 /* Level.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F301C35C202249420035D676 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		F301C35E2023A3B60035D676 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		F301C3602028E48A0035D676 /* Array2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
+		F301C3622028E68D0035D676 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				F301C3442020F9260035D676 /* AppDelegate.swift */,
 				F301C34A2020F9260035D676 /* GameScene.swift */,
 				F301C35E2023A3B60035D676 /* Block.swift */,
+				F301C3622028E68D0035D676 /* Level.swift */,
 				F301C3602028E48A0035D676 /* Array2D.swift */,
 				F301C34C2020F9260035D676 /* GameViewController.swift */,
 				F301C34E2020F9260035D676 /* Main.storyboard */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F301C3632028E68D0035D676 /* Level.swift in Sources */,
 				F301C34B2020F9260035D676 /* GameScene.swift in Sources */,
 				F301C35F2023A3B60035D676 /* Block.swift in Sources */,
 				F301C34D2020F9260035D676 /* GameViewController.swift in Sources */,
