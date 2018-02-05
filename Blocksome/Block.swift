@@ -37,7 +37,16 @@ enum BlockType: Int, CustomStringConvertible {
     }
 }
 
-class Block: CustomStringConvertible{
+func ==(lhs: Block, rhs: Block) -> Bool {
+    return lhs.column == rhs.column && lhs.row == rhs.row
+}
+
+class Block: CustomStringConvertible, Hashable{
+    
+    var hashValue: Int {
+        return row*10 + column
+    }
+    
     var description: String{
         return "type:\(blockType) square:(\(column),\(row))"
     }
