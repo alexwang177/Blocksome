@@ -12,6 +12,16 @@ import GameplayKit
 
 class GameViewController: UIViewController {
     var scene: GameScene!
+    var level: Level!
+    
+    func beginGame(){
+        shuffle()
+    }
+    
+    func shuffle(){
+        let newBlocks = level.shuffle()
+        scene.addSprites(for: newBlocks)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +38,10 @@ class GameViewController: UIViewController {
         
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .aspectFill
+        
+        //Set Level of Blocksome
+        level = Level()
+        scene.level = level
         
         // Present the scene.
         skView.presentScene(scene)
@@ -47,6 +61,8 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }*/
+        
+        beginGame()
     }
 
     override var shouldAutorotate: Bool {

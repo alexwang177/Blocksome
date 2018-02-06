@@ -9,7 +9,7 @@
 import SpriteKit
 
 enum BlockType: Int, CustomStringConvertible {
-    case unknown = 0, croissant, cupcake, danish, donut, macaroon , sugarCookie
+    case unknown = 0, croissant, cupcake, danish, donut, macaroon , sugarCookie, stoneTile, woodTile
     
     
     var spriteName: String{
@@ -19,7 +19,9 @@ enum BlockType: Int, CustomStringConvertible {
         "Danish",
         "Donut",
         "Macaroon",
-        "Sugar Cookie"]
+        "SugarCookie",
+        "StoneTile",
+        "WoodTile"]
         
         return spriteNames[rawValue - 1]
     }
