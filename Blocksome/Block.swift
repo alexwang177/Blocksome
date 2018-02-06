@@ -9,17 +9,11 @@
 import SpriteKit
 
 enum BlockType: Int, CustomStringConvertible {
-    case unknown = 0, croissant, cupcake, danish, donut, macaroon , sugarCookie, stoneTile, woodTile
+    case unknown = 0,stoneTile, woodTile
     
     
     var spriteName: String{
         let spriteNames = [
-        "Croissant",
-        "Cupcake",
-        "Danish",
-        "Donut",
-        "Macaroon",
-        "SugarCookie",
         "StoneTile",
         "WoodTile"]
         
@@ -35,7 +29,7 @@ enum BlockType: Int, CustomStringConvertible {
     }
     
     static func random() -> BlockType{
-        return BlockType(rawValue: Int(arc4random_uniform(6))+1)!
+        return BlockType(rawValue: Int(arc4random_uniform(2))+1)!
     }
 }
 
