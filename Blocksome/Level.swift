@@ -14,10 +14,18 @@ let NumRows = 9
 class Level {
     fileprivate var blocks = Array2D<Block>(columns: NumColumns, rows: NumRows)
     
+    private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
+    
     func blockAt(column: Int, row: Int) -> Block? {
         assert(column>=0 && column<NumColumns)
         assert(row>=0 && row<NumRows)
         return blocks[column, row]
+    }
+    
+    func tileAt(column: Int, row: Int) -> Tile? {
+        assert(column>=0 && column<NumColumns)
+        assert(row>=0 && row<NumRows)
+        return tiles[column, row]
     }
     
     func shuffle() -> Set<Block> {
