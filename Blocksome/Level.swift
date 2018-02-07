@@ -40,7 +40,7 @@ class Level {
             for column in 0..<NumColumns{
                 
                 // new line
-                if tiles[column, row] != nil{
+                if tiles[column, row] == nil{
                     // 2
                     var blockType = BlockType.random()
                     
