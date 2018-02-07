@@ -39,15 +39,18 @@ class Level {
         for row in 0..<NumRows{
             for column in 0..<NumColumns{
                 
-                // 2
-                var blockType = BlockType.random()
-                
-                // 3
-                let block = Block(column: column, row: row, blockType: blockType)
-                blocks[column,row] = block
-                
-                // 4
-                set.insert(block)
+                // new line
+                if tiles[column, row] != nil{
+                    // 2
+                    var blockType = BlockType.random()
+                    
+                    // 3
+                    let block = Block(column: column, row: row, blockType: blockType)
+                    blocks[column,row] = block
+                    
+                    // 4
+                    set.insert(block)
+                }
             }
         }
         return set

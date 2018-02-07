@@ -40,7 +40,7 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         
         //Set Level of Blocksome
-        level = Level()
+        level = Level(filename: "Level_1")
         scene.level = level
         
         // Present the scene.
