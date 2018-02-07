@@ -67,7 +67,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = UIColor.blue
         
         /*// Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode

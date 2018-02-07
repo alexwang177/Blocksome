@@ -41,7 +41,7 @@ class GameViewController: UIViewController {
         
         //Set Level of Blocksome
         level = Level(filename: "Level_1")
-        scene.level = level
+        //scene.level = level
         
         // Present the scene.
         skView.presentScene(scene)
