@@ -19,6 +19,7 @@
 		F301C3632028E68D0035D676 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C3622028E68D0035D676 /* Level.swift */; };
 		F301C367202A39A20035D676 /* Levels in Resources */ = {isa = PBXBuildFile; fileRef = F301C366202A39A10035D676 /* Levels */; };
 		F301C36B202A3A9A0035D676 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C36A202A3A9A0035D676 /* Tile.swift */; };
+		F301C36D202B82DC0035D676 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C36C202B82DC0035D676 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F301C3622028E68D0035D676 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		F301C366202A39A10035D676 /* Levels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Levels; sourceTree = "<group>"; };
 		F301C36A202A3A9A0035D676 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		F301C36C202B82DC0035D676 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				F301C34A2020F9260035D676 /* GameScene.swift */,
 				F301C35E2023A3B60035D676 /* Block.swift */,
 				F301C3622028E68D0035D676 /* Level.swift */,
+				F301C36C202B82DC0035D676 /* Extensions.swift */,
 				F301C3602028E48A0035D676 /* Array2D.swift */,
 				F301C34C2020F9260035D676 /* GameViewController.swift */,
 				F301C36A202A3A9A0035D676 /* Tile.swift */,
@@ -162,6 +165,7 @@
 				F301C3632028E68D0035D676 /* Level.swift in Sources */,
 				F301C34B2020F9260035D676 /* GameScene.swift in Sources */,
 				F301C35F2023A3B60035D676 /* Block.swift in Sources */,
+				F301C36D202B82DC0035D676 /* Extensions.swift in Sources */,
 				F301C36B202A3A9A0035D676 /* Tile.swift in Sources */,
 				F301C34D2020F9260035D676 /* GameViewController.swift in Sources */,
 				F301C3452020F9260035D676 /* AppDelegate.swift in Sources */,
