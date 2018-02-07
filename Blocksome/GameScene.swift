@@ -11,6 +11,14 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var level: Level!
+    
+    let TileWidth: CGFloat = 32.0
+    let TileHeight: CGFloat = 36.0
+    
+    let gameLayer = SKNode()
+    let blocksLayer = SKNode()
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder) is not used in this app")
     }
@@ -21,13 +29,38 @@ class GameScene: SKScene {
         super.init(size: size)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
-    
         
         /*let background = SKSpriteNode(imageNamed: "Background")
         
         background.size = size
         addChild(background)*/
+        
+        addChild(gameLayer)
+        
+        let layerPosition = CGPoint(x: -TileWidth * CGFloat(NumColumns)/2, y: -TileHeight * CGFloat(NumRows)/2)
+        
+        blocksLayer.position = layerPosition
+        gameLayer.addChild(blocksLayer)
+        
         }
+    
+    func addSprites(for blocks: Set<Block>){
+        for block in blocks {
+            let sprite = SKSpriteNode(imageNamed: block.blockType.spriteName)
+            sprite.size = CGSize(width: TileWidth, height: TileHeight)
+            sprite.position = pointFor(column: block.column, row: block.row)
+            blocksLayer.addChild(sprite)
+            block.sprite = sprite
+            
+        }
+    }
+    
+    func pointFor(column: Int, row: Int) -> CGPoint {
+        return CGPoint(
+            x: CGFloat(column)*TileWidth + TileWidth/2,
+            y: CGFloat(row)*TileHeight + TileHeight/2
+        )
+    }
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
