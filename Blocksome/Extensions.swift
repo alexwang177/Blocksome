@@ -9,6 +9,8 @@
 import Foundation
 
 extension Dictionary {
+    
+    // Loads a JSON file from the app bundle into a new dictionary
     static func loadJSONFromBundle(filename: String) -> Dictionary<String, AnyObject>? {
         var dataOK: Data
         var dictionaryOK: NSDictionary = NSDictionary()
@@ -32,4 +34,5 @@ extension Dictionary {
         }
         return dictionaryOK as? Dictionary<String, AnyObject>
     }
+    
 }

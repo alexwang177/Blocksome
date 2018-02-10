@@ -5,29 +5,64 @@
 //  Created by AlexWang1 on 2/5/18.
 //  Copyright © 2018 Alex Wang. All rights reserved.
 //
-
 import Foundation
 
 let NumColumns = 9
 let NumRows = 9
 
 class Level {
+    
+// The 2D array that keeps track of where the Blocks are.
     fileprivate var blocks = Array2D<Block>(columns: NumColumns, rows: NumRows)
     
-    private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
+      // The 2D array that contains the layout of the level.
+    fileprivate var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
     
-    func blockAt(column: Int, row: Int) -> Block? {
-        assert(column>=0 && column<NumColumns)
-        assert(row>=0 && row<NumRows)
-        return blocks[column, row]
+    // MARK: Initialization
+    
+    // Create a level by loading it from a file.
+    init(filename: String){
+        
+        guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename)
+            else {return}
+        // The dictionary contains an array named "tiles". This array contains
+        // one element for each row of the level. Each of those row elements in
+        // turn is also an array describing the columns in that row. If a column
+        // is 1, it means there is a tile at that location, 0 means there is not.
+        
+        //let score = dictionary["targetScore"] as! Int
+        //print("Score: \(score)")
+        
+        guard let tilesArray = dictionary["tiles"] as? [[Int]]
+        else{
+            print("Still failing")
+            return
+        }
+    
+        // Loop through the rows...
+        for (row, rowArray) in tilesArray.enumerated() {
+            print("Row: \(row)")
+            // Note: In Sprite Kit (0,0) is at the bottom of the screen,
+            // so we need to read this file upside down.
+            let tileRow = NumRows - row - 1
+            
+            // Loop through the columns in the current r
+            for (column, value) in rowArray.enumerated() {
+                print("Value: \(value) ")
+                
+                // If the value is 1, create a tile object.
+                if value == 1 {
+                    tiles[column, tileRow] = Tile()
+                    print("created full tile")
+                }
+            }
+    }
     }
     
-    func tileAt(column: Int, row: Int) -> Tile? {
-        assert(column>=0 && column<NumColumns)
-        assert(row>=0 && row<NumRows)
-        return tiles[column, row]
-    }
+    // MARK: Level Setup
     
+    // Fills up the level with new Cookie objects
+
     func shuffle() -> Set<Block> {
         return createInitialBlocks()
     }
@@ -40,9 +75,9 @@ class Level {
             for column in 0..<NumColumns{
                 
                 // new line
-                if tiles[column, row] == nil{
+                if tiles[column, row] != nil{
                     // 2
-                    var blockType = BlockType.random()
+                    let blockType = BlockType.random()
                     
                     // 3
                     let block = Block(column: column, row: row, blockType: blockType)
@@ -56,23 +91,22 @@ class Level {
         return set
     }
     
-    init(filename: String) {
-        // 1
-        guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
-        // 2
-        guard let tilesArray = dictionary["tiles"] as? [[Int]] else { return }
-        // 3
-        for (row, rowArray) in tilesArray.enumerated() {
-            // 4
-            let tileRow = NumRows - row - 1
-            // 5
-            for (column, value) in rowArray.enumerated() {
-                if value == 1 {
-                    tiles[column, tileRow] = Tile()
-                }
-            }
-        }
+    // MARK: Query the level
+    
+    // Returns the block at the specified column and row, or nil when there is none.
+    func blockAt(column: Int, row: Int) -> Block? {
+        assert(column>=0 && column<NumColumns)
+        assert(row>=0 && row<NumRows)
+        return blocks[column, row]
     }
+    
+    // Determines whether there's a tile at the specified column and row.
+    func tileAt(column: Int, row: Int) -> Tile? {
+        assert(column>=0 && column<NumColumns)
+        assert(row>=0 && row<NumRows)
+        return tiles[column, row]
+    }
+    
     
 /* Load the named file into a Dictionary using the loadJSONFromBundle(filename:) helper function that you just added. Note that this function may return nil -- it returns an optional -- and here you use a guard to handle this situation.
  

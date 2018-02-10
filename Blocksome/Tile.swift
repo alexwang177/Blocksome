@@ -8,12 +8,6 @@
 import SpriteKit
 
 class Tile{
-    
-    var x: Int
-    
-    init()
-    {
-        x = 9
-    }
+
     
 }
