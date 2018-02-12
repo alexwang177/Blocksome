@@ -55,7 +55,7 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         
         //Load the Level
-        level = Level(filename: "Level_1")
+        level = Level(filename: "Level_2")
         scene.level = level
         
         scene.addTiles()
