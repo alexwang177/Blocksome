@@ -8,27 +8,42 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
 
 class GameViewController: UIViewController {
+    
+    // MARK: Properties
+    
+    // The scene draws the tiles and cookie sprites, and handles swipes.
     var scene: GameScene!
+    
+    // The level contains the tiles, the cookies, and most of the gameplay logic.
+    // Needs to be ! because it's not set in init() but in viewDidLoad().
     var level: Level!
     
-    func beginGame(){
-        shuffle()
+    // VIEW CONTROLLER FUNCTIONS
+    
+    override var shouldAutorotate: Bool {
+        return true
     }
     
-    func shuffle(){
-        let newBlocks = level.shuffle()
-        scene.addSprites(for: newBlocks)
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+ 
+        return [.portrait, .portraitUpsideDown]
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Configure the view.
-        
-        //self.view.backgroundColor = UIColor.red
         
         let skView = view as! SKView
         skView.isMultipleTouchEnabled = false
@@ -39,51 +54,30 @@ class GameViewController: UIViewController {
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .aspectFill
         
-        //Set Level of Blocksome
-        level = Level()
+        //Load the Level
+        level = Level(filename: "Level_1")
         scene.level = level
+        
+        scene.addTiles()
         
         // Present the scene.
         skView.presentScene(scene)
         
-       /* if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }*/
-        
+        //start game
         beginGame()
     }
-
-    override var shouldAutorotate: Bool {
-        return true
+    
+      // MARK: Game functions
+    
+    func beginGame(){
+        shuffle()
+    }
+    
+    func shuffle(){
+        // Fill up the level with new blocks, and create sprites for them.
+        let newBlocks = level.shuffle()
+        scene.addSprites(for: newBlocks)
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        /*if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }*/
-        return [.portrait, .portraitUpsideDown]
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 }

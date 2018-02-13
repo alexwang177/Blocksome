@@ -39,14 +39,6 @@ func ==(lhs: Block, rhs: Block) -> Bool {
 
 class Block: CustomStringConvertible, Hashable{
     
-    var hashValue: Int {
-        return row*10 + column
-    }
-    
-    var description: String{
-        return "type:\(blockType) square:(\(column),\(row))"
-    }
-    
     var column: Int
     var row: Int
     let blockType: BlockType
@@ -57,5 +49,13 @@ class Block: CustomStringConvertible, Hashable{
         self.column = column
         self.row = row
         self.blockType = blockType
+    }
+    
+    var hashValue: Int {
+        return row*10 + column
+    }
+    
+    var description: String{
+        return "type:\(blockType) square:(\(column),\(row))"
     }
 }
