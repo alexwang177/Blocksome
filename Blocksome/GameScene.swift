@@ -13,8 +13,8 @@ class GameScene: SKScene {
     
     var level: Level!
     
-    let TileWidth: CGFloat = 32.0
-    let TileHeight: CGFloat = 36.0
+    let TileWidth: CGFloat = 60.0     //32.0
+    let TileHeight: CGFloat = 60.0    //36.0
     
     let gameLayer = SKNode()
     let blocksLayer = SKNode()
