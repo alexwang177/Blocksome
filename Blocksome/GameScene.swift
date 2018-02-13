@@ -13,6 +13,10 @@ class GameScene: SKScene {
     
     var level: Level!
     
+    private var swipeFromColumn: Int?
+    private var swipeFromRow: Int?
+
+    
     let TileWidth: CGFloat = 32.0
     let TileHeight: CGFloat = 36.0
     
@@ -99,9 +103,54 @@ class GameScene: SKScene {
         )
     }
     
+    func convertPoint(toView point: CGPoint) -> (success: Bool, column: Int, row: Int) {
+        if point.x >= 0 && point.x < CGFloat(NumColumns)*TileWidth &&
+            point.y >= 0 && point.y < CGFloat(NumRows)*TileHeight {
+            return (true, Int(point.x / TileWidth), Int(point.y / TileHeight))
+        } else{
+            return (false, 0, 0)
+        }
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //1
+        guard let touch = touches.first else{return}
+        let location = touch.location(in: blocksLayer)
+        //2
+        let(success, column, row) = convertPoint(toView: location)
+        if success{
+            //3
+            if let block = level.blockAt(column: column, row: row){
+                //4
+                swipeFromColumn = column
+                swipeFromRow = row
+            }
+        }
+    }
+    
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard swipeFromColumn != nil else{return}
+        
+        guard let touch = touches.first else{return}
+        let location = touch.location(in: blocksLayer)
+        
+        let (success, column, row) = convertPoint(toView: location)
+        if success {
+            var horzDelta = 0, vertData = 0
+            if column < swipeFromColumn!{
+                
+            }
+        }
+    }
+
+
+    
     override func didMove(to view: SKView) {
         
         self.backgroundColor = UIColor.blue
     }
     
+
 }
