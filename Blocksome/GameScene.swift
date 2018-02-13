@@ -17,8 +17,8 @@ class GameScene: SKScene {
     private var swipeFromRow: Int?
 
     
-    let TileWidth: CGFloat = 32.0
-    let TileHeight: CGFloat = 36.0
+    let TileWidth: CGFloat = 60.0
+    let TileHeight: CGFloat = 60.0
     
     let gameLayer = SKNode()
     let blocksLayer = SKNode()
@@ -140,12 +140,46 @@ class GameScene: SKScene {
         if success {
             var horzDelta = 0, vertData = 0
             if column < swipeFromColumn!{
+                horzDelta = -1
+            } else if column > swipeFromColumn! {
+                horzDelta = 1
+            } else if row < swipeFromRow!{
+                vertData = -1
+            } else if row > swipeFromRow!{
+                vertData = 1
+            }
+            
+            if horzDelta != 0 || vertData != 0 {
+                trySwap(horizontal: horzDelta, vertical: vertData)
                 
+                swipeFromColumn = nil
             }
         }
+        
+        
     }
-
-
+    
+    func trySwap(horizontal horzDelta: Int, vertical vertDelta: Int){
+        let toColumn = swipeFromColumn! + horzDelta
+        let toRow = swipeFromRow! + vertDelta
+        
+        guard toColumn >= 0 && toColumn < NumColumns else{return}
+        guard toRow >= 0 && toRow < NumRows else{return}
+        
+        if let toBlock = level.blockAt(column: toColumn, row: toRow),
+            let fromBlock = level.blockAt(column: swipeFromColumn!, row: swipeFromRow!){
+            print("***swapping \(fromBlock) with \(toBlock)")
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        swipeFromRow = nil
+        swipeFromColumn = nil
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesEnded(touches, with: event)
+    }
     
     override func didMove(to view: SKView) {
         
