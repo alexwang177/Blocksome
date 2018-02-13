@@ -11,6 +11,10 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    
+    private var swipeFromColumn: Int?
+    private var swipeFromRow: Int?
+    
     var level: Level!
     
     let TileWidth: CGFloat = 60.0     //32.0
