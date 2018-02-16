@@ -116,7 +116,7 @@ class GameScene: SKScene {
     func touchesBegan(touches: NSSet, withEvent event: UIEvent){
         print("touches began")
         let touch = touches.anyObject() as! UITouch
-        let positionInScene = touch.location(in: self)        //*******
+        let positionInScene = touch.location(in: blocksLayer)        //*******
         
         selectNodeForTouch(touchLocation: positionInScene)
     }
@@ -128,7 +128,7 @@ class GameScene: SKScene {
     func selectNodeForTouch(touchLocation: CGPoint)
     {
         print("touch")
-        let touchedNode = self.atPoint(touchLocation)       //*******
+        let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
         
         if touchedNode is SKSpriteNode{
             print("is a sprite")
