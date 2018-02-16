@@ -74,7 +74,7 @@ class GameScene: SKScene {
                     tilesLayer.addChild(tileNode)
                 }
                 else{
-                    print("Empty tile lol")
+                    print("Empty tile lolz")
                 }
             }
         }
@@ -114,8 +114,9 @@ class GameScene: SKScene {
     // Sprite Touch Selection
     
     func touchesBegan(touches: NSSet, withEvent event: UIEvent){
+        print("touches began")
         let touch = touches.anyObject() as! UITouch
-        let positionInScene = touch.location(in: self)
+        let positionInScene = touch.location(in: self)        //*******
         
         selectNodeForTouch(touchLocation: positionInScene)
     }
@@ -126,11 +127,14 @@ class GameScene: SKScene {
     
     func selectNodeForTouch(touchLocation: CGPoint)
     {
-        let touchedNode = self.atPoint(touchLocation)
+        print("touch")
+        let touchedNode = self.atPoint(touchLocation)       //*******
         
         if touchedNode is SKSpriteNode{
+            print("is a sprite")
             
             if !selectedNode.isEqual(touchedNode){
+                print("same sprite")
                 selectedNode.removeAllActions()
                 selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
                 
