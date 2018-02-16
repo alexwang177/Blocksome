@@ -41,6 +41,10 @@ class Block: CustomStringConvertible, Hashable{
     
     var column: Int
     var row: Int
+    
+    var blockWidth: CGFloat
+    var blockHeight: CGFloat
+    
     let blockType: BlockType
     var sprite: SKSpriteNode?
     
@@ -49,6 +53,9 @@ class Block: CustomStringConvertible, Hashable{
         self.column = column
         self.row = row
         self.blockType = blockType
+        
+        self.blockWidth = 60.0
+        self.blockHeight = 120.0
     }
     
     var hashValue: Int {

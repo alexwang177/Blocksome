@@ -9,6 +9,8 @@
 import SpriteKit
 import GameplayKit
 
+private let kBlockNodeName = "movable"
+
 class GameScene: SKScene {
     
     var level: Level!
@@ -18,7 +20,9 @@ class GameScene: SKScene {
     
     let gameLayer = SKNode()
     let blocksLayer = SKNode()
-    let tilesLayer = SKNode() 
+    let tilesLayer = SKNode()
+    
+    var selectedNode = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder) is not used in this app")
@@ -80,6 +84,9 @@ class GameScene: SKScene {
         for block in blocks {
             // Create a new sprite for the cookie and add it to the cookiesLayer.
             let sprite = SKSpriteNode(imageNamed: block.blockType.spriteName)
+            
+            sprite.name = kBlockNodeName
+            
             sprite.size = CGSize(width: TileWidth, height: TileHeight)
             sprite.position = pointFor(column: block.column, row: block.row)
             blocksLayer.addChild(sprite)
@@ -104,4 +111,45 @@ class GameScene: SKScene {
         self.backgroundColor = UIColor.blue
     }
     
+    // Sprite Touch Selection
+    
+    func touchesBegan(touches: NSSet, withEvent event: UIEvent){
+        let touch = touches.anyObject() as! UITouch
+        let positionInScene = touch.location(in: self)
+        
+        selectNodeForTouch(touchLocation: positionInScene)
+    }
+    
+    func degToRad(degree: Double) -> CGFloat {
+        return CGFloat(Double(degree)/180.0 * Double.pi)
+    }
+    
+    func selectNodeForTouch(touchLocation: CGPoint)
+    {
+        let touchedNode = self.atPoint(touchLocation)
+        
+        if touchedNode is SKSpriteNode{
+            
+            if !selectedNode.isEqual(touchedNode){
+                selectedNode.removeAllActions()
+                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
+                
+                selectedNode = touchedNode as! SKSpriteNode
+                
+                
+                if touchedNode.name! == kBlockNodeName {
+                    print("wiggle")
+                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -4.0), duration: 0.1),
+                                                      SKAction.rotate(byAngle: 0.0, duration: 0.1),
+                                                      SKAction.rotate(byAngle: degToRad(degree: 4.0), duration: 0.1)])
+                    selectedNode.run(SKAction.repeatForever(sequence))
+                    
+                }
+            }
+        }
+        
+    }
+    
+    
+
 }
