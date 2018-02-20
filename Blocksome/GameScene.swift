@@ -15,12 +15,16 @@ class GameScene: SKScene {
     
     var level: Level!
     
-    let TileWidth: CGFloat = 60.0     //32.0
-    let TileHeight: CGFloat = 60.0    //36.0
+    //let TileWidth: CGFloat = (CGFloat)((Int)(screenWidth)/NumColumns)    //34.0
+    //let TileHeight: CGFloat = (CGFloat)((Int)(screenHeight)/NumRows) //36.0
+    
+    let TileWidth: CGFloat = 26.00   //34.0
+    let TileHeight: CGFloat = 26.25
     
     let gameLayer = SKNode()
     let blocksLayer = SKNode()
     let tilesLayer = SKNode()
+    var background = SKSpriteNode()
     
     var selectedNode = SKSpriteNode()
     
@@ -35,10 +39,10 @@ class GameScene: SKScene {
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        /*let background = SKSpriteNode(imageNamed: "Background")
+        background = SKSpriteNode(imageNamed: "BackgroundBlue")
         
         background.size = size
-        addChild(background)*/
+        addChild(background)
         
         
         // Add a new node that is the container for all other layers on the playing
@@ -72,9 +76,16 @@ class GameScene: SKScene {
                     tileNode.size = CGSize(width: TileWidth, height: TileHeight)
                     tileNode.position = pointFor(column: column, row: row)
                     tilesLayer.addChild(tileNode)
+                    
+                    print("ScreenWidth: \(screenWidth)")
+                    print("TileWidth: \((Int)(screenWidth)/NumColumns)")
+                    print("ScreenHeight: \(screenHeight)")
+                    print("TileHeight: \((Int)(screenHeight)/NumRows)")
                 }
                 else{
                     print("Empty tile lolz")
+                    print("TileWidth: \(TileWidth)")
+                    print("TileHeight: \(TileHeight)")
                 }
             }
         }
@@ -108,7 +119,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        self.backgroundColor = UIColor.blue
+        //self.backgroundColor = UIColor.blue
     }
     
     // Sprite Touch Selection
@@ -154,6 +165,37 @@ class GameScene: SKScene {
         
     }
     
+    func boundLayerPos(aNewPosition: CGPoint) -> CGPoint {
+        let winSize = self.size
+        var retval = aNewPosition
+        retval.x = CGFloat(min(retval.x, 0))
+        retval.x = CGFloat(max(retval.x, -(background.size.width) + winSize.width))
+        retval.y = self.position.y
+        
+        return retval
+    }
+    
+    func panForTranslation(translation: CGPoint) {
+        let position = selectedNode.position
+        
+        if selectedNode.name! == kBlockNodeName {
+            selectedNode.position = CGPoint(x: position.x + translation.x, y: position.y + translation.y)
+        } else {
+            let aNewPosition = CGPoint(x: position.x + translation.x, y: position.y + translation.y)
+            background.position = self.boundLayerPos(aNewPosition: aNewPosition)
+        }
+    }
+    
+    func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        let touch = touches.anyObject() as! UITouch
+        let positionInScene = touch.location(in: self)
+        let previousPosition = touch.previousLocation(in: self)
+        let translation = CGPoint(x: positionInScene.x - previousPosition.x, y: positionInScene.y - previousPosition.y)
+        
+        panForTranslation(translation: translation)
+    }
+    
     
 
 }
+

@@ -6,9 +6,13 @@
 //  Copyright © 2018 Alex Wang. All rights reserved.
 //
 import Foundation
+import UIKit
 
-let NumColumns = 9
-let NumRows = 9
+let NumColumns = 16
+let NumRows = 28
+
+let screenWidth = UIScreen.main.bounds.width
+let screenHeight = UIScreen.main.bounds.height
 
 class Level {
     

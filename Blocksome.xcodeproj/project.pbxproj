@@ -36,10 +36,10 @@
 		F301C3A1202FB1540035D676 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F301C390202FB1520035D676 /* Mining by Moonlight.mp3 */; };
 		F301C3A2202FB1540035D676 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = F301C391202FB1520035D676 /* Scrape.wav */; };
 		F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C392202FB1520035D676 /* Sprites.atlas */; };
+		F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = F37EB14E203CE9F700C9140E /* BackgroundBlue.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F301C3412020F9260035D676 /* Blocksome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Blocksome.app; path = "/Users/AlexWang1/Desktop/Blocksome/build/Debug-iphoneos/Blocksome.app"; sourceTree = "<absolute>"; };
 		F301C3442020F9260035D676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F301C34A2020F9260035D676 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		F301C34C2020F9260035D676 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		F301C390202FB1520035D676 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		F301C391202FB1520035D676 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
 		F301C392202FB1520035D676 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
+		F35A4FC52034BBF60063C5A0 /* Blocksome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocksome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F37EB14E203CE9F700C9140E /* BackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundBlue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				F301C3432020F9260035D676 /* Blocksome */,
+				F35A4FC52034BBF60063C5A0 /* Blocksome.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +129,7 @@
 		F301C380202FB1520035D676 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F37EB14E203CE9F700C9140E /* BackgroundBlue.png */,
 				F301C381202FB1520035D676 /* Background@3x.png */,
 				F301C382202FB1520035D676 /* Button@3x.png */,
 				F301C383202FB1520035D676 /* GameOver@3x.png */,
@@ -176,7 +180,7 @@
 			);
 			name = Blocksome;
 			productName = Blocksome;
-			productReference = F301C3412020F9260035D676 /* Blocksome.app */;
+			productReference = F35A4FC52034BBF60063C5A0 /* Blocksome.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -235,6 +239,7 @@
 				F301C395202FB1540035D676 /* Button@3x.png in Resources */,
 				F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */,
 				F301C399202FB1540035D676 /* Level_1.json in Resources */,
+				F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */,
 				F301C3A0202FB1540035D676 /* Ka-Ching.wav in Resources */,
 				F301C39B202FB1540035D676 /* Level_3.json in Resources */,
 				F301C393202FB1540035D676 /* Grid.atlas in Resources */,
