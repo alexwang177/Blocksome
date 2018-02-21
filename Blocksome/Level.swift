@@ -45,14 +45,14 @@ class Level {
     
         // Loop through the rows...
         for (row, rowArray) in tilesArray.enumerated() {
-            print("Row: \(row)")
+            //print("Row: \(row)")
             // Note: In Sprite Kit (0,0) is at the bottom of the screen,
             // so we need to read this file upside down.
             let tileRow = NumRows - row - 1
             
             // Loop through the columns in the current r
             for (column, value) in rowArray.enumerated() {
-                print("Value: \(value) ")
+                //print("Value: \(value) ")
                 
                 // If the value is 1, create a tile object.
                 if value == 1 {

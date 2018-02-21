@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import UIKit
 
 private let kBlockNodeName = "movable"
 
@@ -24,8 +25,8 @@ class GameScene: SKScene {
     let gameLayer = SKNode()
     let blocksLayer = SKNode()
     let tilesLayer = SKNode()
-    var background = SKSpriteNode()
     
+    let background = SKSpriteNode(imageNamed: "BackgroundBlue")
     var selectedNode = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +40,10 @@ class GameScene: SKScene {
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        background = SKSpriteNode(imageNamed: "BackgroundBlue")
+        //background = SKSpriteNode(imageNamed: "BackgroundBlue")
+        
+        self.background.name = "background"
+        self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         background.size = size
         addChild(background)
@@ -77,15 +81,15 @@ class GameScene: SKScene {
                     tileNode.position = pointFor(column: column, row: row)
                     tilesLayer.addChild(tileNode)
                     
-                    print("ScreenWidth: \(screenWidth)")
+                    /*print("ScreenWidth: \(screenWidth)")
                     print("TileWidth: \((Int)(screenWidth)/NumColumns)")
                     print("ScreenHeight: \(screenHeight)")
-                    print("TileHeight: \((Int)(screenHeight)/NumRows)")
+                    print("TileHeight: \((Int)(screenHeight)/NumRows)")*/
                 }
                 else{
                     print("Empty tile lolz")
-                    print("TileWidth: \(TileWidth)")
-                    print("TileHeight: \(TileHeight)")
+                    //print("TileWidth: \(TileWidth)")
+                    //print("TileHeight: \(TileHeight)")
                 }
             }
         }
@@ -124,12 +128,23 @@ class GameScene: SKScene {
     
     // Sprite Touch Selection
     
-    func touchesBegan(touches: NSSet, withEvent event: UIEvent){
+    /*func touchesBegan(touches: NSSet, withEvent event: UIEvent){
         print("touches began")
         let touch = touches.anyObject() as! UITouch
-        let positionInScene = touch.location(in: blocksLayer)        //*******
+        let positionInScene = touch.location(in: blocksLayer)
         
         selectNodeForTouch(touchLocation: positionInScene)
+    }*/
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touches began")
+        if let touch = touches.first {
+            let positionInScene = touch.location(in: blocksLayer)
+            print("touches began works")
+            
+            selectNodeForTouch(touchLocation: positionInScene)
+        }
+        super.touchesBegan(touches, with: event)
     }
     
     func degToRad(degree: Double) -> CGFloat {
@@ -154,9 +169,9 @@ class GameScene: SKScene {
                 
                 if touchedNode.name! == kBlockNodeName {
                     print("wiggle")
-                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -4.0), duration: 0.1),
+                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
                                                       SKAction.rotate(byAngle: 0.0, duration: 0.1),
-                                                      SKAction.rotate(byAngle: degToRad(degree: 4.0), duration: 0.1)])
+                                                      SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
                     selectedNode.run(SKAction.repeatForever(sequence))
                     
                 }
@@ -186,13 +201,26 @@ class GameScene: SKScene {
         }
     }
     
-    func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    /*func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+        print("touches MOVED")
         let touch = touches.anyObject() as! UITouch
         let positionInScene = touch.location(in: self)
         let previousPosition = touch.previousLocation(in: self)
         let translation = CGPoint(x: positionInScene.x - previousPosition.x, y: positionInScene.y - previousPosition.y)
         
         panForTranslation(translation: translation)
+    }*/
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touches MOVED")
+        if let touch = touches.first
+        {
+        let positionInScene = touch.location(in: self)
+        let previousPosition = touch.previousLocation(in: self)
+        let translation = CGPoint(x: positionInScene.x - previousPosition.x, y: positionInScene.y - previousPosition.y)
+        
+        panForTranslation(translation: translation)
+        }
     }
     
     

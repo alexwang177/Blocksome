@@ -45,11 +45,12 @@ class GameViewController: UIViewController {
         
         // Configure the view.
         
-        let skView = view as! SKView
+        let skView = self.view as! SKView
         skView.isMultipleTouchEnabled = false
-        skView.showsNodeCount = true;
-        skView.showsFPS = true;
-        skView.isUserInteractionEnabled = true;
+        skView.showsNodeCount = true
+        skView.showsFPS = true
+        skView.isUserInteractionEnabled = true
+        skView.ignoresSiblingOrder = true
         
         
         // Create and configure the scene.
