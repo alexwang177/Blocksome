@@ -37,6 +37,7 @@
 		F301C3A2202FB1540035D676 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = F301C391202FB1520035D676 /* Scrape.wav */; };
 		F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C392202FB1520035D676 /* Sprites.atlas */; };
 		F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = F37EB14E203CE9F700C9140E /* BackgroundBlue.png */; };
+		F37EB151203F4BAC00C9140E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EB150203F4BAC00C9140E /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		F301C392202FB1520035D676 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		F35A4FC52034BBF60063C5A0 /* Blocksome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocksome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37EB14E203CE9F700C9140E /* BackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundBlue.png; sourceTree = "<group>"; };
+		F37EB150203F4BAC00C9140E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				F301C3442020F9260035D676 /* AppDelegate.swift */,
 				F301C34A2020F9260035D676 /* GameScene.swift */,
+				F37EB150203F4BAC00C9140E /* Player.swift */,
 				F301C35E2023A3B60035D676 /* Block.swift */,
 				F301C36A202A3A9A0035D676 /* Tile.swift */,
 				F301C3622028E68D0035D676 /* Level.swift */,
@@ -261,6 +264,7 @@
 				F301C36B202A3A9A0035D676 /* Tile.swift in Sources */,
 				F301C34D2020F9260035D676 /* GameViewController.swift in Sources */,
 				F301C3452020F9260035D676 /* AppDelegate.swift in Sources */,
+				F37EB151203F4BAC00C9140E /* Player.swift in Sources */,
 				F301C3612028E48A0035D676 /* Array2D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

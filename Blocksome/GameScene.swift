@@ -22,11 +22,14 @@ class GameScene: SKScene {
     let TileWidth: CGFloat = 26.00   //34.0
     let TileHeight: CGFloat = 26.25
     
-    let gameLayer = SKNode()
-    let blocksLayer = SKNode()
-    let tilesLayer = SKNode()
-    
     let background = SKSpriteNode(imageNamed: "BackgroundBlue")
+    
+    let gameLayer = SKNode()
+    let tilesLayer = SKNode()
+    let blocksLayer = SKNode()
+    
+    let playerLayer = SKNode()
+
     var selectedNode = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,6 +69,16 @@ class GameScene: SKScene {
         // are relative to the cookiesLayer's bottom-left corner.
         blocksLayer.position = layerPosition
         gameLayer.addChild(blocksLayer)
+        
+        playerLayer.position = layerPosition
+        gameLayer.addChild(playerLayer)
+        
+        // sets all the layers' z-positions
+        
+        background.zPosition = 0
+        tilesLayer.zPosition = 1
+        blocksLayer.zPosition = 2
+        playerLayer.zPosition = 3
         
         }
     
@@ -108,6 +121,19 @@ class GameScene: SKScene {
             block.sprite = sprite
             
         }
+    }
+    
+    func addPlayer()
+    {
+        var player = Player(column: 10, row: 10)
+        let sprite = SKSpriteNode(imageNamed: "Cupcake")
+        
+        sprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        sprite.position = pointFor(column: player.column, row: player.row)
+        playerLayer.addChild(sprite)
+        player.sprite = sprite
+        
+        print("ADDED PLAYER")
     }
     
     // MARK: Point conversion

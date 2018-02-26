@@ -65,7 +65,7 @@ class Level {
     
     // MARK: Level Setup
     
-    // Fills up the level with new Cookie objects
+    // Fills up the level with new Block objects
 
     func shuffle() -> Set<Block> {
         return createInitialBlocks()

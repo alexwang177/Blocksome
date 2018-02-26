@@ -75,6 +75,7 @@ class GameViewController: UIViewController {
     
     func beginGame(){
         shuffle()
+        scene.addPlayer()
     }
     
     func shuffle(){
