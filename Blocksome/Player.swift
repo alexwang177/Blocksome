@@ -17,6 +17,9 @@ class Player{
     var playerWidth: CGFloat
     var playerHeight: CGFloat
     
+    var xSpeed: Int
+    var ySpeed: Int
+    
     var sprite: SKSpriteNode?
     
     init(column: Int, row: Int)
@@ -27,7 +30,10 @@ class Player{
         self.playerWidth = 26.00
         self.playerHeight = 26.25
         
-        self.sprite = SKSpriteNode(imageNamed: "BlackImage")
+        self.xSpeed = 0
+        self.ySpeed = 1
+        
+        self.sprite = SKSpriteNode(imageNamed: "Cupcake")
         
     }
     

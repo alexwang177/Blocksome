@@ -14,6 +14,17 @@ private let kBlockNodeName = "movable"
 
 class GameScene: SKScene {
     
+    var g: Int = 1
+    
+    var player: Player {
+        willSet(newValue){
+            
+        }
+        didSet(oldValue){
+    
+        }
+    }
+    
     var level: Level!
     
     //let TileWidth: CGFloat = (CGFloat)((Int)(screenWidth)/NumColumns)    //34.0
@@ -39,6 +50,8 @@ class GameScene: SKScene {
    // backgroundColor = SKColor.red
     
     override init(size: CGSize) {
+        self.player = Player(column: 10, row: 10)
+        
         super.init(size: size)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -125,8 +138,8 @@ class GameScene: SKScene {
     
     func addPlayer()
     {
-        var player = Player(column: 10, row: 10)
-        let sprite = SKSpriteNode(imageNamed: "Cupcake")
+        player = Player(column: player.column, row: player.row)
+        let sprite = SKSpriteNode(imageNamed: "Tile")
         
         sprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         sprite.position = pointFor(column: player.column, row: player.row)
@@ -150,6 +163,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         //self.backgroundColor = UIColor.blue
+        scheduledTimerWithTimerInterval()
     }
     
     // Sprite Touch Selection
@@ -249,7 +263,37 @@ class GameScene: SKScene {
         }
     }
     
+    /*var oldUpdateTime: TimeInterval = 0
     
-
+    override func update(_ currentTime: TimeInterval)
+    {
+        let delta: TimeInterval = 1
+        if currentTime - oldUpdateTime > delta {
+        
+        g = g+1
+        print("G: \(g)")
+        }
+        
+    }*/
+    
+    var timer = Timer()
+    
+    func scheduledTimerWithTimerInterval(){
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting()
+    {
+        NSLog("counting... \(g)")
+        g = g+1
+        
+        player.row = player.row + 1
+        
+        addPlayer()
+        
+    }
+    
+    
 }
 

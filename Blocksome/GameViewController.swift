@@ -64,6 +64,8 @@ class GameViewController: UIViewController {
         
         scene.addTiles()
         
+        scene.scheduledTimerWithTimerInterval()
+        
         // Present the scene.
         skView.presentScene(scene)
         
