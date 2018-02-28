@@ -40,11 +40,14 @@ class GameScene: SKScene {
     let blocksLayer = SKNode()
     
     let playerLayer = SKNode()
+    
+    var playerSprite = SKSpriteNode()
 
     var selectedNode = SKSpriteNode()
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder) is not used in this app")
+        
     }
     
    // backgroundColor = SKColor.red
@@ -57,6 +60,7 @@ class GameScene: SKScene {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         //background = SKSpriteNode(imageNamed: "BackgroundBlue")
+        playerSprite = SKSpriteNode(imageNamed: "Tile")
         
         self.background.name = "background"
         self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -92,6 +96,8 @@ class GameScene: SKScene {
         tilesLayer.zPosition = 1
         blocksLayer.zPosition = 2
         playerLayer.zPosition = 3
+        
+      
         
         }
     
@@ -139,14 +145,28 @@ class GameScene: SKScene {
     func addPlayer()
     {
         player = Player(column: player.column, row: player.row)
-        let sprite = SKSpriteNode(imageNamed: "Tile")
+        //let sprite = SKSpriteNode(imageNamed: "Tile")
         
-        sprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        sprite.position = pointFor(column: player.column, row: player.row)
-        playerLayer.addChild(sprite)
-        player.sprite = sprite
+        playerSprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        playerSprite.position = pointFor(column: player.column, row: player.row)
+        playerLayer.addChild(playerSprite)
+        player.sprite = playerSprite
         
         print("ADDED PLAYER")
+    }
+    
+    func updatePlayer()
+    {
+        //player = Player(column: player.column, row: player.row)
+        //let sprite = SKSpriteNode(imageNamed: "Tile")
+        
+        playerSprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        playerSprite.position = pointFor(column: player.column, row: player.row)
+        //playerLayer.addChild(sprite)
+        player.sprite = playerSprite
+        //playerLayer.childNode(withName: "sprite")?.position = sprite.position
+        
+        print("UPDATED PLAYER")
     }
     
     // MARK: Point conversion
@@ -233,7 +253,7 @@ class GameScene: SKScene {
     func panForTranslation(translation: CGPoint) {
         let position = selectedNode.position
         
-        if selectedNode.name! == kBlockNodeName {
+        if selectedNode.name == kBlockNodeName {
             selectedNode.position = CGPoint(x: position.x + translation.x, y: position.y + translation.y)
         } else {
             let aNewPosition = CGPoint(x: position.x + translation.x, y: position.y + translation.y)
@@ -288,12 +308,14 @@ class GameScene: SKScene {
         NSLog("counting... \(g)")
         g = g+1
         
-        player.row = player.row + 1
+        player.row = player.row + player.ySpeed
+        player.column = player.column + player.xSpeed
         
-        addPlayer()
+        //playerLayer.removeAllChildren()
+        
+        updatePlayer()
         
     }
-    
     
 }
 
