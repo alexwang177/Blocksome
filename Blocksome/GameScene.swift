@@ -12,7 +12,7 @@ import UIKit
 
 private let kBlockNodeName = "movable"
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var g: Int = 1
     
@@ -184,6 +184,9 @@ class GameScene: SKScene {
         
         //self.backgroundColor = UIColor.blue
         scheduledTimerWithTimerInterval()
+        
+        physicsWorld.contactDelegate = self
+        
     }
     
     // Sprite Touch Selection
@@ -300,7 +303,7 @@ class GameScene: SKScene {
     
     func scheduledTimerWithTimerInterval(){
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
     @objc func updateCounting()
@@ -308,8 +311,15 @@ class GameScene: SKScene {
         NSLog("counting... \(g)")
         g = g+1
         
-        player.row = player.row + player.ySpeed
-        player.column = player.column + player.xSpeed
+        if (player.row + player.ySpeed >= 1) && (player.row + player.ySpeed <= NumRows-2)
+        {
+            player.row = player.row + player.ySpeed
+        }
+        
+        if (player.column + player.xSpeed >= 1) && (player.column + player.xSpeed <= NumColumns-2)
+        {
+            player.column = player.column + player.xSpeed
+        }
         
         //playerLayer.removeAllChildren()
         

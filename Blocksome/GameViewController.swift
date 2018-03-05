@@ -20,6 +20,12 @@ class GameViewController: UIViewController {
     // Needs to be ! because it's not set in init() but in viewDidLoad().
     var level: Level!
     
+    // Arrow Key Instance Variables
+    var leftPressed = false
+    var rightPressed = false
+    var upPressed = false
+    var downPressed = false
+    
     // VIEW CONTROLLER FUNCTIONS
     
     override var shouldAutorotate: Bool {
@@ -56,6 +62,8 @@ class GameViewController: UIViewController {
         // Create and configure the scene.
         
         scene = GameScene(size: skView.bounds.size)
+        //scene = GameScene(fileNamed: "GameScene")
+        
         scene.scaleMode = .aspectFill
         
         //Load the Level
@@ -130,6 +138,9 @@ class GameViewController: UIViewController {
             scene.player.ySpeed = -1
         }
     }
+    
+    // Arrow Key Movement
+    
 
-
+    
 }

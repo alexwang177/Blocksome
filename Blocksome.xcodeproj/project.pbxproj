@@ -38,6 +38,7 @@
 		F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C392202FB1520035D676 /* Sprites.atlas */; };
 		F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = F37EB14E203CE9F700C9140E /* BackgroundBlue.png */; };
 		F37EB151203F4BAC00C9140E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EB150203F4BAC00C9140E /* Player.swift */; };
+		F37EB155204DCC8300C9140E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F37EB154204DCC8300C9140E /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		F35A4FC52034BBF60063C5A0 /* Blocksome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocksome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F37EB14E203CE9F700C9140E /* BackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundBlue.png; sourceTree = "<group>"; };
 		F37EB150203F4BAC00C9140E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		F37EB154204DCC8300C9140E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				F301C3442020F9260035D676 /* AppDelegate.swift */,
+				F37EB154204DCC8300C9140E /* GameScene.sks */,
 				F301C34A2020F9260035D676 /* GameScene.swift */,
 				F37EB150203F4BAC00C9140E /* Player.swift */,
 				F301C35E2023A3B60035D676 /* Block.swift */,
@@ -228,6 +231,7 @@
 				F301C3A2202FB1540035D676 /* Scrape.wav in Resources */,
 				F301C35D202249420035D676 /* Sprites.atlas in Resources */,
 				F301C39A202FB1540035D676 /* Level_2.json in Resources */,
+				F37EB155204DCC8300C9140E /* GameScene.sks in Resources */,
 				F301C39F202FB1540035D676 /* Error.wav in Resources */,
 				F301C398202FB1540035D676 /* Level_0.json in Resources */,
 				F301C39E202FB1540035D676 /* Drip.wav in Resources */,
