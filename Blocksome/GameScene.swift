@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    var level: Level!
+    var level: Level?
     
     //let TileWidth: CGFloat = (CGFloat)((Int)(screenWidth)/NumColumns)    //34.0
     //let TileHeight: CGFloat = (CGFloat)((Int)(screenHeight)/NumRows) //36.0
@@ -45,14 +45,79 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var selectedNode = SKSpriteNode()
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder) is not used in this app")
+   required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder) is not used in this app")
+        //super.init(coder: aDecoder)
+       //setup()
         
     }
     
+    /*override init()
+    {
+        super.init()
+        setup()
+    }
+    
+    override init(size: CGSize)
+    {
+        super.init(size: size)
+        setup()
+    }
+    
+    func setup()
+    {
+        self.player = Player(column: 10, row: 10)
+        
+        //super.init(size: size)
+        
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        //background = SKSpriteNode(imageNamed: "BackgroundBlue")
+        playerSprite = SKSpriteNode(imageNamed: "Tile")
+        
+        self.background.name = "background"
+        self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        background.size = size
+        self.addChild(background)
+        
+        
+        // Add a new node that is the container for all other layers on the playing
+        // field. This gameLayer is also centered in the screen.
+        self.addChild(gameLayer)
+        
+        let layerPosition = CGPoint(
+            x: -TileWidth * CGFloat(NumColumns)/2,
+            y: -TileHeight * CGFloat(NumRows)/2)
+        
+        // The tiles layer represents the shape of the level. It contains a sprite
+        // node for each square that is filled in.
+        tilesLayer.position = layerPosition
+        gameLayer.addChild(tilesLayer)
+        
+        // This layer holds the Cookie sprites. The positions of these sprites
+        // are relative to the cookiesLayer's bottom-left corner.
+        blocksLayer.position = layerPosition
+        gameLayer.addChild(blocksLayer)
+        
+        playerLayer.position = layerPosition
+        gameLayer.addChild(playerLayer)
+        
+        // sets all the layers' z-positions
+        
+        background.zPosition = 0
+        tilesLayer.zPosition = 1
+        blocksLayer.zPosition = 2
+        playerLayer.zPosition = 3
+    
+    }*/
+    
    // backgroundColor = SKColor.red
     
-    override init(size: CGSize) {
+    // override init(size: CGSize) {
+    
+    override init(size: CGSize)
+    {
         self.player = Player(column: 10, row: 10)
         
         super.init(size: size)
@@ -66,12 +131,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         background.size = size
-        addChild(background)
+        self.addChild(background)
         
         
         // Add a new node that is the container for all other layers on the playing
         // field. This gameLayer is also centered in the screen.
-        addChild(gameLayer)
+        self.addChild(gameLayer)
         
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns)/2,
@@ -107,7 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for column in 0..<NumColumns {
                 // If there is a tile at this position, then create a new tile
                 // sprite and add it to the mask layer.
-                if level.tileAt(column: column, row: row) != nil{
+                if level?.tileAt(column: column, row: row) != nil{
                     let tileNode = SKSpriteNode(imageNamed: "Tile")
                     tileNode.size = CGSize(width: TileWidth, height: TileHeight)
                     tileNode.position = pointFor(column: column, row: row)
@@ -147,7 +212,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player = Player(column: player.column, row: player.row)
         //let sprite = SKSpriteNode(imageNamed: "Tile")
         
-        playerSprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        playerSprite.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         playerSprite.position = pointFor(column: player.column, row: player.row)
         playerLayer.addChild(playerSprite)
         player.sprite = playerSprite
@@ -182,10 +247,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        //self.backgroundColor = UIColor.blue
         scheduledTimerWithTimerInterval()
         
         physicsWorld.contactDelegate = self
+     
         
     }
     
@@ -326,6 +391,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         updatePlayer()
         
     }
+    
+
     
 }
 

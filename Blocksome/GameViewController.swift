@@ -63,6 +63,9 @@ class GameViewController: UIViewController {
         
         scene = GameScene(size: skView.bounds.size)
         //scene = GameScene(fileNamed: "GameScene")
+        //scene = GameScene(fileNamed: "GameScene.sks", size: skView.bounds.size)
+        
+        //scene = GameScene.unarchiveFromFile(file: "GameScene") as! GameScene
         
         scene.scaleMode = .aspectFill
         
