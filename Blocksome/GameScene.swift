@@ -16,14 +16,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var g: Int = 1
     
-    var player: Player {
+    /*var player: Player {
         willSet(newValue){
             
         }
         didSet(oldValue){
     
         }
-    }
+    }*/
+    
+    var player = Player()
     
     var level: Level?
     
@@ -45,82 +47,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var selectedNode = SKSpriteNode()
     
-   required init?(coder aDecoder: NSCoder) {
+   /*required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder) is not used in this app")
         //super.init(coder: aDecoder)
        //setup()
         
-    }
-    
-    /*override init()
-    {
-        super.init()
-        setup()
-    }
-    
-    override init(size: CGSize)
-    {
-        super.init(size: size)
-        setup()
-    }
-    
-    func setup()
-    {
-        self.player = Player(column: 10, row: 10)
-        
-        //super.init(size: size)
-        
-        anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        //background = SKSpriteNode(imageNamed: "BackgroundBlue")
-        playerSprite = SKSpriteNode(imageNamed: "Tile")
-        
-        self.background.name = "background"
-        self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        background.size = size
-        self.addChild(background)
-        
-        
-        // Add a new node that is the container for all other layers on the playing
-        // field. This gameLayer is also centered in the screen.
-        self.addChild(gameLayer)
-        
-        let layerPosition = CGPoint(
-            x: -TileWidth * CGFloat(NumColumns)/2,
-            y: -TileHeight * CGFloat(NumRows)/2)
-        
-        // The tiles layer represents the shape of the level. It contains a sprite
-        // node for each square that is filled in.
-        tilesLayer.position = layerPosition
-        gameLayer.addChild(tilesLayer)
-        
-        // This layer holds the Cookie sprites. The positions of these sprites
-        // are relative to the cookiesLayer's bottom-left corner.
-        blocksLayer.position = layerPosition
-        gameLayer.addChild(blocksLayer)
-        
-        playerLayer.position = layerPosition
-        gameLayer.addChild(playerLayer)
-        
-        // sets all the layers' z-positions
-        
-        background.zPosition = 0
-        tilesLayer.zPosition = 1
-        blocksLayer.zPosition = 2
-        playerLayer.zPosition = 3
-    
     }*/
     
-   // backgroundColor = SKColor.red
-    
-    // override init(size: CGSize) {
-    
-    override init(size: CGSize)
-    {
-        self.player = Player(column: 10, row: 10)
+    override func didMove(to view: SKView) {
         
-        super.init(size: size)
+        scheduledTimerWithTimerInterval()
+        
+        physicsWorld.contactDelegate = self
+        
+        self.player = Player(column: 10, row: 10)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -162,9 +102,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         blocksLayer.zPosition = 2
         playerLayer.zPosition = 3
         
-      
         
-        }
+    }
     
     // LEVEL SETUP
     func addTiles(){
@@ -243,15 +182,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             x: CGFloat(column)*TileWidth + TileWidth/2,
             y: CGFloat(row)*TileHeight + TileHeight/2
         )
-    }
-    
-    override func didMove(to view: SKView) {
-        
-        scheduledTimerWithTimerInterval()
-        
-        physicsWorld.contactDelegate = self
-     
-        
     }
     
     // Sprite Touch Selection

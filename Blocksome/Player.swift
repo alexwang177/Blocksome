@@ -37,6 +37,20 @@ class Player{
         
     }
     
+    init()
+    {
+        self.column = 0
+        self.row = 0
+        
+        self.playerWidth = 26.00
+        self.playerHeight = 26.25
+        
+        self.xSpeed = 0
+        self.ySpeed = 1
+        
+        self.sprite = SKSpriteNode(imageNamed: "Cupcake")
+    }
+    
     var hashValue: Int {
         return row*10 + column
     }
