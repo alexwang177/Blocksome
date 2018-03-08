@@ -64,6 +64,8 @@ class GameViewController: UIViewController {
         
         scene.addTiles()
         
+        scene.prepareScene()
+        
         scene.scheduledTimerWithTimerInterval()
         
         // Present the scene.
