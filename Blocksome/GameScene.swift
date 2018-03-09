@@ -32,8 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //let TileWidth: CGFloat = (CGFloat)((Int)(screenWidth)/NumColumns)    //34.0
     //let TileHeight: CGFloat = (CGFloat)((Int)(screenHeight)/NumRows) //36.0
     
-    let TileWidth: CGFloat = 26.00   //34.0
-    let TileHeight: CGFloat = 26.25
+    let TileWidth: CGFloat = 47//26.00
+    let TileHeight: CGFloat = 47.75//26.25
     
     let background = SKSpriteNode(imageNamed: "BackgroundBlue")
     
@@ -44,6 +44,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let playerLayer = SKNode()
     
     var playerSprite = SKSpriteNode()
+    
+    var obstacle = SKSpriteNode()
 
     var selectedNode = SKSpriteNode()
     
@@ -64,13 +66,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        //background = SKSpriteNode(imageNamed: "BackgroundBlue")
         playerSprite = SKSpriteNode(imageNamed: "Tile")
+        playerSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: playerSprite.size.width, height: playerSprite.size.height))
+        playerSprite.physicsBody?.usesPreciseCollisionDetection = true
+        
+        obstacle = SKSpriteNode(imageNamed: "MaskTile")
+        obstacle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: obstacle.size.width, height: obstacle.size.height))
+        obstacle.physicsBody?.usesPreciseCollisionDetection = true;
+        obstacle.position = CGPoint(x: 200, y: 200)
         
         self.background.name = "background"
         self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        background.size = size
+        background.size = self.size
         self.addChild(background)
         
         
@@ -94,6 +102,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         playerLayer.position = layerPosition
         gameLayer.addChild(playerLayer)
+        
+        playerLayer.addChild(obstacle)
         
         // sets all the layers' z-positions
         
