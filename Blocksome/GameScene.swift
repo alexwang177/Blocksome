@@ -176,8 +176,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         playerSprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         playerSprite.position = pointFor(column: player.column, row: player.row)
+        
         //playerLayer.addChild(sprite)
         player.sprite = playerSprite
+        
         //playerLayer.childNode(withName: "sprite")?.position = sprite.position
         
         print("UPDATED PLAYER")
@@ -325,6 +327,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
             player.column = player.column + player.xSpeed
         }
+        
+        print("\(player.ySpeed) is Y and \(player.xSpeed) is X")
         
         //playerLayer.removeAllChildren()
         
