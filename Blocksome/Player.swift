@@ -21,6 +21,10 @@ class Player{
     var ySpeed: Int
     
     var sprite: SKSpriteNode?
+    var playerDirection: String
+    
+    var playerBodyPartsColumn: [Int]
+    var playerBodyPartsRow: [Int]
     
     init(column: Int, row: Int)
     {
@@ -32,6 +36,11 @@ class Player{
         
         self.xSpeed = 0
         self.ySpeed = 1
+        playerDirection = "up"
+        
+        playerBodyPartsColumn = [column]
+        playerBodyPartsRow = [row]
+
         
         self.sprite = SKSpriteNode(imageNamed: "Cupcake")
         
@@ -47,6 +56,11 @@ class Player{
         
         self.xSpeed = 0
         self.ySpeed = 1
+        
+        playerDirection = "up"
+        
+        playerBodyPartsColumn = [column]
+        playerBodyPartsRow = [row]
         
         self.sprite = SKSpriteNode(imageNamed: "Cupcake")
     }
