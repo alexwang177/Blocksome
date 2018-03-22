@@ -45,9 +45,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerSprite = SKSpriteNode()
     
+    
     var obstacle = SKSpriteNode()
 
     var selectedNode = SKSpriteNode()
+    
+    let bodyPart = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart2 = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart3 = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart4 = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart5 = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart6 = SKSpriteNode(imageNamed : "Tile")
+    
+    var playerBody: [SKSpriteNode]!
     
    /*required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder) is not used in this app")
@@ -64,16 +74,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.player = Player(column: 10, row: 10)
         
+        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6]
+        
+        //self.player = Player(column: 10, row: 10)
+        
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         playerSprite = SKSpriteNode(imageNamed: "Tile")
-        playerSprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: playerSprite.size.width, height: playerSprite.size.height))
-        playerSprite.physicsBody?.usesPreciseCollisionDetection = true
         
-        obstacle = SKSpriteNode(imageNamed: "MaskTile")
-        obstacle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: obstacle.size.width, height: obstacle.size.height))
-        obstacle.physicsBody?.usesPreciseCollisionDetection = true;
-        obstacle.position = CGPoint(x: 200, y: 200)
+        
         
         self.background.name = "background"
         self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -158,31 +167,93 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addPlayer()
     {
+        
         player = Player(column: player.column, row: player.row)
-        //let sprite = SKSpriteNode(imageNamed: "Tile")
         
         playerSprite.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         playerSprite.position = pointFor(column: player.column, row: player.row)
-        playerLayer.addChild(playerSprite)
         player.sprite = playerSprite
         
-        print("ADDED PLAYER")
+        
+        let playerBodyPartsContainer = SKNode()
+        playerBodyPartsContainer.name = "snakeBodyPartsContainer"
+        
+        addChild(playerBodyPartsContainer)
+        
+        for bodyPart in playerBody {
+            bodyPart.removeFromParent()
+            playerLayer.addChild(bodyPart)
+            //print(bodyPart)
+        }
+        
+        let newBodyPartsContainer = SKNode()
+        newBodyPartsContainer.name = "newBodyPartsContainer"
+        addChild(newBodyPartsContainer)
     }
     
-    func updatePlayer()
-    {
-        //player = Player(column: player.column, row: player.row)
-        //let sprite = SKSpriteNode(imageNamed: "Tile")
+//    func updatePlayer()
+//    {
+//        //player = Player(column: player.column, row: player.row)
+//        //let sprite = SKSpriteNode(imageNamed: "Tile")
+//
+//        playerSprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        playerSprite.position = pointFor(column: player.column, row: player.row)
+//
+//        //playerLayer.addChild(sprite)
+//        player.sprite = playerSprite
+//
+//        //playerLayer.childNode(withName: "sprite")?.position = sprite.position
+//
+//        print("UPDATED PLAYER")
+//    }
+    
+    func movePlayer(){
+        guard let headPositionColumn = player.playerBodyPartsColumn.first else{return}
         
-        playerSprite.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        playerSprite.position = pointFor(column: player.column, row: player.row)
+        guard let headPositionRow = player.playerBodyPartsRow.first else{return}
         
-        //playerLayer.addChild(sprite)
-        player.sprite = playerSprite
+        switch player.playerDirection{
+        case "up":
+            player.playerBodyPartsRow.insert(headPositionRow + 1, at: 0)
+            player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
+        case "down":
+            player.playerBodyPartsRow.insert(headPositionRow - 1, at: 0)
+            player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
+        case "left":
+            player.playerBodyPartsColumn.insert(headPositionColumn - 1, at: 0)
+            player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+        case "right":
+            player.playerBodyPartsColumn.insert(headPositionColumn + 1, at: 0)
+            player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+        default:
+            print("There has been a fatal error in move player regarding playerDirection")
+        }
+        for bodyPart in playerBody {
+            print("REEEEEAALLLL BODYYY BRO \(bodyPart)")
+        }
+    }
+    
+    func updatePositionOfBodyParts(){
+        for i in 0..<player.playerBodyPartsColumn.count{
+            if i < playerBody.count{
+                //  print("PLAYERCOLUMN - \(i) :  \(player.playerBodyPartsRow[i])")
+                print("PLAYERBODY  -  \(i) :  \(playerBody[i].position)")
+                let bodyPart = playerBody[i]
+                bodyPart.position = pointFor(column: player.playerBodyPartsColumn[i], row: player.playerBodyPartsRow[i])
+                print("BODY  -  \(i) :  \(bodyPart.position)")
+                
+                playerBody[i].position = bodyPart.position
+                
+                print("PLAYERBODYPOSITION AFTER \(playerBody[i].position)")
+            }
+                
+            else{
+                player.playerBodyPartsColumn.removeLast()
+                player.playerBodyPartsRow.removeLast()
+            }
+        }
         
-        //playerLayer.childNode(withName: "sprite")?.position = sprite.position
-        
-        print("UPDATED PLAYER")
+        print("LKJDFLKSDJFLSDFJSDLKJSDF:SDLFJSD:LFKJ:SDKJF \(playerBody)")
     }
     
     // MARK: Point conversion
@@ -332,8 +403,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //playerLayer.removeAllChildren()
         
-        updatePlayer()
-        
+       // updatePlayer()
+        updatePositionOfBodyParts()
+        movePlayer()
     }
     
 
