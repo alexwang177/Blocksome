@@ -9,13 +9,15 @@
 import SpriteKit
 
 enum BlockType: Int, CustomStringConvertible {
-    case unknown = 0,stoneTile, woodTile
+    case unknown = 0,redBlock, blueBlock
     
     
     var spriteName: String{
         let spriteNames = [
-        "StoneTile",
-        "WoodTile"]
+        //"StoneTile",
+        //"WoodTile"]
+        "RedBlock",
+        "BlueBlock"]
         
         return spriteNames[rawValue - 1]
     }

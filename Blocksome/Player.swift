@@ -42,7 +42,7 @@ class Player{
         playerBodyPartsRow = [row]
 
         
-        self.sprite = SKSpriteNode(imageNamed: "Cupcake")
+        self.sprite = SKSpriteNode(imageNamed: "RedBlock")
         
     }
     
@@ -62,7 +62,7 @@ class Player{
         playerBodyPartsColumn = [column]
         playerBodyPartsRow = [row]
         
-        self.sprite = SKSpriteNode(imageNamed: "Cupcake")
+        self.sprite = SKSpriteNode(imageNamed: "RedBlock")
     }
     
     var hashValue: Int {
