@@ -57,7 +57,7 @@ class Level {
                 // If the value is 1, create a tile object.
                 if value == 1 {
                     tiles[column, tileRow] = Tile()
-                    print("created full tile")
+                    //print("created full tile")
                 }
             }
     }
