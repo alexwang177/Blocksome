@@ -45,6 +45,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerSprite = SKSpriteNode()
     
+    var _possiblePositionsForNewBodyParts: [CGPoint]?
+    
+    var positionOfNewBodyPart: CGPoint?
     
     var obstacle = SKSpriteNode()
 
@@ -175,10 +178,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.sprite = playerSprite
         
         
-        let playerBodyPartsContainer = SKNode()
-        playerBodyPartsContainer.name = "snakeBodyPartsContainer"
+       // let playerBodyPartsContainer = SKNode()
+        //playerBodyPartsContainer.name = "playerBodyPartsContainer"
         
-        addChild(playerBodyPartsContainer)
+      //addChild(playerBodyPartsContainer)
         
         for bodyPart in playerBody {
             bodyPart.removeFromParent()
@@ -214,37 +217,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch player.playerDirection{
         case "up":
+            if(headPositionRow + 1 <= NumRows-2)
+            {
             player.playerBodyPartsRow.insert(headPositionRow + 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
+            }
         case "down":
+            if(headPositionRow - 1 >= 1)
+            {
             player.playerBodyPartsRow.insert(headPositionRow - 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
+            }
         case "left":
+            if(headPositionColumn + 1 >= 3)
+            {
             player.playerBodyPartsColumn.insert(headPositionColumn - 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+            }
         case "right":
+            if(headPositionColumn - 1 <= NumColumns - 4)
+            {
             player.playerBodyPartsColumn.insert(headPositionColumn + 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+            }
         default:
             print("There has been a fatal error in move player regarding playerDirection")
         }
-        for bodyPart in playerBody {
-            print("REEEEEAALLLL BODYYY BRO \(bodyPart)")
-        }
+//        for bodyPart in playerBody {
+//            print("REEEEEAALLLL BODYYY BRO \(bodyPart)")
+//        }
     }
     
     func updatePositionOfBodyParts(){
         for i in 0..<player.playerBodyPartsColumn.count{
             if i < playerBody.count{
                 //  print("PLAYERCOLUMN - \(i) :  \(player.playerBodyPartsRow[i])")
-                print("PLAYERBODY  -  \(i) :  \(playerBody[i].position)")
+                //print("PLAYERBODY  -  \(i) :  \(playerBody[i].position)")
                 let bodyPart = playerBody[i]
                 bodyPart.position = pointFor(column: player.playerBodyPartsColumn[i], row: player.playerBodyPartsRow[i])
-                print("BODY  -  \(i) :  \(bodyPart.position)")
+                //print("BODY  -  \(i) :  \(bodyPart.position)")
                 
                 playerBody[i].position = bodyPart.position
                 
-                print("PLAYERBODYPOSITION AFTER \(playerBody[i].position)")
+               // print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
+              //  print("Head Position: \(pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))")
             }
                 
             else{
@@ -253,7 +269,97 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        print("LKJDFLKSDJFLSDFJSDLKJSDF:SDLFJSD:LFKJ:SDKJF \(playerBody)")
+        //print("LKJDFLKSDJFLSDFJSDLKJSDF:SDLFJSD:LFKJ:SDKJF \(playerBody)")
+    }
+    
+    
+    fileprivate func putNewBodyPartIfNeeded() {
+        guard childNode(withName: "//newBodyPart") == nil else { return }
+        putNewBodyParts()
+    }
+    
+    private func putNewBodyParts() {
+        
+      //  guard let container = childNode(withName: "newBodyPartsContainer") else { return }
+        
+        let possiblePositions = positionsForNewBodyParts
+        let randPositionIndex = arc4random_uniform(UInt32(possiblePositions.count))
+        let randPosition = possiblePositions[Int(randPositionIndex)]
+        
+        let newBodyPart: SKSpriteNode = SKSpriteNode(imageNamed : "Tile")
+        newBodyPart.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+        newBodyPart.name = "newBodyPart"
+        newBodyPart.position = randPosition
+        
+        positionOfNewBodyPart = newBodyPart.position
+        
+       // container.addChild(newBodyPart)
+        playerLayer.addChild(newBodyPart)
+        
+        print("This is the new body part position: \(newBodyPart.position)")
+    }
+    
+    fileprivate var positionsForNewBodyParts: [CGPoint] {
+        
+        if let alreadyCalculatedPositions = _possiblePositionsForNewBodyParts {
+            return alreadyCalculatedPositions
+        }
+        
+        var positions: [CGPoint] = []
+        
+    
+        var isIntersect = false
+        for row in 1...26{
+            for column in 1...14{
+                for intersect in 0..<playerBody.count{
+                    if playerBody[intersect].position == pointFor(column: column, row: row){
+                        isIntersect = true
+                    }
+                }
+                
+                if(isIntersect == false)
+                {
+                    positions.append(pointFor(column: column, row: row))
+                }
+                
+                isIntersect = false
+            }
+        }
+    
+        _possiblePositionsForNewBodyParts = positions
+        return positions
+    }
+    
+    func growSnakeIfNeeded() {
+//        guard let playerNew = childNode(withName: "playerBodyPartsContainer") else { return }
+//        let positionOfHead  = pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0])
+        guard let collectablePart = childNode(withName: "//newBodyPart") else { return }
+        
+       // print(collectablePart.position)
+//
+//
+//        let delta = CGPoint(x: abs(positionOfHead.x - collectablePart.position.x), y: abs(positionOfHead.y - collectablePart.position.y))
+//        if delta.x < player.playerWidth / 2 {
+//            if delta.y < player.playerHeight / 2 {
+//                let partForAppending: SKSpriteNode = SKSpriteNode(imageNamed : "Tile")
+//                playerNew.addChild(partForAppending)
+//                playerBody.append(partForAppending)
+//                collectablePart.removeFromParent()
+//            }
+//        }
+        
+        if(positionOfNewBodyPart == pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))
+        {
+            let partForAppending: SKSpriteNode = SKSpriteNode(imageNamed: "Tile")
+            
+            partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+          //  print(playerBody.count)
+            playerBody.append(partForAppending)
+            collectablePart.removeFromParent()
+            
+            //print("CONTACT PLZ DO SOMETHING")
+            //print(playerBody.count)
+        }
     }
     
     // MARK: Point conversion
@@ -386,7 +492,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func updateCounting()
     {
-        NSLog("counting... \(g)")
+        //NSLog("counting... \(g)")
         g = g+1
         
         if (player.row + player.ySpeed >= 1) && (player.row + player.ySpeed <= NumRows-2)
@@ -399,13 +505,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.column = player.column + player.xSpeed
         }
         
-        print("\(player.ySpeed) is Y and \(player.xSpeed) is X")
+       // print("\(player.ySpeed) is Y and \(player.xSpeed) is X")
         
         //playerLayer.removeAllChildren()
         
        // updatePlayer()
+        
+        for bodyPart in playerBody {
+            bodyPart.removeFromParent()
+            playerLayer.addChild(bodyPart)
+            //print(bodyPart)
+        }
+        
         updatePositionOfBodyParts()
         movePlayer()
+        putNewBodyPartIfNeeded()
+        growSnakeIfNeeded()
+        
     }
     
 

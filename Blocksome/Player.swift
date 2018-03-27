@@ -31,8 +31,8 @@ class Player{
         self.column = column
         self.row = row
         
-        self.playerWidth = 47
-        self.playerHeight = 47.75
+        self.playerWidth = 32
+        self.playerHeight = 36
         
         self.xSpeed = 0
         self.ySpeed = 1
