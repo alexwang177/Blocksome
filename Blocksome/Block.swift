@@ -62,7 +62,7 @@ class Block: CustomStringConvertible, Hashable{
         self.blockHeight = 120.0
         
         self.xSpeed = 0
-        self.ySpeed = 1
+        self.ySpeed = 0
         
     }
     
