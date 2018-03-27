@@ -17,7 +17,7 @@ let screenHeight = UIScreen.main.bounds.height
 class Level {
     
 // The 2D array that keeps track of where the Blocks are.
-    fileprivate var blocks = Array2D<Block>(columns: NumColumns, rows: NumRows)
+    /*fileprivate*/ var blocks = Array2D<Block>(columns: NumColumns, rows: NumRows)
     
       // The 2D array that contains the layout of the level.
     fileprivate var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)

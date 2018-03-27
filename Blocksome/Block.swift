@@ -43,6 +43,9 @@ class Block: CustomStringConvertible, Hashable{
     var column: Int
     var row: Int
     
+    var xSpeed: Int
+    var ySpeed: Int
+    
     var blockWidth: CGFloat
     var blockHeight: CGFloat
     
@@ -57,6 +60,10 @@ class Block: CustomStringConvertible, Hashable{
         
         self.blockWidth = 60.0
         self.blockHeight = 120.0
+        
+        self.xSpeed = 0
+        self.ySpeed = 1
+        
     }
     
     var hashValue: Int {
