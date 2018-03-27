@@ -286,7 +286,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let randPositionIndex = arc4random_uniform(UInt32(possiblePositions.count))
         let randPosition = possiblePositions[Int(randPositionIndex)]
         
-        let newBodyPart: SKSpriteNode = SKSpriteNode(imageNamed : "Tile")
+        let newBodyPart: SKSpriteNode = SKSpriteNode(imageNamed : "Croissant")
         newBodyPart.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         newBodyPart.name = "newBodyPart"
         newBodyPart.position = randPosition
@@ -332,7 +332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func growSnakeIfNeeded() {
 //        guard let playerNew = childNode(withName: "playerBodyPartsContainer") else { return }
-//        let positionOfHead  = pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0])
+        let positionOfHead  = pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0])
         guard let collectablePart = childNode(withName: "//newBodyPart") else { return }
         
        // print(collectablePart.position)
@@ -348,18 +348,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            }
 //        }
         
+        let delta = CGPoint(x: abs(positionOfHead.x - collectablePart.position.x), y: abs(positionOfHead.y - collectablePart.position.y))
+                if delta.x < player.playerWidth / 2 {
+                   if delta.y < player.playerHeight / 2 {
+        
         if(positionOfNewBodyPart == pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))
-        {
-            let partForAppending: SKSpriteNode = SKSpriteNode(imageNamed: "Tile")
+                {
+                    
+            let partForAppending: SKSpriteNode = SKSpriteNode(imageNamed: "Croissant")
             
             partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
           //  print(playerBody.count)
-            playerBody.append(partForAppending)
+            playerBody.insert(partForAppending, at: 0)
             collectablePart.removeFromParent()
             
             //print("CONTACT PLZ DO SOMETHING")
             //print(playerBody.count)
-        }
+                }
+                                                        }
+                                                    }
     }
     
     // MARK: Point conversion
@@ -511,16 +518,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
        // updatePlayer()
         
-        for bodyPart in playerBody {
-            bodyPart.removeFromParent()
-            playerLayer.addChild(bodyPart)
-            //print(bodyPart)
-        }
         
         updatePositionOfBodyParts()
         movePlayer()
         putNewBodyPartIfNeeded()
         growSnakeIfNeeded()
+        
+        for bodyPart in playerBody {
+            bodyPart.removeFromParent()
+            playerLayer.addChild(bodyPart)
+            //print(bodyPart)
+        }
         
     }
     
