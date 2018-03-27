@@ -53,9 +53,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var selectedNode = SKSpriteNode()
     
-    let bodyPart = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart2 = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart3 = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart = SKSpriteNode(imageNamed : "RedBlock")
+    let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
+    let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
     let bodyPart4 = SKSpriteNode(imageNamed : "Tile")
     let bodyPart5 = SKSpriteNode(imageNamed : "Tile")
     let bodyPart6 = SKSpriteNode(imageNamed : "Tile")
