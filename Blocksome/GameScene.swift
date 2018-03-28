@@ -49,16 +49,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var positionOfNewBodyPart: CGPoint?
     
+    var newBlockColor: Int?
+    
     var obstacle = SKSpriteNode()
 
     var selectedNode = SKSpriteNode()
     
-    let bodyPart = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart2 = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart3 = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart4 = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart5 = SKSpriteNode(imageNamed : "Tile")
-    let bodyPart6 = SKSpriteNode(imageNamed : "Tile")
+    let bodyPart = SKSpriteNode(imageNamed : "RedBlock")
+    let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
+    let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
+    let bodyPart4 = SKSpriteNode(imageNamed : "GreenBlock")
+    let bodyPart5 = SKSpriteNode(imageNamed : "BlueBlock")
+    let bodyPart6 = SKSpriteNode(imageNamed : "IndigoBlock")
+    let bodyPart7 = SKSpriteNode(imageNamed : "PurpleBlock")
     
     var playerBody: [SKSpriteNode]!
     
@@ -77,7 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.player = Player(column: 10, row: 10)
         
-        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6]
+        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
         
         //self.player = Player(column: 10, row: 10)
         
@@ -92,6 +95,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         background.size = self.size
         self.addChild(background)
+        
+        //Block Sizes
+        bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         
         
         // Add a new node that is the container for all other layers on the playing
@@ -286,7 +298,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let randPositionIndex = arc4random_uniform(UInt32(possiblePositions.count))
         let randPosition = possiblePositions[Int(randPositionIndex)]
         
-        let newBodyPart: SKSpriteNode = SKSpriteNode(imageNamed : "Croissant")
+        newBlockColor = Int(arc4random_uniform(7)) + 1
+        
+        let newBodyPart: SKSpriteNode
+        
+        if(newBlockColor == 1)
+        {
+            newBodyPart = SKSpriteNode(imageNamed : "RedBlock")
+        }
+        else if(newBlockColor == 2){
+            newBodyPart = SKSpriteNode(imageNamed : "OrangeBlock")}
+        else if(newBlockColor == 3){
+            newBodyPart = SKSpriteNode(imageNamed : "YellowBlock")}
+        else if(newBlockColor == 4){
+            newBodyPart = SKSpriteNode(imageNamed : "GreenBlock")}
+        else if(newBlockColor == 5){
+            newBodyPart = SKSpriteNode(imageNamed : "BlueBlock")}
+        else if(newBlockColor == 6){
+            newBodyPart = SKSpriteNode(imageNamed : "PurpleBlock")}
+        else{
+            newBodyPart = SKSpriteNode(imageNamed : "IndigoBlock")
+            
+        }
+        
         newBodyPart.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         newBodyPart.name = "newBodyPart"
         newBodyPart.position = randPosition
@@ -349,13 +383,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        }
         
         let delta = CGPoint(x: abs(positionOfHead.x - collectablePart.position.x), y: abs(positionOfHead.y - collectablePart.position.y))
+        
+       // print(delta)
                 if delta.x < player.playerWidth / 2 {
                    if delta.y < player.playerHeight / 2 {
+                    
+                    print(positionOfHead.x - collectablePart.position.x)
         
         if(positionOfNewBodyPart == pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))
                 {
                     
-            let partForAppending: SKSpriteNode = SKSpriteNode(imageNamed: "Croissant")
+            
+                    
+                    let partForAppending: SKSpriteNode
+                    
+                    if(newBlockColor == 1)
+                    {
+                        partForAppending = SKSpriteNode(imageNamed : "RedBlock")
+                    }
+                    else if(newBlockColor == 2){
+                        partForAppending = SKSpriteNode(imageNamed : "OrangeBlock")}
+                    else if(newBlockColor == 3){
+                        partForAppending = SKSpriteNode(imageNamed : "YellowBlock")}
+                    else if(newBlockColor == 4){
+                        partForAppending = SKSpriteNode(imageNamed : "GreenBlock")}
+                    else if(newBlockColor == 5){
+                        partForAppending = SKSpriteNode(imageNamed : "BlueBlock")}
+                    else if(newBlockColor == 6){
+                        partForAppending = SKSpriteNode(imageNamed : "PurpleBlock")}
+                    else{
+                        partForAppending = SKSpriteNode(imageNamed : "IndigoBlock")
+                        
+                    }
+
             
             partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
           //  print(playerBody.count)

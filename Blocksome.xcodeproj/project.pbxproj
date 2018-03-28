@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2221413206AC4FE0012310F /* OrangeBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D222140C206AC4FC0012310F /* OrangeBlock.png */; };
+		D2221414206AC4FE0012310F /* BlueBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D222140D206AC4FC0012310F /* BlueBlock.png */; };
+		D2221415206AC4FE0012310F /* GreenBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D222140E206AC4FD0012310F /* GreenBlock.png */; };
+		D2221416206AC4FE0012310F /* YellowBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D222140F206AC4FD0012310F /* YellowBlock.png */; };
+		D2221417206AC4FE0012310F /* IndigoBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D2221410206AC4FD0012310F /* IndigoBlock.png */; };
+		D2221418206AC4FE0012310F /* RedBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D2221411206AC4FD0012310F /* RedBlock.png */; };
+		D2221419206AC4FE0012310F /* PurpleBlock.png in Resources */ = {isa = PBXBuildFile; fileRef = D2221412206AC4FD0012310F /* PurpleBlock.png */; };
 		F301C3452020F9260035D676 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C3442020F9260035D676 /* AppDelegate.swift */; };
 		F301C34B2020F9260035D676 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C34A2020F9260035D676 /* GameScene.swift */; };
 		F301C34D2020F9260035D676 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F301C34C2020F9260035D676 /* GameViewController.swift */; };
@@ -43,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D222140C206AC4FC0012310F /* OrangeBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeBlock.png; sourceTree = "<group>"; };
+		D222140D206AC4FC0012310F /* BlueBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueBlock.png; sourceTree = "<group>"; };
+		D222140E206AC4FD0012310F /* GreenBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenBlock.png; sourceTree = "<group>"; };
+		D222140F206AC4FD0012310F /* YellowBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowBlock.png; sourceTree = "<group>"; };
+		D2221410206AC4FD0012310F /* IndigoBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IndigoBlock.png; sourceTree = "<group>"; };
+		D2221411206AC4FD0012310F /* RedBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedBlock.png; sourceTree = "<group>"; };
+		D2221412206AC4FD0012310F /* PurpleBlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PurpleBlock.png; sourceTree = "<group>"; };
 		F301C3442020F9260035D676 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F301C34A2020F9260035D676 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		F301C34C2020F9260035D676 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +152,13 @@
 		F301C380202FB1520035D676 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D222140D206AC4FC0012310F /* BlueBlock.png */,
+				D222140E206AC4FD0012310F /* GreenBlock.png */,
+				D2221410206AC4FD0012310F /* IndigoBlock.png */,
+				D222140C206AC4FC0012310F /* OrangeBlock.png */,
+				D2221412206AC4FD0012310F /* PurpleBlock.png */,
+				D2221411206AC4FD0012310F /* RedBlock.png */,
+				D222140F206AC4FD0012310F /* YellowBlock.png */,
 				F37EB14E203CE9F700C9140E /* BackgroundBlue.png */,
 				F301C381202FB1520035D676 /* Background@3x.png */,
 				F301C382202FB1520035D676 /* Button@3x.png */,
@@ -232,8 +253,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F301C3A2202FB1540035D676 /* Scrape.wav in Resources */,
+				D2221419206AC4FE0012310F /* PurpleBlock.png in Resources */,
 				F301C35D202249420035D676 /* Sprites.atlas in Resources */,
 				F301C39A202FB1540035D676 /* Level_2.json in Resources */,
+				D2221416206AC4FE0012310F /* YellowBlock.png in Resources */,
 				F37EB155204DCC8300C9140E /* GameScene.sks in Resources */,
 				F301C39F202FB1540035D676 /* Error.wav in Resources */,
 				F301C398202FB1540035D676 /* Level_0.json in Resources */,
@@ -241,13 +264,18 @@
 				F301C39C202FB1540035D676 /* Level_4.json in Resources */,
 				F301C3A1202FB1540035D676 /* Mining by Moonlight.mp3 in Resources */,
 				F301C39D202FB1540035D676 /* Chomp.wav in Resources */,
+				D2221417206AC4FE0012310F /* IndigoBlock.png in Resources */,
+				D2221418206AC4FE0012310F /* RedBlock.png in Resources */,
 				F301C3502020F9260035D676 /* Main.storyboard in Resources */,
+				D2221415206AC4FE0012310F /* GreenBlock.png in Resources */,
 				F301C3522020F9260035D676 /* Assets.xcassets in Resources */,
 				F301C396202FB1540035D676 /* GameOver@3x.png in Resources */,
 				F301C397202FB1540035D676 /* LevelComplete@3x.png in Resources */,
 				F301C394202FB1540035D676 /* Background@3x.png in Resources */,
 				F301C395202FB1540035D676 /* Button@3x.png in Resources */,
 				F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */,
+				D2221414206AC4FE0012310F /* BlueBlock.png in Resources */,
+				D2221413206AC4FE0012310F /* OrangeBlock.png in Resources */,
 				F301C399202FB1540035D676 /* Level_1.json in Resources */,
 				F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */,
 				F301C3A0202FB1540035D676 /* Ka-Ching.wav in Resources */,

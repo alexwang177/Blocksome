@@ -9,13 +9,12 @@
 import SpriteKit
 
 enum BlockType: Int, CustomStringConvertible {
-    case unknown = 0,stoneTile, woodTile
+    case unknown = 0,redBlock
     
     
     var spriteName: String{
         let spriteNames = [
-        "StoneTile",
-        "WoodTile"]
+        "RedBlock"]
         
         return spriteNames[rawValue - 1]
     }
@@ -29,7 +28,7 @@ enum BlockType: Int, CustomStringConvertible {
     }
     
     static func random() -> BlockType{
-        return BlockType(rawValue: Int(arc4random_uniform(2))+1)!
+        return BlockType(rawValue: Int(arc4random_uniform(1))+1)!
     }
 }
 
