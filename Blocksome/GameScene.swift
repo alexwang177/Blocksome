@@ -324,6 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         newBodyPart.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         newBodyPart.name = "newBodyPart"
         newBodyPart.position = randPosition
+        //print("This is the new body part position: \(newBodyPart.position)")
         
         positionOfNewBodyPart = newBodyPart.position
         
@@ -341,22 +342,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var positions: [CGPoint] = []
         
-    
-        var isIntersect = false
+        var playerBodyPositions: [CGPoint] = []
+        
+        for intersect in 0..<playerBody.count{
+            playerBodyPositions.append(playerBody[intersect].position)
+            print(intersect)
+        }
+            
         for row in 1...26{
             for column in 1...14{
-                for intersect in 0..<playerBody.count{
-                    if playerBody[intersect].position == pointFor(column: column, row: row){
-                        isIntersect = true
+                    
+                    if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false)
+                    {
+                        positions.append(pointFor(column: column, row: row))
                     }
-                }
-                
-                if(isIntersect == false)
-                {
-                    positions.append(pointFor(column: column, row: row))
-                }
-                
-                isIntersect = false
             }
         }
     
@@ -369,31 +368,66 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let positionOfHead  = pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0])
         guard let collectablePart = childNode(withName: "//newBodyPart") else { return }
         
-       // print(collectablePart.position)
-//
-//
+
+        
 //        let delta = CGPoint(x: abs(positionOfHead.x - collectablePart.position.x), y: abs(positionOfHead.y - collectablePart.position.y))
-//        if delta.x < player.playerWidth / 2 {
-//            if delta.y < player.playerHeight / 2 {
-//                let partForAppending: SKSpriteNode = SKSpriteNode(imageNamed : "Tile")
-//                playerNew.addChild(partForAppending)
-//                playerBody.append(partForAppending)
-//                collectablePart.removeFromParent()
-//            }
-//        }
+        let delta = CGPoint(x: positionOfHead.x - collectablePart.position.x, y: positionOfHead.y - collectablePart.position.y)
         
-        let delta = CGPoint(x: abs(positionOfHead.x - collectablePart.position.x), y: abs(positionOfHead.y - collectablePart.position.y))
+       //print(delta)
         
-       // print(delta)
-                if delta.x < player.playerWidth / 2 {
-                   if delta.y < player.playerHeight / 2 {
+        if player.playerDirection == "up"{
+            if delta.x == 0 {
+            if delta.y == -47.75 {
+                
                     
-                    print(positionOfHead.x - collectablePart.position.x)
-        
-        if(positionOfNewBodyPart == pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))
+                let partForAppending: SKSpriteNode
+                    
+                if(newBlockColor == 1)
                 {
+                    partForAppending = SKSpriteNode(imageNamed : "RedBlock")
+                }
+                else if(newBlockColor == 2){
+                    partForAppending = SKSpriteNode(imageNamed : "OrangeBlock")}
+                else if(newBlockColor == 3){
+                    partForAppending = SKSpriteNode(imageNamed : "YellowBlock")}
+                else if(newBlockColor == 4){
+                    partForAppending = SKSpriteNode(imageNamed : "GreenBlock")}
+                else if(newBlockColor == 5){
+                    partForAppending = SKSpriteNode(imageNamed : "BlueBlock")}
+                else if(newBlockColor == 6){
+                    partForAppending = SKSpriteNode(imageNamed : "PurpleBlock")}
+                else{
+                    partForAppending = SKSpriteNode(imageNamed : "IndigoBlock")}
+                
+
+                   
                     
-            
+                partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+          //  print(playerBody.count)
+                partForAppending.position = collectablePart.position
+                playerBody.insert(partForAppending, at: 0)
+                    
+            for bodyPart in playerBody {
+                bodyPart.removeFromParent()
+                playerLayer.addChild(bodyPart)
+                //print(bodyPart)
+                }
+                
+                movePlayer()
+                    
+                    
+            collectablePart.removeFromParent()
+                    
+                    
+              
+                }
+            }
+        }
+        
+        else if player.playerDirection == "down"{
+            if delta.x == 0 {
+                if delta.y == 47.75 {
+                    
                     
                     let partForAppending: SKSpriteNode
                     
@@ -412,21 +446,133 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     else if(newBlockColor == 6){
                         partForAppending = SKSpriteNode(imageNamed : "PurpleBlock")}
                     else{
-                        partForAppending = SKSpriteNode(imageNamed : "IndigoBlock")
-                        
+                        partForAppending = SKSpriteNode(imageNamed : "IndigoBlock")}
+                    
+                    
+                    
+                    
+                    partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+                    //  print(playerBody.count)
+                    partForAppending.position = collectablePart.position
+                    playerBody.insert(partForAppending, at: 0)
+                    
+                    for bodyPart in playerBody {
+                        bodyPart.removeFromParent()
+                        playerLayer.addChild(bodyPart)
+                        //print(bodyPart)
                     }
-
-            
-            partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
-          //  print(playerBody.count)
-            playerBody.insert(partForAppending, at: 0)
-            collectablePart.removeFromParent()
-            
-            //print("CONTACT PLZ DO SOMETHING")
-            //print(playerBody.count)
+                    movePlayer()
+                    
+                    
+                    collectablePart.removeFromParent()
+                    
+                    
+                    
                 }
-                                                        }
-                                                    }
+            }
+        }
+        
+        
+        else if player.playerDirection == "left" {
+            if delta.x == 47 {
+                if delta.y == 0 {
+                    
+                    
+                    let partForAppending: SKSpriteNode
+                    
+                    if(newBlockColor == 1)
+                    {
+                        partForAppending = SKSpriteNode(imageNamed : "RedBlock")
+                    }
+                    else if(newBlockColor == 2){
+                        partForAppending = SKSpriteNode(imageNamed : "OrangeBlock")}
+                    else if(newBlockColor == 3){
+                        partForAppending = SKSpriteNode(imageNamed : "YellowBlock")}
+                    else if(newBlockColor == 4){
+                        partForAppending = SKSpriteNode(imageNamed : "GreenBlock")}
+                    else if(newBlockColor == 5){
+                        partForAppending = SKSpriteNode(imageNamed : "BlueBlock")}
+                    else if(newBlockColor == 6){
+                        partForAppending = SKSpriteNode(imageNamed : "PurpleBlock")}
+                    else{
+                        partForAppending = SKSpriteNode(imageNamed : "IndigoBlock")}
+                    
+                    
+                    
+                    
+                    partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+                    //  print(playerBody.count)
+                    partForAppending.position = collectablePart.position
+                    playerBody.insert(partForAppending, at: 0)
+                    
+                    for bodyPart in playerBody {
+                        bodyPart.removeFromParent()
+                        playerLayer.addChild(bodyPart)
+                        //print(bodyPart)
+                    }
+                    movePlayer()
+                    
+                    
+                    collectablePart.removeFromParent()
+                    
+                    
+                    
+                }
+            }
+        }
+        
+        
+        else if player.playerDirection == "right"{
+            if delta.x == -47 {
+                if delta.y == 0 {
+                    
+                    
+                    let partForAppending: SKSpriteNode
+                    
+                    if(newBlockColor == 1)
+                    {
+                        partForAppending = SKSpriteNode(imageNamed : "RedBlock")
+                    }
+                    else if(newBlockColor == 2){
+                        partForAppending = SKSpriteNode(imageNamed : "OrangeBlock")}
+                    else if(newBlockColor == 3){
+                        partForAppending = SKSpriteNode(imageNamed : "YellowBlock")}
+                    else if(newBlockColor == 4){
+                        partForAppending = SKSpriteNode(imageNamed : "GreenBlock")}
+                    else if(newBlockColor == 5){
+                        partForAppending = SKSpriteNode(imageNamed : "BlueBlock")}
+                    else if(newBlockColor == 6){
+                        partForAppending = SKSpriteNode(imageNamed : "PurpleBlock")}
+                    else{
+                        partForAppending = SKSpriteNode(imageNamed : "IndigoBlock")}
+                    
+                    
+                    
+                    
+                    partForAppending.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+                    //  print(playerBody.count)
+                    partForAppending.position = collectablePart.position
+                    playerBody.insert(partForAppending, at: 0)
+                    
+                    for bodyPart in playerBody {
+                        bodyPart.removeFromParent()
+                        playerLayer.addChild(bodyPart)
+                        //print(bodyPart)
+                    }
+                    movePlayer()
+                    
+                    
+                    collectablePart.removeFromParent()
+                    
+                    
+                    
+                }
+            }
+        }
+        
+        
+        
+        
     }
     
     // MARK: Point conversion
@@ -580,9 +726,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         updatePositionOfBodyParts()
-        movePlayer()
         putNewBodyPartIfNeeded()
         growSnakeIfNeeded()
+        movePlayer()
         
         for bodyPart in playerBody {
             bodyPart.removeFromParent()
