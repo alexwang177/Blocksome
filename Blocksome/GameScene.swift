@@ -406,12 +406,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           //  print(playerBody.count)
                 partForAppending.position = collectablePart.position
                 playerBody.insert(partForAppending, at: 0)
-                    
-            for bodyPart in playerBody {
-                bodyPart.removeFromParent()
-                playerLayer.addChild(bodyPart)
-                //print(bodyPart)
-                }
+                playerLayer.addChild(partForAppending)
+//            for bodyPart in playerBody {
+//                bodyPart.removeFromParent()
+//                playerLayer.addChild(bodyPart)
+//                //print(bodyPart)
+//                }
                 
                 movePlayer()
                     
@@ -455,12 +455,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //  print(playerBody.count)
                     partForAppending.position = collectablePart.position
                     playerBody.insert(partForAppending, at: 0)
-                    
-                    for bodyPart in playerBody {
-                        bodyPart.removeFromParent()
-                        playerLayer.addChild(bodyPart)
-                        //print(bodyPart)
-                    }
+                    playerLayer.addChild(partForAppending)
+//                    for bodyPart in playerBody {
+//                        bodyPart.removeFromParent()
+//                        playerLayer.addChild(bodyPart)
+//                        //print(bodyPart)
+//                    }
                     movePlayer()
                     
                     
@@ -504,12 +504,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //  print(playerBody.count)
                     partForAppending.position = collectablePart.position
                     playerBody.insert(partForAppending, at: 0)
-                    
-                    for bodyPart in playerBody {
-                        bodyPart.removeFromParent()
-                        playerLayer.addChild(bodyPart)
-                        //print(bodyPart)
-                    }
+                    playerLayer.addChild(partForAppending)
+//                    for bodyPart in playerBody {
+//                        bodyPart.removeFromParent()
+//                        playerLayer.addChild(bodyPart)
+//                        //print(bodyPart)
+//                    }
                     movePlayer()
                     
                     
@@ -553,12 +553,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //  print(playerBody.count)
                     partForAppending.position = collectablePart.position
                     playerBody.insert(partForAppending, at: 0)
-                    
-                    for bodyPart in playerBody {
-                        bodyPart.removeFromParent()
-                        playerLayer.addChild(bodyPart)
-                        //print(bodyPart)
-                    }
+                    playerLayer.addChild(partForAppending)
+//                    for bodyPart in playerBody {
+//                        bodyPart.removeFromParent()
+//                        playerLayer.addChild(bodyPart)
+//                        //print(bodyPart)
+//                    }
                     movePlayer()
                     
                     
@@ -570,10 +570,111 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+    }
+    
+    
+    
+    fileprivate func killPlayerIfNeeded() {
+        if isPlayerRunOverItself {
+            
+            print("DELETETETTE")
+            removePlayerFromScreen()
+            reset()
+            
+            
+        }
+    }
+    
+    private func removePlayerFromScreen() {
         
+        for bodyPart in playerBody {
+            bodyPart.removeFromParent()
+        }
+        playerBody.removeAll()
+        player.playerBodyPartsRow.removeAll()
+        player.playerBodyPartsColumn.removeAll()
+        
+       
+        
+        print(playerBody)
         
         
     }
+    
+    private var isPlayerRunOverItself: Bool {
+        var playerBodyPositions: [CGPoint] = []
+        
+        for intersect in 0..<player.playerBodyPartsColumn.count{
+            playerBodyPositions.append(pointFor(column:player.playerBodyPartsColumn[intersect], row: player.playerBodyPartsRow[intersect]))
+          //  print(intersect)
+        }
+        
+        for position in playerBodyPositions {
+            let filteredPositions = playerBodyPositions.filter({ (examinedPoint) -> Bool in
+                return examinedPoint.x == position.x && examinedPoint.y == position.y
+            })
+            
+             //print("This is filtered positions\(filteredPositions)")
+            
+            if filteredPositions.count > 1 {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private var playerReachedScreenBounds : Bool {
+        let positionOfHead = playerBody[0].position
+        
+        let leftBound   = -size.width / 2 // because anchor point is in center, same for the rest bounds
+        if positionOfHead.x <= leftBound    { return true }
+        
+        let rightBound  = +size.width / 2
+        if positionOfHead.x >= rightBound   { return true }
+        
+        let topBound    = +size.height / 2
+        if positionOfHead.y >= topBound     { return true }
+        
+        let bottomBound = -size.height / 2
+        if positionOfHead.y <= bottomBound  { return true }
+        
+        return false
+    }
+    
+    func reset(){
+        player = Player(column: 7, row: 13)
+        
+        playerSprite.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
+        playerSprite.position = pointFor(column: 7, row: 13)
+        player.sprite = playerSprite
+        
+        let bodyPart = SKSpriteNode(imageNamed : "RedBlock")
+        let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
+        let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
+        let bodyPart4 = SKSpriteNode(imageNamed : "GreenBlock")
+        let bodyPart5 = SKSpriteNode(imageNamed : "BlueBlock")
+        let bodyPart6 = SKSpriteNode(imageNamed : "IndigoBlock")
+        let bodyPart7 = SKSpriteNode(imageNamed : "PurpleBlock")
+        
+        bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        
+        playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
+        
+        for bodyPart in playerBody {
+            bodyPart.removeFromParent()
+            playerLayer.addChild(bodyPart)
+            //print(bodyPart)
+        }
+
+        
+    }
+
     
     // MARK: Point conversion
     
@@ -729,12 +830,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         putNewBodyPartIfNeeded()
         growSnakeIfNeeded()
         movePlayer()
-        
-        for bodyPart in playerBody {
-            bodyPart.removeFromParent()
-            playerLayer.addChild(bodyPart)
-            //print(bodyPart)
-        }
+        killPlayerIfNeeded()
+//        for bodyPart in playerBody {
+//            bodyPart.removeFromParent()
+//            playerLayer.addChild(bodyPart)
+//            //print(bodyPart)
+//        }
         
     }
     
