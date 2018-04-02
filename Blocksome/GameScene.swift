@@ -586,7 +586,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func removePlayerFromScreen() {
-        
+        movePlayer()
+        movePlayer()
         for bodyPart in playerBody {
             bodyPart.removeFromParent()
         }
@@ -698,10 +699,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }*/
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touches began")
+       // print("touches began")
         if let touch = touches.first {
             let positionInScene = touch.location(in: blocksLayer)
-            print("touches began works")
+           // print("touches began works")
             
             selectNodeForTouch(touchLocation: positionInScene)
         }
@@ -714,7 +715,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func selectNodeForTouch(touchLocation: CGPoint)
     {
-        print("touch")
+       // print("touch")
         let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
         
         if touchedNode is SKSpriteNode{
@@ -773,7 +774,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }*/
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touches MOVED")
+        //print("touches MOVED")
         if let touch = touches.first
         {
         let positionInScene = touch.location(in: self)

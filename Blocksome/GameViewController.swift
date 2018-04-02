@@ -115,16 +115,16 @@ class GameViewController: UIViewController {
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.right {
-            print("Swipe Right")
+        if gesture.direction == UISwipeGestureRecognizerDirection.right && scene.player.playerDirection != "left"{
+           // print("Swipe Right")
             scene.player.xSpeed = 1
             scene.player.ySpeed = 0
             
             scene.player.playerDirection = "right"
         }
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.left {
-            print("Swipe Left")
+        if gesture.direction == UISwipeGestureRecognizerDirection.left && scene.player.playerDirection != "right"{
+           // print("Swipe Left")
             scene.player.xSpeed = -1
             scene.player.ySpeed = 0
             
@@ -132,16 +132,16 @@ class GameViewController: UIViewController {
         }
         
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.up {
-            print("Swipe Up")
+        if gesture.direction == UISwipeGestureRecognizerDirection.up && scene.player.playerDirection != "down"{
+           // print("Swipe Up")
             scene.player.xSpeed = 0
             scene.player.ySpeed = 1
             scene.player.playerDirection = "up"
         }
         
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.down {
-            print("Swipe Down")
+        if gesture.direction == UISwipeGestureRecognizerDirection.down && scene.player.playerDirection != "up"{
+           // print("Swipe Down")
             scene.player.xSpeed = 0
             scene.player.ySpeed = -1
             
