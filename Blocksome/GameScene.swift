@@ -229,28 +229,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch player.playerDirection{
         case "up":
-            if(headPositionRow + 1 <= NumRows-2)
+            if(headPositionRow != 26)
             {
             player.playerBodyPartsRow.insert(headPositionRow + 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
             }
+            else {
+                removePlayerFromScreen()
+                reset()
+            }
         case "down":
-            if(headPositionRow - 1 >= 1)
+            if(headPositionRow != 1)
             {
             player.playerBodyPartsRow.insert(headPositionRow - 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
             }
+            else {
+                removePlayerFromScreen()
+                reset()
+            }
         case "left":
-            if(headPositionColumn + 1 >= 3)
+            if(headPositionColumn != 1)
             {
             player.playerBodyPartsColumn.insert(headPositionColumn - 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
             }
+            else {
+                removePlayerFromScreen()
+                reset()
+            }
         case "right":
-            if(headPositionColumn - 1 <= NumColumns - 4)
+            if(headPositionColumn != 14)
             {
             player.playerBodyPartsColumn.insert(headPositionColumn + 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+            }
+            else {
+                removePlayerFromScreen()
+                reset()
             }
         default:
             print("There has been a fatal error in move player regarding playerDirection")
@@ -271,7 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 playerBody[i].position = bodyPart.position
                 
-               // print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
+                print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
               //  print("Head Position: \(pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))")
             }
                 
@@ -336,9 +352,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     fileprivate var positionsForNewBodyParts: [CGPoint] {
         
-        if let alreadyCalculatedPositions = _possiblePositionsForNewBodyParts {
-            return alreadyCalculatedPositions
-        }
+//        if let alreadyCalculatedPositions = _possiblePositionsForNewBodyParts {
+//            return alreadyCalculatedPositions
+//        }
         
         var positions: [CGPoint] = []
         
@@ -346,7 +362,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for intersect in 0..<playerBody.count{
             playerBodyPositions.append(playerBody[intersect].position)
-            print(intersect)
+           // print(intersect)
         }
             
         for row in 1...26{
@@ -577,7 +593,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     fileprivate func killPlayerIfNeeded() {
         if isPlayerRunOverItself {
             
-            print("DELETETETTE")
+           // print("DELETETETTE")
             removePlayerFromScreen()
             reset()
             
@@ -586,8 +602,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func removePlayerFromScreen() {
-        movePlayer()
-        movePlayer()
+//        movePlayer()
+//        movePlayer()
         for bodyPart in playerBody {
             bodyPart.removeFromParent()
         }
@@ -618,6 +634,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
              //print("This is filtered positions\(filteredPositions)")
             
             if filteredPositions.count > 1 {
+                print("COllISION")
                 return true
             }
         }
@@ -825,13 +842,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //playerLayer.removeAllChildren()
         
        // updatePlayer()
-        
-        
-        updatePositionOfBodyParts()
-        putNewBodyPartIfNeeded()
+        killPlayerIfNeeded()
         growSnakeIfNeeded()
         movePlayer()
-        killPlayerIfNeeded()
+        updatePositionOfBodyParts()
+        putNewBodyPartIfNeeded()
+        
 //        for bodyPart in playerBody {
 //            bodyPart.removeFromParent()
 //            playerLayer.addChild(bodyPart)
