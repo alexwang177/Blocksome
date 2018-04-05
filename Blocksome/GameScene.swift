@@ -80,6 +80,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.player = Player(column: 10, row: 10)
         
+        self.positionOfNewBodyPart = []
+        
         //self.player = Player(column: 10, row: 10)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -459,7 +461,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                //print(bodyPart)
 //                }
                 
-              ///  movePlayer()
+                movePlayer()
                     
                     
             collectablePart.removeFromParent()
@@ -798,7 +800,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         selectNodeForTouch(touchLocation: positionInScene)
     }*/
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
        // print("touches began")
         if let touch = touches.first {
             let positionInScene = touch.location(in: blocksLayer)
@@ -807,40 +809,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             selectNodeForTouch(touchLocation: positionInScene)
         }
         super.touchesBegan(touches, with: event)
-    }
+    }*/
     
     func degToRad(degree: Double) -> CGFloat {
         return CGFloat(Double(degree)/180.0 * Double.pi)
     }
     
-    func selectNodeForTouch(touchLocation: CGPoint)
-    {
-       // print("touch")
-        let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
-        
-        if touchedNode is SKSpriteNode{
-            print("is a sprite")
-            
-            if !selectedNode.isEqual(touchedNode){
-                print("same sprite")
-                selectedNode.removeAllActions()
-                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
-                
-                selectedNode = touchedNode as! SKSpriteNode
-                
-                
-                if touchedNode.name! == kBlockNodeName {
-                    print("wiggle")
-                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
-                                                      SKAction.rotate(byAngle: 0.0, duration: 0.1),
-                                                      SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
-                    selectedNode.run(SKAction.repeatForever(sequence))
-                    
-                }
-            }
-        }
-        
-    }
+//    func selectNodeForTouch(touchLocation: CGPoint)
+//    {
+//       // print("touch")
+//        let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
+//
+//        if touchedNode is SKSpriteNode{
+//            print("is a sprite")
+//
+//            if !selectedNode.isEqual(touchedNode){
+//                print("same sprite")
+//                selectedNode.removeAllActions()
+//                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
+//
+//                selectedNode = touchedNode as! SKSpriteNode
+//
+//
+//                if touchedNode.name! == kBlockNodeName {
+//                    print("wiggle")
+//                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
+//                                                      SKAction.rotate(byAngle: 0.0, duration: 0.1),
+//                                                      SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
+//                    selectedNode.run(SKAction.repeatForever(sequence))
+//
+//                }
+//            }
+//        }
+//
+//    }
     
     func boundLayerPos(aNewPosition: CGPoint) -> CGPoint {
         let winSize = self.size
@@ -940,6 +942,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
 
-    
 }
+
 
