@@ -13,8 +13,11 @@ class GameViewController: UIViewController {
     
     // MARK: Properties
     
+    // THIS IS THE START SCENE
+    var startMenu:  StartMenu!
+    
     // The scene draws the tiles and cookie sprites, and handles swipes.
-    var scene: GameScene!
+    public static var scene: GameScene!
     
     // The level contains the tiles, the cookies, and most of the gameplay logic.
     // Needs to be ! because it's not set in init() but in viewDidLoad().
@@ -49,6 +52,10 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startMenu = StartMenu(fileNamed: "StartMenu")
+        
+        GameViewController.scene = GameScene(fileNamed: "GameScene")
+        
         // Configure the view.
         
         let skView = self.view as! SKView
@@ -57,23 +64,25 @@ class GameViewController: UIViewController {
         skView.showsFPS = true
         skView.isUserInteractionEnabled = true
         skView.ignoresSiblingOrder = true
+
+        
         
         
         // Create and configure the scene.
         
         //scene = GameScene(size: skView.bounds.size)
-        scene = GameScene(fileNamed: "GameScene")
+        //scene = GameScene(fileNamed: "GameScene")
         //scene = GameScene(fileNamed: "GameScene.sks", size: skView.bounds.size)
         
         //scene = GameScene.unarchiveFromFile(file: "GameScene") as! GameScene
         
-        scene.scaleMode = .aspectFill
+        GameViewController.scene.scaleMode = .aspectFill
         
         //Load the Level
         level = Level(filename: "Level_1")
-        scene.level = level
+        GameViewController.scene.level = level
         
-        scene.addTiles()
+        GameViewController.scene.addTiles()
         
         //Swipe gestures
         
@@ -94,7 +103,7 @@ class GameViewController: UIViewController {
         self.view.addGestureRecognizer(swipeDown)
     
         // Present the scene.
-        skView.presentScene(scene)
+        skView.presentScene(startMenu)
         
         //start game
         beginGame()
@@ -104,48 +113,48 @@ class GameViewController: UIViewController {
     
     func beginGame(){
         shuffle()
-        scene.addPlayer()
+        GameViewController.scene.addPlayer()
     }
     
     func shuffle(){
         // Fill up the level with new blocks, and create sprites for them.
         let newBlocks = level.shuffle()
-        scene.addSprites(for: newBlocks)
+        GameViewController.scene.addSprites(for: newBlocks)
     }
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.right && scene.player.playerDirection != "left"{
+        if gesture.direction == UISwipeGestureRecognizerDirection.right && GameViewController.scene.player.playerDirection != "left"{
            // print("Swipe Right")
-            scene.player.xSpeed = 1
-            scene.player.ySpeed = 0
+            GameViewController.scene.player.xSpeed = 1
+            GameViewController.scene.player.ySpeed = 0
             
-            scene.player.playerDirection = "right"
+            GameViewController.scene.player.playerDirection = "right"
         }
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.left && scene.player.playerDirection != "right"{
+        if gesture.direction == UISwipeGestureRecognizerDirection.left && GameViewController.scene.player.playerDirection != "right"{
            // print("Swipe Left")
-            scene.player.xSpeed = -1
-            scene.player.ySpeed = 0
+            GameViewController.scene.player.xSpeed = -1
+            GameViewController.scene.player.ySpeed = 0
             
-            scene.player.playerDirection = "left"
+            GameViewController.scene.player.playerDirection = "left"
         }
         
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.up && scene.player.playerDirection != "down"{
+        if gesture.direction == UISwipeGestureRecognizerDirection.up && GameViewController.scene.player.playerDirection != "down"{
            // print("Swipe Up")
-            scene.player.xSpeed = 0
-            scene.player.ySpeed = 1
-            scene.player.playerDirection = "up"
+            GameViewController.scene.player.xSpeed = 0
+            GameViewController.scene.player.ySpeed = 1
+            GameViewController.scene.player.playerDirection = "up"
         }
         
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.down && scene.player.playerDirection != "up"{
+        if gesture.direction == UISwipeGestureRecognizerDirection.down && GameViewController.scene.player.playerDirection != "up"{
            // print("Swipe Down")
-            scene.player.xSpeed = 0
-            scene.player.ySpeed = -1
+            GameViewController.scene.player.xSpeed = 0
+            GameViewController.scene.player.ySpeed = -1
             
-            scene.player.playerDirection = "down"
+            GameViewController.scene.player.playerDirection = "down"
         }
     }
     

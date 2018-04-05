@@ -80,14 +80,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.player = Player(column: 10, row: 10)
         
-        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
-        
         //self.player = Player(column: 10, row: 10)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         playerSprite = SKSpriteNode(imageNamed: "Tile")
-        
         
         
         self.background.name = "background"
@@ -104,6 +101,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        
+        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
         
         
         // Add a new node that is the container for all other layers on the playing
@@ -194,6 +193,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //playerBodyPartsContainer.name = "playerBodyPartsContainer"
         
       //addChild(playerBodyPartsContainer)
+        
+       playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
         
         for bodyPart in playerBody {
             bodyPart.removeFromParent()

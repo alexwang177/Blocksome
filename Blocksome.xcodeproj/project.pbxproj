@@ -43,6 +43,8 @@
 		F301C3A1202FB1540035D676 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F301C390202FB1520035D676 /* Mining by Moonlight.mp3 */; };
 		F301C3A2202FB1540035D676 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = F301C391202FB1520035D676 /* Scrape.wav */; };
 		F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C392202FB1520035D676 /* Sprites.atlas */; };
+		F37BD9162072AB1E00E7444B /* StartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37BD9152072AB1E00E7444B /* StartMenu.swift */; };
+		F37BD9182072AB5A00E7444B /* StartMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = F37BD9172072AB5A00E7444B /* StartMenu.sks */; };
 		F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = F37EB14E203CE9F700C9140E /* BackgroundBlue.png */; };
 		F37EB151203F4BAC00C9140E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EB150203F4BAC00C9140E /* Player.swift */; };
 		F37EB155204DCC8300C9140E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F37EB154204DCC8300C9140E /* GameScene.sks */; };
@@ -88,6 +90,8 @@
 		F301C391202FB1520035D676 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
 		F301C392202FB1520035D676 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		F35A4FC52034BBF60063C5A0 /* Blocksome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocksome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F37BD9152072AB1E00E7444B /* StartMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenu.swift; sourceTree = "<group>"; };
+		F37BD9172072AB5A00E7444B /* StartMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartMenu.sks; sourceTree = "<group>"; };
 		F37EB14E203CE9F700C9140E /* BackgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundBlue.png; sourceTree = "<group>"; };
 		F37EB150203F4BAC00C9140E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F37EB154204DCC8300C9140E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				F301C3442020F9260035D676 /* AppDelegate.swift */,
+				F37BD9152072AB1E00E7444B /* StartMenu.swift */,
+				F37BD9172072AB5A00E7444B /* StartMenu.sks */,
 				F37EB154204DCC8300C9140E /* GameScene.sks */,
 				F301C34A2020F9260035D676 /* GameScene.swift */,
 				F37EB150203F4BAC00C9140E /* Player.swift */,
@@ -253,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F301C3A2202FB1540035D676 /* Scrape.wav in Resources */,
+				F37BD9182072AB5A00E7444B /* StartMenu.sks in Resources */,
 				D2221419206AC4FE0012310F /* PurpleBlock.png in Resources */,
 				F301C35D202249420035D676 /* Sprites.atlas in Resources */,
 				F301C39A202FB1540035D676 /* Level_2.json in Resources */,
@@ -298,6 +305,7 @@
 				F301C36D202B82DC0035D676 /* Extensions.swift in Sources */,
 				F301C36B202A3A9A0035D676 /* Tile.swift in Sources */,
 				F301C34D2020F9260035D676 /* GameViewController.swift in Sources */,
+				F37BD9162072AB1E00E7444B /* StartMenu.swift in Sources */,
 				F301C3452020F9260035D676 /* AppDelegate.swift in Sources */,
 				F37EB1592050729500C9140E /* Unarchive.swift in Sources */,
 				F37EB151203F4BAC00C9140E /* Player.swift in Sources */,
