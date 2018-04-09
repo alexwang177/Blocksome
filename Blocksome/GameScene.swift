@@ -101,7 +101,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Block Sizes
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart.name = "Red"
         bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart2.name = "Orange"
         bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
@@ -327,24 +329,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(newBlockColor == 1)
         {
             newBodyPart = SKSpriteNode(imageNamed : "RedBlock")
+            newBodyPart.name = "Red"
         }
         else if(newBlockColor == 2){
-            newBodyPart = SKSpriteNode(imageNamed : "OrangeBlock")}
+            newBodyPart = SKSpriteNode(imageNamed : "OrangeBlock")
+            
+            newBodyPart.name = "Orange"
+        }
         else if(newBlockColor == 3){
-            newBodyPart = SKSpriteNode(imageNamed : "YellowBlock")}
+            newBodyPart = SKSpriteNode(imageNamed : "YellowBlock")
+            
+            newBodyPart.name = "Yellow"
+        }
         else if(newBlockColor == 4){
-            newBodyPart = SKSpriteNode(imageNamed : "GreenBlock")}
+            newBodyPart = SKSpriteNode(imageNamed : "GreenBlock")
+            newBodyPart.name = "Green"}
         else if(newBlockColor == 5){
-            newBodyPart = SKSpriteNode(imageNamed : "BlueBlock")}
+            newBodyPart = SKSpriteNode(imageNamed : "BlueBlock")
+            newBodyPart.name = "Blue"}
         else if(newBlockColor == 6){
-            newBodyPart = SKSpriteNode(imageNamed : "PurpleBlock")}
+            newBodyPart = SKSpriteNode(imageNamed : "PurpleBlock")
+            newBodyPart.name = "Purple"}
         else{
             newBodyPart = SKSpriteNode(imageNamed : "IndigoBlock")
+            newBodyPart.name = "Indigo"
             
         }
         
         newBodyPart.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
-        newBodyPart.name = "newBodyPart"
         newBodyPart.position = randPosition
         //print("This is the new body part position: \(newBodyPart.position)")
         
@@ -445,6 +457,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 partForAppending.texture = collectablePart.texture
                 partForAppending.position = collectablePart.position
                 partForAppending.size = collectablePart.size
+                partForAppending.name = collectablePart.name
                 
                 playerBody.insert(partForAppending, at: 0)
                 playerLayer.addChild(partForAppending)
@@ -508,6 +521,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     partForAppending.texture = collectablePart.texture
                     partForAppending.position = collectablePart.position
                     partForAppending.size = collectablePart.size
+                    partForAppending.name = collectablePart.name
                     
                     playerBody.insert(partForAppending, at: 0)
                     playerLayer.addChild(partForAppending)
@@ -574,6 +588,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     partForAppending.texture = collectablePart.texture
                     partForAppending.position = collectablePart.position
                     partForAppending.size = collectablePart.size
+                    partForAppending.name = collectablePart.name
                     
                     playerBody.insert(partForAppending, at: 0)
                     playerLayer.addChild(partForAppending)
@@ -638,6 +653,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     partForAppending.texture = collectablePart.texture
                     partForAppending.position = collectablePart.position
                     partForAppending.size = collectablePart.size
+                    partForAppending.name = collectablePart.name
                     
                     playerBody.insert(partForAppending, at: 0)
                     playerLayer.addChild(partForAppending)
@@ -676,6 +692,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     fileprivate func killPlayerIfNeeded() {
+        
+        threeInARow()
+        
         if isPlayerRunOverItself {
             
            // print("DELETETETTE")
@@ -700,6 +719,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         print(playerBody)
         
+        
+    }
+    
+    private func threeInARow(){
+            if(playerBody[0].name == playerBody[1].name)
+            {
+                if(playerBody[1].name == playerBody[2].name)
+                {
+                    print("remove bro")
+                    print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
+                    
+                    for _ in 0...2 {
+                        playerBody[0].removeFromParent()
+                        playerBody.remove(at: 0)
+                        //print(bodyPart)
+                        player.playerBodyPartsRow.remove(at: 0)
+                        player.playerBodyPartsColumn.remove(at: 0)
+                    }
+                    
+                    
+//                    var playerBodyPartsColumnNew: [Int] = []
+//                    var playerBodyPartsRowNew: [Int] = []
+//
+//                    for random in 3...player.playerBodyPartsRow.count{
+//                        playerBodyPartsRowNew.append(player.playerBodyPartsRow[random])
+//                        playerBodyPartsColumnNew.append(player.playerBodyPartsColumn[random])
+//                    }
+//
+//                    player.playerBodyPartsColumn = playerBodyPartsColumnNew
+//                    player.playerBodyPartsRow = playerBodyPartsRowNew
+                }
+            }
         
     }
     
@@ -760,7 +811,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bodyPart7 = SKSpriteNode(imageNamed : "PurpleBlock")
         
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart.name = "Red"
         bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart2.name = "Orange"
         bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
@@ -800,49 +853,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         selectNodeForTouch(touchLocation: positionInScene)
     }*/
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-       // print("touches began")
-        if let touch = touches.first {
-            let positionInScene = touch.location(in: blocksLayer)
-           // print("touches began works")
-            
-            selectNodeForTouch(touchLocation: positionInScene)
-        }
-        super.touchesBegan(touches, with: event)
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//       // print("touches began")
+//        if let touch = touches.first {
+//            let positionInScene = touch.location(in: blocksLayer)
+//           // print("touches began works")
+//
+//            selectNodeForTouch(touchLocation: positionInScene)
+//        }
+//        super.touchesBegan(touches, with: event)
+//    }
     
     func degToRad(degree: Double) -> CGFloat {
         return CGFloat(Double(degree)/180.0 * Double.pi)
     }
     
-    func selectNodeForTouch(touchLocation: CGPoint)
-    {
-       // print("touch")
-        let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
-        
-        if touchedNode is SKSpriteNode{
-            print("is a sprite")
-            
-            if !selectedNode.isEqual(touchedNode){
-                print("same sprite")
-                selectedNode.removeAllActions()
-                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
-                
-                selectedNode = touchedNode as! SKSpriteNode
-                
-                
-                if touchedNode.name! == kBlockNodeName {
-                    print("wiggle")
-                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
-                                                      SKAction.rotate(byAngle: 0.0, duration: 0.1),
-                                                      SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
-                    selectedNode.run(SKAction.repeatForever(sequence))
-                    
-                }
-            }
-        }
-        
-    }
+//    func selectNodeForTouch(touchLocation: CGPoint)
+//    {
+//       // print("touch")
+//        let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
+//
+//        if touchedNode is SKSpriteNode{
+//            print("is a sprite")
+//
+//            if !selectedNode.isEqual(touchedNode){
+//                print("same sprite")
+//                selectedNode.removeAllActions()
+//                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
+//
+//                selectedNode = touchedNode as! SKSpriteNode
+//
+//
+//                if touchedNode.name! == kBlockNodeName {
+//                    print("wiggle")
+//                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
+//                                                      SKAction.rotate(byAngle: 0.0, duration: 0.1),
+//                                                      SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
+//                    selectedNode.run(SKAction.repeatForever(sequence))
+//
+//                }
+//            }
+//        }
+//
+//    }
     
     func boundLayerPos(aNewPosition: CGPoint) -> CGPoint {
         let winSize = self.size
