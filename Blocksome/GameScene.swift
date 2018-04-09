@@ -14,6 +14,8 @@ private let kBlockNodeName = "movable"
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    //@IBOutlet weak var scoreLabel: SKLabelNode!
+    
     var g: Int = 1
     
     /*var player: Player {
@@ -42,6 +44,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let blocksLayer = SKNode()
     
     let playerLayer = SKNode()
+    
+    let infoLayer = SKNode()
+    
+    var score = SKLabelNode()
     
     var playerSprite = SKSpriteNode()
     
@@ -127,8 +133,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         playerLayer.position = layerPosition
         gameLayer.addChild(playerLayer)
+
+        infoLayer.position = layerPosition
+        gameLayer.addChild(infoLayer)
         
-        playerLayer.addChild(obstacle)
+        score = (childNode(withName: "Score") as? SKLabelNode)!
+        score.zPosition = 3
+        
+        score.text = "LOL"
+        
+        
+        
+        //infoLayer.addChild(score)
+        
+        
+        //playerLayer.addChild(obstacle)
         
         // sets all the layers' z-positions
         
@@ -136,6 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tilesLayer.zPosition = 1
         blocksLayer.zPosition = 2
         playerLayer.zPosition = 3
+        infoLayer.zPosition = 3
         
         
     }
@@ -232,7 +252,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch player.playerDirection{
         case "up":
-            if(headPositionRow != 26)
+            if(headPositionRow != 24)
             {
             player.playerBodyPartsRow.insert(headPositionRow + 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
@@ -376,7 +396,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             newBodyPositions.append(positionOfNewBodyPart[intersect].position)
         }
             
-        for row in 1...26{
+        for row in 1...24{
             for column in 1...14{
                     
                     if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false && newBodyPositions.contains(pointFor(column: column, row: row)) == false)
@@ -932,6 +952,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         movePlayer()
         updatePositionOfBodyParts()
         putNewBodyPartIfNeeded()
+        
+        //UPDATE SCORE
+        score.text = (String)(playerBody.count-7)
         
 //        for bodyPart in playerBody {
 //            bodyPart.removeFromParent()
