@@ -49,6 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var score = SKLabelNode()
     
+    var scoreNumber: Int = 0
+    
     var playerSprite = SKSpriteNode()
     
     var _possiblePositionsForNewBodyParts: [CGPoint]?
@@ -149,7 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         score.text = "LOL"
         
-        
+        scoreNumber = 0
         
         //infoLayer.addChild(score)
         
@@ -489,6 +491,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 partsToBeRemoved?.append(collectablePart)
                 
+                scoreNumber = scoreNumber + 1
+                
                // positionOfNewBodyPart[index].removeFromParent()
                // positionOfNewBodyPart.remove(at: index)
                 //print(positionOfNewBodyPart.count)
@@ -552,6 +556,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playerLayer.addChild(partForAppending)
                     
                     partsToBeRemoved?.append(collectablePart)
+                    
+                    scoreNumber = scoreNumber + 1
                     
                     // positionOfNewBodyPart[index].removeFromParent()
                     // positionOfNewBodyPart.remove(at: index)
@@ -620,6 +626,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     partsToBeRemoved?.append(collectablePart)
                     
+                    scoreNumber = scoreNumber + 1
+                    
                     // positionOfNewBodyPart[index].removeFromParent()
                     // positionOfNewBodyPart.remove(at: index)
                     //print(positionOfNewBodyPart.count)
@@ -684,6 +692,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     playerLayer.addChild(partForAppending)
                     
                     partsToBeRemoved?.append(collectablePart)
+                    
+                    scoreNumber = scoreNumber + 1
                     
                     // positionOfNewBodyPart[index].removeFromParent()
                     // positionOfNewBodyPart.remove(at: index)
@@ -753,6 +763,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if(playerBody[1].name == playerBody[2].name)
                 {
                     print("remove bro")
+                    
+                    scoreNumber = scoreNumber + 10
                     //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
                     
                     for _ in 0...2 {
@@ -857,6 +869,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playerLayer.addChild(bodyPart)
             //print(bodyPart)
         }
+        
+        scoreNumber = 0
 
         
     }
@@ -1017,7 +1031,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         putNewBodyPartIfNeeded()
         
         //UPDATE SCORE
-        score.text = (String)(playerBody.count-7)
+        
+        score.text = (String)(describing: scoreNumber)
         
 //        for bodyPart in playerBody {
 //            bodyPart.removeFromParent()
