@@ -309,8 +309,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updatePositionOfBodyParts(){
+//        if(playerBody[0].position == pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))
+//        {
         for i in 0..<player.playerBodyPartsColumn.count{
+            
             if i < playerBody.count{
+                
                 //  print("PLAYERCOLUMN - \(i) :  \(player.playerBodyPartsRow[i])")
                 //print("PLAYERBODY  -  \(i) :  \(playerBody[i].position)")
                 let bodyPart = playerBody[i]
@@ -328,6 +332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.playerBodyPartsRow.removeLast()
             }
         }
+        //}
         
         //print("LKJDFLKSDJFLSDFJSDLKJSDF:SDLFJSD:LFKJ:SDKJF \(playerBody)")
     }
@@ -729,7 +734,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     fileprivate func killPlayerIfNeeded() {
         
         threeInARow()
-        
+        sandwiches()
         if isPlayerRunOverItself {
             
            // print("DELETETETTE")
@@ -758,6 +763,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func threeInARow(){
+        if(playerBody.count > 2)
+        {
             if(playerBody[0].name == playerBody[1].name)
             {
                 if(playerBody[1].name == playerBody[2].name)
@@ -774,20 +781,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         player.playerBodyPartsRow.remove(at: 0)
                         player.playerBodyPartsColumn.remove(at: 0)
                     }
-                    
-                    
-//                    var playerBodyPartsColumnNew: [Int] = []
-//                    var playerBodyPartsRowNew: [Int] = []
-//
-//                    for random in 3...player.playerBodyPartsRow.count{
-//                        playerBodyPartsRowNew.append(player.playerBodyPartsRow[random])
-//                        playerBodyPartsColumnNew.append(player.playerBodyPartsColumn[random])
-//                    }
-//
-//                    player.playerBodyPartsColumn = playerBodyPartsColumnNew
-//                    player.playerBodyPartsRow = playerBodyPartsRowNew
                 }
             }
+        }
+        
+    }
+    private func sandwiches(){
+        if(playerBody.count > 2)
+        {
+        if(playerBody[0].name == playerBody[2].name)
+            {
+                print("remove bro")
+                //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
+                
+                for _ in 0...2 {
+                    playerBody[0].removeFromParent()
+                    playerBody.remove(at: 0)
+                    //print(bodyPart)
+                    player.playerBodyPartsRow.remove(at: 0)
+                    player.playerBodyPartsColumn.remove(at: 0)
+                }
+            
+            }
+        }
         
     }
     
