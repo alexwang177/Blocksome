@@ -105,10 +105,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart2.name = "Orange"
         bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart3.name = "Yellow"
         bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart4.name = "Green"
         bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart5.name = "Blue"
         bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart6.name = "Indigo"
         bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart7.name = "Purple"
         
         
         // Add a new node that is the container for all other layers on the playing
@@ -728,7 +733,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if(playerBody[1].name == playerBody[2].name)
                 {
                     print("remove bro")
-                    print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
+                    //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
                     
                     for _ in 0...2 {
                         playerBody[0].removeFromParent()
@@ -815,10 +820,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart2.name = "Orange"
         bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart3.name = "Yellow"
         bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart4.name = "Green"
         bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart5.name = "Blue"
         bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart6.name = "Indigo"
         bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart7.name = "Purple"
         
         playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
         
