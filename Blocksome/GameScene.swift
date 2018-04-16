@@ -68,12 +68,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var selectedNode = SKSpriteNode()
     
     let bodyPart = SKSpriteNode(imageNamed : "RedOrb")
-    let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
-    let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
-    let bodyPart4 = SKSpriteNode(imageNamed : "GreenBlock")
-    let bodyPart5 = SKSpriteNode(imageNamed : "BlueBlock")
-    let bodyPart6 = SKSpriteNode(imageNamed : "IndigoBlock")
-    let bodyPart7 = SKSpriteNode(imageNamed : "PurpleBlock")
+    let bodyPart2 = SKSpriteNode(imageNamed : "OrangeOrb")
+    let bodyPart3 = SKSpriteNode(imageNamed : "YellowOrb")
+    let bodyPart4 = SKSpriteNode(imageNamed : "GreenOrb")
+    let bodyPart5 = SKSpriteNode(imageNamed : "BlueOrb")
+    let bodyPart6 = SKSpriteNode(imageNamed : "IndigoOrb")
+    let bodyPart7 = SKSpriteNode(imageNamed : "PurpleOrb")
     
     var playerBody: [SKSpriteNode]!
     
@@ -378,26 +378,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             newBodyPart.name = "Red"
         }
         else if(newBlockColor == 2){
-            newBodyPart = SKSpriteNode(imageNamed : "OrangeBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "OrangeOrb")
             
             newBodyPart.name = "Orange"
         }
         else if(newBlockColor == 3){
-            newBodyPart = SKSpriteNode(imageNamed : "YellowBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "YellowOrb")
             
             newBodyPart.name = "Yellow"
         }
         else if(newBlockColor == 4){
-            newBodyPart = SKSpriteNode(imageNamed : "GreenBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "GreenOrb")
             newBodyPart.name = "Green"}
         else if(newBlockColor == 5){
-            newBodyPart = SKSpriteNode(imageNamed : "BlueBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "BlueOrb")
             newBodyPart.name = "Blue"}
         else if(newBlockColor == 6){
-            newBodyPart = SKSpriteNode(imageNamed : "PurpleBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "PurpleOrb")
             newBodyPart.name = "Purple"}
         else{
-            newBodyPart = SKSpriteNode(imageNamed : "IndigoBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "IndigoOrb")
             newBodyPart.name = "Indigo"
             
         }
@@ -433,8 +433,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for intersect in 0..<positionOfNewBodyPart.count{
             newBodyPositions.append(positionOfNewBodyPart[intersect].position)
         }
-            
-        for row in 1...24{
+        var nextTo = false
+        for row in 1...26{
             for column in 1...14{
                 
                     if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false && newBodyPositions.contains(pointFor(column: column, row: row)) == false && row != 26 && row != 1 && column != 14 && column != 1)
@@ -894,12 +894,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.sprite = playerSprite
         
         let bodyPart = SKSpriteNode(imageNamed : "RedOrb")
-        let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
-        let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
-        let bodyPart4 = SKSpriteNode(imageNamed : "GreenBlock")
-        let bodyPart5 = SKSpriteNode(imageNamed : "BlueBlock")
-        let bodyPart6 = SKSpriteNode(imageNamed : "IndigoBlock")
-        let bodyPart7 = SKSpriteNode(imageNamed : "PurpleBlock")
+        let bodyPart2 = SKSpriteNode(imageNamed : "OrangeOrb")
+        let bodyPart3 = SKSpriteNode(imageNamed : "YellowOrb")
+        let bodyPart4 = SKSpriteNode(imageNamed : "GreenOrb")
+        let bodyPart5 = SKSpriteNode(imageNamed : "BlueOrb")
+        let bodyPart6 = SKSpriteNode(imageNamed : "IndigoOrb")
+        let bodyPart7 = SKSpriteNode(imageNamed : "PurpleOrb")
         
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart.name = "Red"
@@ -1124,11 +1124,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         
        // updatePlayer()
-            killPlayerIfNeeded()
-            growSnakeIfNeeded()
-            movePlayer()
-            updatePositionOfBodyParts()
-            putNewBodyPartIfNeeded()
+        
+        
+        killPlayerIfNeeded()
+        growSnakeIfNeeded()
+        movePlayer()
+        threeInARow()
+        sandwiches()
+        updatePositionOfBodyParts()
+        putNewBodyPartIfNeeded()
         
         //UPDATE SCORE
         
