@@ -124,37 +124,41 @@ class GameViewController: UIViewController {
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.right && GameViewController.scene.player.playerDirection != "left"{
+        if(GameScene.gameIsPaused == false)
+        {
+        
+            if gesture.direction == UISwipeGestureRecognizerDirection.right && GameViewController.scene.player.playerDirection != "left"{
            // print("Swipe Right")
-            GameViewController.scene.player.xSpeed = 1
-            GameViewController.scene.player.ySpeed = 0
+                GameViewController.scene.player.xSpeed = 1
+                GameViewController.scene.player.ySpeed = 0
             
-            GameViewController.scene.player.playerDirection = "right"
-        }
+                GameViewController.scene.player.playerDirection = "right"
+            }
         
-        if gesture.direction == UISwipeGestureRecognizerDirection.left && GameViewController.scene.player.playerDirection != "right"{
-           // print("Swipe Left")
-            GameViewController.scene.player.xSpeed = -1
-            GameViewController.scene.player.ySpeed = 0
+            if gesture.direction == UISwipeGestureRecognizerDirection.left && GameViewController.scene.player.playerDirection != "right"{
+               // print("Swipe Left")
+                GameViewController.scene.player.xSpeed = -1
+                GameViewController.scene.player.ySpeed = 0
+                
+                GameViewController.scene.player.playerDirection = "left"
+            }
+        
+        
+            if gesture.direction == UISwipeGestureRecognizerDirection.up && GameViewController.scene.player.playerDirection != "down"{
+               // print("Swipe Up")
+                GameViewController.scene.player.xSpeed = 0
+                GameViewController.scene.player.ySpeed = 1
+                GameViewController.scene.player.playerDirection = "up"
+            }
             
-            GameViewController.scene.player.playerDirection = "left"
-        }
-        
-        
-        if gesture.direction == UISwipeGestureRecognizerDirection.up && GameViewController.scene.player.playerDirection != "down"{
-           // print("Swipe Up")
-            GameViewController.scene.player.xSpeed = 0
-            GameViewController.scene.player.ySpeed = 1
-            GameViewController.scene.player.playerDirection = "up"
-        }
-        
-        
-        if gesture.direction == UISwipeGestureRecognizerDirection.down && GameViewController.scene.player.playerDirection != "up"{
-           // print("Swipe Down")
-            GameViewController.scene.player.xSpeed = 0
-            GameViewController.scene.player.ySpeed = -1
             
-            GameViewController.scene.player.playerDirection = "down"
+            if gesture.direction == UISwipeGestureRecognizerDirection.down && GameViewController.scene.player.playerDirection != "up"{
+               // print("Swipe Down")
+                GameViewController.scene.player.xSpeed = 0
+                GameViewController.scene.player.ySpeed = -1
+                
+                GameViewController.scene.player.playerDirection = "down"
+            }
         }
     }
     

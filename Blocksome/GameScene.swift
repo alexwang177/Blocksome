@@ -49,6 +49,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var score = SKLabelNode()
     
+    var pauseButton = SKSpriteNode()
+    
+    public static var gameIsPaused: Bool = false
+    
     var scoreNumber: Int = 0
     
     var playerSprite = SKSpriteNode()
@@ -63,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var selectedNode = SKSpriteNode()
     
-    let bodyPart = SKSpriteNode(imageNamed : "RedBlock")
+    let bodyPart = SKSpriteNode(imageNamed : "RedOrb")
     let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
     let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
     let bodyPart4 = SKSpriteNode(imageNamed : "GreenBlock")
@@ -97,11 +101,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerSprite = SKSpriteNode(imageNamed: "Tile")
         
         
-        self.background.name = "background"
+        /*self.background.name = "background"
         self.background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         background.size = self.size
-        self.addChild(background)
+        self.addChild(background)*/
+        
+        backgroundColor = SKColor.black
         
         //Block Sizes
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
@@ -153,6 +159,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         scoreNumber = 0
         
+        pauseButton = (childNode(withName: "pauseButton" ) as? SKSpriteNode)!
+        pauseButton.name = "pauseButton"
+        //pauseButton.isUserInteractionEnabled = true
+        pauseButton.zPosition = 3
+        
         //infoLayer.addChild(score)
         
         
@@ -165,6 +176,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         blocksLayer.zPosition = 2
         playerLayer.zPosition = 3
         infoLayer.zPosition = 3
+        
+        // SET GAME INTIALLY UNPAUSED
+        self.scene?.view?.isPaused = false
         
         
     }
@@ -360,7 +374,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(newBlockColor == 1)
         {
-            newBodyPart = SKSpriteNode(imageNamed : "RedBlock")
+            newBodyPart = SKSpriteNode(imageNamed : "RedOrb")
             newBodyPart.name = "Red"
         }
         else if(newBlockColor == 2){
@@ -792,6 +806,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(playerBody[0].name == playerBody[2].name)
             {
                 print("remove bro")
+                
+                scoreNumber = scoreNumber + 10
                 //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
                 
                 for _ in 0...2 {
@@ -855,7 +871,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerSprite.position = pointFor(column: 7, row: 13)
         player.sprite = playerSprite
         
-        let bodyPart = SKSpriteNode(imageNamed : "RedBlock")
+        let bodyPart = SKSpriteNode(imageNamed : "RedOrb")
         let bodyPart2 = SKSpriteNode(imageNamed : "OrangeBlock")
         let bodyPart3 = SKSpriteNode(imageNamed : "YellowBlock")
         let bodyPart4 = SKSpriteNode(imageNamed : "GreenBlock")
@@ -905,7 +921,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Sprite Touch Selection
     
-    /*func touchesBegan(touches: NSSet, withEvent event: UIEvent){
+    /**func touchesBegan(touches: NSSet, withEvent event: UIEvent){
         print("touches began")
         let touch = touches.anyObject() as! UITouch
         let positionInScene = touch.location(in: blocksLayer)
@@ -913,49 +929,95 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         selectNodeForTouch(touchLocation: positionInScene)
     }*/
     
-    /*override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-       // print("touches began")
-        if let touch = touches.first {
-            let positionInScene = touch.location(in: blocksLayer)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+       
+        /*if let touch = touches.first {
+            let positionInScene = touch.location(in: scene!)
            // print("touches began works")
             
             selectNodeForTouch(touchLocation: positionInScene)
         }
-        super.touchesBegan(touches, with: event)
-    }*/
+        super.touchesBegan(touches, with: event)*/
+        
+        print("touches began")
+        
+        let touch = touches.first // get the first touch
+        selectNodeForTouch(touchLocation: (touch?.location(in: self))!)
+        
+       /* if(touchedNode == pauseButton)
+        {
+            self.scene?.view?.isPaused = true
+        }*/
+        
+    
+    }
     
     func degToRad(degree: Double) -> CGFloat {
         return CGFloat(Double(degree)/180.0 * Double.pi)
     }
     
-//    func selectNodeForTouch(touchLocation: CGPoint)
-//    {
-//       // print("touch")
-//        let touchedNode = blocksLayer.atPoint(touchLocation)       //*******
-//
-//        if touchedNode is SKSpriteNode{
-//            print("is a sprite")
-//
-//            if !selectedNode.isEqual(touchedNode){
-//                print("same sprite")
-//                selectedNode.removeAllActions()
-//                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
-//
-//                selectedNode = touchedNode as! SKSpriteNode
-//
-//
-//                if touchedNode.name! == kBlockNodeName {
-//                    print("wiggle")
-//                    let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
-//                                                      SKAction.rotate(byAngle: 0.0, duration: 0.1),
-//                                                      SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
-//                    selectedNode.run(SKAction.repeatForever(sequence))
-//
-//                }
-//            }
-//        }
-//
-//    }
+    func selectNodeForTouch(touchLocation: CGPoint)
+    {
+       // print("touch")
+        let touchedNode = scene?.atPoint(touchLocation)       //*******
+
+        if touchedNode is SKSpriteNode{
+            
+            print("is a sprite")
+            
+            /*if (touchedNode?.isEqual(pauseButton))!{
+                
+                print("PAUSE")
+                self.scene?.view?.isPaused = true
+            }*/
+            
+            if touchedNode?.name! == pauseButton.name {
+                print("PAUSE WORKING")
+                
+                if(self.scene?.view?.isPaused == false)
+                {
+                    self.scene?.view?.isPaused = true
+                    GameScene.gameIsPaused = true
+                }
+                    
+                else if(self.scene?.view?.isPaused == true)
+                {
+                    self.scene?.view?.isPaused = false
+                    GameScene.gameIsPaused = false
+                }
+                /*let sequence = SKAction.sequence([SKAction.rotate(byAngle: degToRad(degree: -10.0), duration: 0.1),
+                 SKAction.rotate(byAngle: 0.0, duration: 0.1),
+                 SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
+                 selectedNode.run(SKAction.repeatForever(sequence))*/
+                
+            }
+
+            /*if !selectedNode.isEqual(touchedNode){
+                print("same sprite")
+                //self.scene?.view?.isPaused = true
+                selectedNode.removeAllActions()
+                selectedNode.run(SKAction.rotate(toAngle: 0.0, duration: 0.1))
+
+                selectedNode = touchedNode as! SKSpriteNode
+                
+                if !selectedNode.isEqual(pauseButton){
+                    print("PRESSED PAUSE")
+                    
+                    if(self.scene?.view?.isPaused == false)
+                    {
+                        self.scene?.view?.isPaused = true
+                    }
+                    
+                    else if(self.scene?.view?.isPaused == true)
+                    {
+                        self.scene?.view?.isPaused = false
+                    }
+                }
+                
+            }*/
+        }
+
+    }
     
     func boundLayerPos(aNewPosition: CGPoint) -> CGPoint {
         let winSize = self.size
@@ -1023,38 +1085,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func updateCounting()
     {
         //NSLog("counting... \(g)")
-        g = g+1
         
-        if (player.row + player.ySpeed >= 1) && (player.row + player.ySpeed <= NumRows-2)
+        //g = g+1
+        
+        if(GameScene.gameIsPaused == false)
         {
-            player.row = player.row + player.ySpeed
-        }
         
-        if (player.column + player.xSpeed >= 1) && (player.column + player.xSpeed <= NumColumns-2)
-        {
-            player.column = player.column + player.xSpeed
-        }
+            if (player.row + player.ySpeed >= 1) && (player.row + player.ySpeed <= NumRows-2)
+            {
+                player.row = player.row + player.ySpeed
+            }
         
-       // print("\(player.ySpeed) is Y and \(player.xSpeed) is X")
-        
-        //playerLayer.removeAllChildren()
+            if (player.column + player.xSpeed >= 1) && (player.column + player.xSpeed <= NumColumns-2)
+            {
+                player.column = player.column + player.xSpeed
+            }
         
        // updatePlayer()
-        killPlayerIfNeeded()
-        growSnakeIfNeeded()
-        movePlayer()
-        updatePositionOfBodyParts()
-        putNewBodyPartIfNeeded()
+            killPlayerIfNeeded()
+            growSnakeIfNeeded()
+            movePlayer()
+            updatePositionOfBodyParts()
+            putNewBodyPartIfNeeded()
         
         //UPDATE SCORE
         
-        score.text = (String)(describing: scoreNumber)
-        
-//        for bodyPart in playerBody {
-//            bodyPart.removeFromParent()
-//            playerLayer.addChild(bodyPart)
-//            //print(bodyPart)
-//        }
+            score.text = (String)(describing: scoreNumber)
+            
+        }
         
     }
     

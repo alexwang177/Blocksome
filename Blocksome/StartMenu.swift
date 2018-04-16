@@ -15,7 +15,12 @@ class StartMenu: SKScene{
     
     let tapStartLabel = SKLabelNode(fontNamed: "STHeitiTC-Medium")
     
+    var title = SKLabelNode()
+    
     override func didMove(to view: SKView) {
+        
+        title = (childNode(withName: "Title") as? SKLabelNode)!
+        title.zPosition = 3
         
     // set background
         backgroundColor = SKColor.white
