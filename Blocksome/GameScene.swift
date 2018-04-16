@@ -337,7 +337,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 playerBody[i].position = bodyPart.position
                 
-                //print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
+                print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
               //  print("Head Position: \(pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))")
             }
                 
@@ -436,10 +436,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         for row in 1...24{
             for column in 1...14{
-                    
-                    if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false && newBodyPositions.contains(pointFor(column: column, row: row)) == false)
+                
+                    if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false && newBodyPositions.contains(pointFor(column: column, row: row)) == false && row != 26 && row != 1 && column != 14 && column != 1)
                     {
+                        for check in newBodyPositions{
+                            let delta = CGPoint(x: abs(pointFor(column: column, row: row).x - check.x), y: abs(pointFor(column: column, row: row).y - check.y))
+                            
+                            if(delta.x == player.playerWidth || delta.y == player.playerHeight)
+                            {
+                                nextTo = true
+                            }
+                        }
+                        if(nextTo == false)
+                        {
                         positions.append(pointFor(column: column, row: row))
+                        }
+                        
+                        nextTo = false
                     }
             }
         }
@@ -747,8 +760,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     fileprivate func killPlayerIfNeeded() {
         
-        threeInARow()
-        sandwiches()
+        //threeInARow()
+        //sandwiches()
         if isPlayerRunOverItself {
             
            // print("DELETETETTE")
@@ -783,11 +796,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 if(playerBody[1].name == playerBody[2].name)
                 {
+                    //movePlayer()
                     print("remove bro")
                     
                     scoreNumber = scoreNumber + 10
                     //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
-                    
+                    //let newPosition: CGPoint = playerBody[3].position
+                    player.playerBodyPartsColumn[3] = player.playerBodyPartsColumn[3]
+                    player.playerBodyPartsRow[3] = player.playerBodyPartsRow[3]
                     for _ in 0...2 {
                         playerBody[0].removeFromParent()
                         playerBody.remove(at: 0)
@@ -795,6 +811,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         player.playerBodyPartsRow.remove(at: 0)
                         player.playerBodyPartsColumn.remove(at: 0)
                     }
+                   // movePlayer()
+                    //playerBody[0].position = newPosition
                 }
             }
         }
@@ -805,11 +823,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
         if(playerBody[0].name == playerBody[2].name)
             {
+                //movePlayer()
                 print("remove bro")
                 
                 scoreNumber = scoreNumber + 10
                 //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
-                
+                player.playerBodyPartsColumn[3] = player.playerBodyPartsColumn[3]
+                player.playerBodyPartsRow[3] = player.playerBodyPartsRow[3]
                 for _ in 0...2 {
                     playerBody[0].removeFromParent()
                     playerBody.remove(at: 0)
@@ -817,6 +837,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.playerBodyPartsRow.remove(at: 0)
                     player.playerBodyPartsColumn.remove(at: 0)
                 }
+               // movePlayer()
+               // playerBody[0].position = newPosition
             
             }
         }
