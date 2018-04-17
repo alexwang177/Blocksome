@@ -434,10 +434,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             newBodyPositions.append(positionOfNewBodyPart[intersect].position)
         }
         var nextTo = false
-        for row in 1...26{
+        for row in 1...24{
             for column in 1...14{
                 
-                    if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false && newBodyPositions.contains(pointFor(column: column, row: row)) == false && row != 26 && row != 1 && column != 14 && column != 1)
+                    if(playerBodyPositions.contains(pointFor(column: column, row: row)) == false && newBodyPositions.contains(pointFor(column: column, row: row)) == false && row != 24 && row != 1 && column != 14 && column != 1)
                     {
                         for check in newBodyPositions{
                             let delta = CGPoint(x: abs(pointFor(column: column, row: row).x - check.x), y: abs(pointFor(column: column, row: row).y - check.y))

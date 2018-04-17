@@ -113,13 +113,13 @@
 		F3F8BD37207FD469001BA084 /* pauseImageFinal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseImageFinal.png; sourceTree = "<group>"; };
 		F3F8BD3920851C81001BA084 /* PauseMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PauseMenu.sks; sourceTree = "<group>"; };
 		F3F8BD3B20851CBA001BA084 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
-		F3F8BD472085231F001BA084 /* BlueOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueOrb.png; sourceTree = "<group>"; };
-		F3F8BD482085231F001BA084 /* GreenOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenOrb.png; sourceTree = "<group>"; };
-		F3F8BD492085231F001BA084 /* IndigoOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IndigoOrb.png; sourceTree = "<group>"; };
-		F3F8BD4A2085231F001BA084 /* OrangeOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OrangeOrb.png; sourceTree = "<group>"; };
-		F3F8BD4B2085231F001BA084 /* PurpleOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PurpleOrb.png; sourceTree = "<group>"; };
-		F3F8BD4C2085231F001BA084 /* RedOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedOrb.png; sourceTree = "<group>"; };
-		F3F8BD4D2085231F001BA084 /* YellowOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YellowOrb.png; sourceTree = "<group>"; };
+		F3F8BD472085231F001BA084 /* BlueOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueOrb.png; path = tastetherainbow/BlueOrb.png; sourceTree = "<group>"; };
+		F3F8BD482085231F001BA084 /* GreenOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GreenOrb.png; path = tastetherainbow/GreenOrb.png; sourceTree = "<group>"; };
+		F3F8BD492085231F001BA084 /* IndigoOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IndigoOrb.png; path = tastetherainbow/IndigoOrb.png; sourceTree = "<group>"; };
+		F3F8BD4A2085231F001BA084 /* OrangeOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OrangeOrb.png; path = tastetherainbow/OrangeOrb.png; sourceTree = "<group>"; };
+		F3F8BD4B2085231F001BA084 /* PurpleOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleOrb.png; path = tastetherainbow/PurpleOrb.png; sourceTree = "<group>"; };
+		F3F8BD4C2085231F001BA084 /* RedOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedOrb.png; path = tastetherainbow/RedOrb.png; sourceTree = "<group>"; };
+		F3F8BD4D2085231F001BA084 /* YellowOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YellowOrb.png; path = tastetherainbow/YellowOrb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,13 @@
 		F301C380202FB1520035D676 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F3F8BD462085231F001BA084 /* tastetherainbow */,
+				F3F8BD472085231F001BA084 /* BlueOrb.png */,
+				F3F8BD482085231F001BA084 /* GreenOrb.png */,
+				F3F8BD492085231F001BA084 /* IndigoOrb.png */,
+				F3F8BD4A2085231F001BA084 /* OrangeOrb.png */,
+				F3F8BD4B2085231F001BA084 /* PurpleOrb.png */,
+				F3F8BD4C2085231F001BA084 /* RedOrb.png */,
+				F3F8BD4D2085231F001BA084 /* YellowOrb.png */,
 				D222140D206AC4FC0012310F /* BlueBlock.png */,
 				D222140E206AC4FD0012310F /* GreenBlock.png */,
 				D2221410206AC4FD0012310F /* IndigoBlock.png */,
@@ -227,20 +233,6 @@
 				F301C391202FB1520035D676 /* Scrape.wav */,
 			);
 			path = Sounds;
-			sourceTree = "<group>";
-		};
-		F3F8BD462085231F001BA084 /* tastetherainbow */ = {
-			isa = PBXGroup;
-			children = (
-				F3F8BD472085231F001BA084 /* BlueOrb.png */,
-				F3F8BD482085231F001BA084 /* GreenOrb.png */,
-				F3F8BD492085231F001BA084 /* IndigoOrb.png */,
-				F3F8BD4A2085231F001BA084 /* OrangeOrb.png */,
-				F3F8BD4B2085231F001BA084 /* PurpleOrb.png */,
-				F3F8BD4C2085231F001BA084 /* RedOrb.png */,
-				F3F8BD4D2085231F001BA084 /* YellowOrb.png */,
-			);
-			path = tastetherainbow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
