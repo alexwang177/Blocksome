@@ -49,18 +49,18 @@
 		F37EB151203F4BAC00C9140E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EB150203F4BAC00C9140E /* Player.swift */; };
 		F37EB155204DCC8300C9140E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F37EB154204DCC8300C9140E /* GameScene.sks */; };
 		F37EB1592050729500C9140E /* Unarchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37EB1582050729500C9140E /* Unarchive.swift */; };
+		F3A82A6A2086727B00FBAA4F /* RedOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A632086727A00FBAA4F /* RedOrb.png */; };
+		F3A82A6B2086727B00FBAA4F /* YellowOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A642086727A00FBAA4F /* YellowOrb.png */; };
+		F3A82A6C2086727B00FBAA4F /* PurpleOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A652086727A00FBAA4F /* PurpleOrb.png */; };
+		F3A82A6D2086727B00FBAA4F /* GreenOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A662086727A00FBAA4F /* GreenOrb.png */; };
+		F3A82A6E2086727B00FBAA4F /* OrangeOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A672086727A00FBAA4F /* OrangeOrb.png */; };
+		F3A82A6F2086727B00FBAA4F /* BlueOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A682086727B00FBAA4F /* BlueOrb.png */; };
+		F3A82A702086727B00FBAA4F /* IndigoOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3A82A692086727B00FBAA4F /* IndigoOrb.png */; };
 		F3F8BD34207E8B92001BA084 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD33207E8B92001BA084 /* pause.png */; };
 		F3F8BD36207E8D2B001BA084 /* pauseImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD35207E8D2A001BA084 /* pauseImage.png */; };
 		F3F8BD38207FD46A001BA084 /* pauseImageFinal.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD37207FD469001BA084 /* pauseImageFinal.png */; };
 		F3F8BD3A20851C81001BA084 /* PauseMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD3920851C81001BA084 /* PauseMenu.sks */; };
 		F3F8BD3C20851CBA001BA084 /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F8BD3B20851CBA001BA084 /* PauseMenu.swift */; };
-		F3F8BD552085231F001BA084 /* BlueOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD472085231F001BA084 /* BlueOrb.png */; };
-		F3F8BD562085231F001BA084 /* GreenOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD482085231F001BA084 /* GreenOrb.png */; };
-		F3F8BD572085231F001BA084 /* IndigoOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD492085231F001BA084 /* IndigoOrb.png */; };
-		F3F8BD582085231F001BA084 /* OrangeOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD4A2085231F001BA084 /* OrangeOrb.png */; };
-		F3F8BD592085231F001BA084 /* PurpleOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD4B2085231F001BA084 /* PurpleOrb.png */; };
-		F3F8BD5A2085231F001BA084 /* RedOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD4C2085231F001BA084 /* RedOrb.png */; };
-		F3F8BD5B2085231F001BA084 /* YellowOrb.png in Resources */ = {isa = PBXBuildFile; fileRef = F3F8BD4D2085231F001BA084 /* YellowOrb.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,18 +108,18 @@
 		F37EB150203F4BAC00C9140E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F37EB154204DCC8300C9140E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
 		F37EB1582050729500C9140E /* Unarchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Unarchive.swift; path = ../Unarchive.swift; sourceTree = "<group>"; };
+		F3A82A632086727A00FBAA4F /* RedOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedOrb.png; path = tastetherainbow/RedOrb.png; sourceTree = "<group>"; };
+		F3A82A642086727A00FBAA4F /* YellowOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YellowOrb.png; path = tastetherainbow/YellowOrb.png; sourceTree = "<group>"; };
+		F3A82A652086727A00FBAA4F /* PurpleOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleOrb.png; path = tastetherainbow/PurpleOrb.png; sourceTree = "<group>"; };
+		F3A82A662086727A00FBAA4F /* GreenOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GreenOrb.png; path = tastetherainbow/GreenOrb.png; sourceTree = "<group>"; };
+		F3A82A672086727A00FBAA4F /* OrangeOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OrangeOrb.png; path = tastetherainbow/OrangeOrb.png; sourceTree = "<group>"; };
+		F3A82A682086727B00FBAA4F /* BlueOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueOrb.png; path = tastetherainbow/BlueOrb.png; sourceTree = "<group>"; };
+		F3A82A692086727B00FBAA4F /* IndigoOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IndigoOrb.png; path = tastetherainbow/IndigoOrb.png; sourceTree = "<group>"; };
 		F3F8BD33207E8B92001BA084 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		F3F8BD35207E8D2A001BA084 /* pauseImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseImage.png; sourceTree = "<group>"; };
 		F3F8BD37207FD469001BA084 /* pauseImageFinal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseImageFinal.png; sourceTree = "<group>"; };
 		F3F8BD3920851C81001BA084 /* PauseMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PauseMenu.sks; sourceTree = "<group>"; };
 		F3F8BD3B20851CBA001BA084 /* PauseMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
-		F3F8BD472085231F001BA084 /* BlueOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueOrb.png; path = tastetherainbow/BlueOrb.png; sourceTree = "<group>"; };
-		F3F8BD482085231F001BA084 /* GreenOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GreenOrb.png; path = tastetherainbow/GreenOrb.png; sourceTree = "<group>"; };
-		F3F8BD492085231F001BA084 /* IndigoOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IndigoOrb.png; path = tastetherainbow/IndigoOrb.png; sourceTree = "<group>"; };
-		F3F8BD4A2085231F001BA084 /* OrangeOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OrangeOrb.png; path = tastetherainbow/OrangeOrb.png; sourceTree = "<group>"; };
-		F3F8BD4B2085231F001BA084 /* PurpleOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PurpleOrb.png; path = tastetherainbow/PurpleOrb.png; sourceTree = "<group>"; };
-		F3F8BD4C2085231F001BA084 /* RedOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedOrb.png; path = tastetherainbow/RedOrb.png; sourceTree = "<group>"; };
-		F3F8BD4D2085231F001BA084 /* YellowOrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YellowOrb.png; path = tastetherainbow/YellowOrb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,13 +184,13 @@
 		F301C380202FB1520035D676 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				F3F8BD472085231F001BA084 /* BlueOrb.png */,
-				F3F8BD482085231F001BA084 /* GreenOrb.png */,
-				F3F8BD492085231F001BA084 /* IndigoOrb.png */,
-				F3F8BD4A2085231F001BA084 /* OrangeOrb.png */,
-				F3F8BD4B2085231F001BA084 /* PurpleOrb.png */,
-				F3F8BD4C2085231F001BA084 /* RedOrb.png */,
-				F3F8BD4D2085231F001BA084 /* YellowOrb.png */,
+				F3A82A682086727B00FBAA4F /* BlueOrb.png */,
+				F3A82A662086727A00FBAA4F /* GreenOrb.png */,
+				F3A82A692086727B00FBAA4F /* IndigoOrb.png */,
+				F3A82A672086727A00FBAA4F /* OrangeOrb.png */,
+				F3A82A652086727A00FBAA4F /* PurpleOrb.png */,
+				F3A82A632086727A00FBAA4F /* RedOrb.png */,
+				F3A82A642086727A00FBAA4F /* YellowOrb.png */,
 				D222140D206AC4FC0012310F /* BlueBlock.png */,
 				D222140E206AC4FD0012310F /* GreenBlock.png */,
 				D2221410206AC4FD0012310F /* IndigoBlock.png */,
@@ -300,40 +300,40 @@
 				D2221419206AC4FE0012310F /* PurpleBlock.png in Resources */,
 				F301C35D202249420035D676 /* Sprites.atlas in Resources */,
 				F301C39A202FB1540035D676 /* Level_2.json in Resources */,
+				F3A82A6F2086727B00FBAA4F /* BlueOrb.png in Resources */,
 				D2221416206AC4FE0012310F /* YellowBlock.png in Resources */,
-				F3F8BD552085231F001BA084 /* BlueOrb.png in Resources */,
+				F3A82A6E2086727B00FBAA4F /* OrangeOrb.png in Resources */,
 				F37EB155204DCC8300C9140E /* GameScene.sks in Resources */,
 				F301C39F202FB1540035D676 /* Error.wav in Resources */,
-				F3F8BD5B2085231F001BA084 /* YellowOrb.png in Resources */,
 				F301C398202FB1540035D676 /* Level_0.json in Resources */,
 				F301C39E202FB1540035D676 /* Drip.wav in Resources */,
-				F3F8BD582085231F001BA084 /* OrangeOrb.png in Resources */,
 				F301C39C202FB1540035D676 /* Level_4.json in Resources */,
 				F301C3A1202FB1540035D676 /* Mining by Moonlight.mp3 in Resources */,
 				F301C39D202FB1540035D676 /* Chomp.wav in Resources */,
 				D2221417206AC4FE0012310F /* IndigoBlock.png in Resources */,
-				F3F8BD562085231F001BA084 /* GreenOrb.png in Resources */,
 				D2221418206AC4FE0012310F /* RedBlock.png in Resources */,
 				F301C3502020F9260035D676 /* Main.storyboard in Resources */,
+				F3A82A702086727B00FBAA4F /* IndigoOrb.png in Resources */,
+				F3A82A6B2086727B00FBAA4F /* YellowOrb.png in Resources */,
 				D2221415206AC4FE0012310F /* GreenBlock.png in Resources */,
 				F301C3522020F9260035D676 /* Assets.xcassets in Resources */,
 				F301C396202FB1540035D676 /* GameOver@3x.png in Resources */,
 				F301C397202FB1540035D676 /* LevelComplete@3x.png in Resources */,
 				F301C394202FB1540035D676 /* Background@3x.png in Resources */,
+				F3A82A6C2086727B00FBAA4F /* PurpleOrb.png in Resources */,
 				F301C395202FB1540035D676 /* Button@3x.png in Resources */,
 				F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */,
 				D2221414206AC4FE0012310F /* BlueBlock.png in Resources */,
 				F3F8BD3A20851C81001BA084 /* PauseMenu.sks in Resources */,
 				D2221413206AC4FE0012310F /* OrangeBlock.png in Resources */,
+				F3A82A6A2086727B00FBAA4F /* RedOrb.png in Resources */,
 				F301C399202FB1540035D676 /* Level_1.json in Resources */,
 				F3F8BD38207FD46A001BA084 /* pauseImageFinal.png in Resources */,
-				F3F8BD5A2085231F001BA084 /* RedOrb.png in Resources */,
+				F3A82A6D2086727B00FBAA4F /* GreenOrb.png in Resources */,
 				F3F8BD34207E8B92001BA084 /* pause.png in Resources */,
 				F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */,
 				F301C3A0202FB1540035D676 /* Ka-Ching.wav in Resources */,
 				F301C39B202FB1540035D676 /* Level_3.json in Resources */,
-				F3F8BD592085231F001BA084 /* PurpleOrb.png in Resources */,
-				F3F8BD572085231F001BA084 /* IndigoOrb.png in Resources */,
 				F301C393202FB1540035D676 /* Grid.atlas in Resources */,
 				F301C3552020F9260035D676 /* LaunchScreen.storyboard in Resources */,
 			);

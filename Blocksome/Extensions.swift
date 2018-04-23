@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 extension Dictionary {
     
@@ -36,6 +37,30 @@ extension Dictionary {
     }
     
 }
+
+import SpriteKit
+
+extension SKSpriteNode {
+    
+    func addGlow(radius: Float){
+        
+        let effectNode = SKEffectNode()
+        effectNode.shouldRasterize = true
+        self.addChild(effectNode)
+        effectNode.addChild(SKSpriteNode(texture: texture))
+        
+        for x in 0...5{
+        
+            effectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius":radius + Float(10*x)])
+        }
+        
+        
+        
+        }
+        
+    }
+    
+
 
 
 

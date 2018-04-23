@@ -68,6 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var selectedNode = SKSpriteNode()
     
     let bodyPart = SKSpriteNode(imageNamed : "RedOrb")
+    
     let bodyPart2 = SKSpriteNode(imageNamed : "OrangeOrb")
     let bodyPart3 = SKSpriteNode(imageNamed : "YellowOrb")
     let bodyPart4 = SKSpriteNode(imageNamed : "GreenOrb")
@@ -76,6 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let bodyPart7 = SKSpriteNode(imageNamed : "PurpleOrb")
     
     var playerBody: [SKSpriteNode]!
+    
+    var glowRadius: Float = 10.0
     
    /*required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder) is not used in this app")
@@ -108,6 +111,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(background)*/
         
         backgroundColor = SKColor.black
+        
+        //Glowing
+        
+        bodyPart.addGlow(radius: 10.0)
+        //bodyPart2.addGlow()
         
         //Block Sizes
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
@@ -828,8 +836,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 scoreNumber = scoreNumber + 10
                 //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
-                player.playerBodyPartsColumn[3] = player.playerBodyPartsColumn[3]
-                player.playerBodyPartsRow[3] = player.playerBodyPartsRow[3]
+                //player.playerBodyPartsColumn[3] = player.playerBodyPartsColumn[3]
+                //player.playerBodyPartsRow[3] = player.playerBodyPartsRow[3]
                 for _ in 0...2 {
                     playerBody[0].removeFromParent()
                     playerBody.remove(at: 0)
@@ -900,6 +908,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bodyPart5 = SKSpriteNode(imageNamed : "BlueOrb")
         let bodyPart6 = SKSpriteNode(imageNamed : "IndigoOrb")
         let bodyPart7 = SKSpriteNode(imageNamed : "PurpleOrb")
+        
+        //GLOW
+        bodyPart.addGlow(radius: glowRadius)
         
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart.name = "Red"
@@ -993,6 +1004,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.scene?.view?.isPaused = true
             }*/
             
+            if(touchedNode?.name != nil)
+            {
             if touchedNode?.name! == pauseButton.name {
                 print("PAUSE WORKING")
                 
@@ -1012,6 +1025,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                  SKAction.rotate(byAngle: degToRad(degree: 10.0), duration: 0.1)])
                  selectedNode.run(SKAction.repeatForever(sequence))*/
                 
+            }
             }
 
             /*if !selectedNode.isEqual(touchedNode){
@@ -1124,7 +1138,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         
        // updatePlayer()
-        
+            
+            bodyPart.addGlow(radius: glowRadius)
+            glowRadius+=2.0
         
         killPlayerIfNeeded()
         growSnakeIfNeeded()
