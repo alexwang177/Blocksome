@@ -55,6 +55,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var scoreNumber: Int = 0
     
+    var magic = SKEmitterNode(fileNamed: "MagicParticle.sks")
+    
     var playerSprite = SKSpriteNode()
     
     var _possiblePositionsForNewBodyParts: [CGPoint]?
@@ -114,7 +116,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Glowing
         
-        bodyPart.addGlow(radius: 10.0)
+        magic?.name = "magic"
+        magic?.position = bodyPart.position
+        
+        //magic?.alpha = 0.0
+        
+        playerLayer.addChild(magic!)
+        
+        //bodyPart.addGlow(radius: 10.0)
         //bodyPart2.addGlow()
         
         //Block Sizes
@@ -473,6 +482,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        guard let playerNew = childNode(withName: "playerBodyPartsContainer") else { return }
         let positionOfHead  = pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0])
         
+        //magic?.position = positionOfHead
+        
         var partsToBeRemoved: [SKSpriteNode]?
         partsToBeRemoved = []
         
@@ -492,6 +503,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 0 {
             if delta.y == -47.75 {
                 
+                magic?.position = positionOfHead
+                
+                //magic?.alpha = 0.2
                     
 //              let partForAppending: SKSpriteNode
 //
@@ -558,6 +572,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 0 {
                 if delta.y == 47.75 {
                     
+                    magic?.position = positionOfHead
+                    //magic?.alpha = 0.2
                     
                     //              let partForAppending: SKSpriteNode
                     //
@@ -626,7 +642,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 47 {
                 if delta.y == 0 {
                     
-                    
+                    magic?.position = positionOfHead
+                    //magic?.alpha = 0.2
                     
                     //              let partForAppending: SKSpriteNode
                     //
@@ -694,7 +711,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == -47 {
                 if delta.y == 0 {
                     
-                    
+                    magic?.position = positionOfHead
+                    //magic?.alpha = 0.2
                     //              let partForAppending: SKSpriteNode
                     //
                     //                if(newBlockColor == 1)
@@ -910,7 +928,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bodyPart7 = SKSpriteNode(imageNamed : "PurpleOrb")
         
         //GLOW
-        bodyPart.addGlow(radius: glowRadius)
+        //bodyPart.addGlow(radius: glowRadius)
         
         bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart.name = "Red"
@@ -1139,7 +1157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
        // updatePlayer()
             
-            bodyPart.addGlow(radius: glowRadius)
+            //bodyPart.addGlow(radius: glowRadius)
             glowRadius+=2.0
         
         killPlayerIfNeeded()
