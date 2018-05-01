@@ -193,6 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         blocksLayer.zPosition = 2
         playerLayer.zPosition = 3
         infoLayer.zPosition = 3
+        magic?.particleZPosition = 1
         
         // SET GAME INTIALLY UNPAUSED
         self.scene?.view?.isPaused = false
@@ -503,6 +504,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 0 {
             if delta.y == -47.75 {
                 
+                //magic?.position = positionOfHead
+                
+                magic?.particleColorSequence = nil
+                magic?.particleZPosition = -5
+                
+                if collectablePart.name == "Red" {
+                    magic?.particleColor = SKColor.red
+                }
+                
+                if collectablePart.name == "Orange" {
+                    magic?.particleColor = SKColor.orange
+                }
+
+                if collectablePart.name == "Yellow" {
+                    magic?.particleColor = SKColor.yellow
+                }
+
+                if collectablePart.name == "Green" {
+                    magic?.particleColor = SKColor.green
+                }
+
+                if collectablePart.name == "Blue" {
+                    magic?.particleColor = SKColor.cyan
+                }
+
+                if collectablePart.name == "Indigo" {
+                    magic?.particleColor = SKColor.blue
+                }
+
+                if collectablePart.name == "Purple" {
+                    magic?.particleColor = SKColor.purple
+                }
+
                 magic?.position = positionOfHead
                 
                 //magic?.alpha = 0.2
@@ -572,7 +606,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 0 {
                 if delta.y == 47.75 {
                     
+                    magic?.particleColorSequence = nil
+                     magic?.particleZPosition = -5
+                    
+                    if collectablePart.name == "Red" {
+                        magic?.particleColor = SKColor.red
+                    }
+                    
+                    if collectablePart.name == "Orange" {
+                        magic?.particleColor = SKColor.orange
+                    }
+                    
+                    if collectablePart.name == "Yellow" {
+                        magic?.particleColor = SKColor.yellow
+                    }
+                    
+                    if collectablePart.name == "Green" {
+                        magic?.particleColor = SKColor.green
+                    }
+                    
+                    if collectablePart.name == "Blue" {
+                        magic?.particleColor = SKColor.cyan
+                    }
+                    
+                    if collectablePart.name == "Indigo" {
+                        magic?.particleColor = SKColor.blue
+                    }
+                    
+                    if collectablePart.name == "Purple" {
+                        magic?.particleColor = SKColor.purple
+                    }
+                    
                     magic?.position = positionOfHead
+
                     //magic?.alpha = 0.2
                     
                     //              let partForAppending: SKSpriteNode
@@ -642,7 +708,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 47 {
                 if delta.y == 0 {
                     
+                    magic?.particleColorSequence = nil
+                     magic?.particleZPosition = -5
+                    
+                    if collectablePart.name == "Red" {
+                        magic?.particleColor = SKColor.red
+                    }
+                    
+                    if collectablePart.name == "Orange" {
+                        magic?.particleColor = SKColor.orange
+                    }
+                    
+                    if collectablePart.name == "Yellow" {
+                        magic?.particleColor = SKColor.yellow
+                    }
+                    
+                    if collectablePart.name == "Green" {
+                        magic?.particleColor = SKColor.green
+                    }
+                    
+                    if collectablePart.name == "Blue" {
+                        magic?.particleColor = SKColor.cyan
+                    }
+                    
+                    if collectablePart.name == "Indigo" {
+                        magic?.particleColor = SKColor.blue
+                    }
+                    
+                    if collectablePart.name == "Purple" {
+                        magic?.particleColor = SKColor.purple
+                    }
+                    
                     magic?.position = positionOfHead
+
                     //magic?.alpha = 0.2
                     
                     //              let partForAppending: SKSpriteNode
@@ -711,7 +809,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == -47 {
                 if delta.y == 0 {
                     
+                    magic?.particleColorSequence = nil
+                     magic?.particleZPosition = -5
+                    
+                    if collectablePart.name == "Red" {
+                        magic?.particleColor = SKColor.red
+                    }
+                    
+                    if collectablePart.name == "Orange" {
+                        magic?.particleColor = SKColor.orange
+                    }
+                    
+                    if collectablePart.name == "Yellow" {
+                        magic?.particleColor = SKColor.yellow
+                    }
+                    
+                    if collectablePart.name == "Green" {
+                        magic?.particleColor = SKColor.green
+                    }
+                    
+                    if collectablePart.name == "Blue" {
+                        magic?.particleColor = SKColor.cyan
+                    }
+                    
+                    if collectablePart.name == "Indigo" {
+                        magic?.particleColor = SKColor.blue
+                    }
+                    
+                    if collectablePart.name == "Purple" {
+                        magic?.particleColor = SKColor.purple
+                    }
+                    
                     magic?.position = positionOfHead
+
                     //magic?.alpha = 0.2
                     //              let partForAppending: SKSpriteNode
                     //
@@ -1167,6 +1297,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sandwiches()
         updatePositionOfBodyParts()
         putNewBodyPartIfNeeded()
+            
+        magic?.position = playerBody[0].position
         
         //UPDATE SCORE
         
