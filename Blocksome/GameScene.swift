@@ -53,6 +53,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     public static var gameIsPaused: Bool = false
     
+    public var proposedDirectin = "up"
+    
     var scoreNumber: Int = 0
     
     var playerSprite = SKSpriteNode()
@@ -90,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
-        self.player = Player(column: 10, row: 10)
+       // self.player = Player(column: 10, row: 10)
         
         self.positionOfNewBodyPart = []
         
@@ -108,24 +110,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(background)*/
         
         backgroundColor = SKColor.black
-        
+        addPlayer()
         //Block Sizes
-        bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart.name = "Red"
-        bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart2.name = "Orange"
-        bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart3.name = "Yellow"
-        bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart4.name = "Green"
-        bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart5.name = "Blue"
-        bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart6.name = "Indigo"
-        bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
-        bodyPart7.name = "Purple"
-        
-        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
+//        bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart.name = "Red"
+//        bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart2.name = "Orange"
+//        bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart3.name = "Yellow"
+//        bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart4.name = "Green"
+//        bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart5.name = "Blue"
+//        bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart6.name = "Indigo"
+//        bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+//        bodyPart7.name = "Purple"
+//
+//        self.playerBody = [bodyPart, bodyPart2, bodyPart3, bodyPart4, bodyPart5, bodyPart6, bodyPart7]
         
         
         // Add a new node that is the container for all other layers on the playing
@@ -231,6 +233,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         playerSprite.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         playerSprite.position = pointFor(column: player.column, row: player.row)
+        
+        player.playerBodyPositions.insert(pointFor(column: 10, row: 10), at: 0)
+        bodyPart2.position = pointFor(column: 10, row: 10)
+        bodyPart3.position = pointFor(column: 10, row: 10)
+        bodyPart4.position = pointFor(column: 10, row: 10)
+        bodyPart5.position = pointFor(column: 10, row: 10)
+        bodyPart6.position = pointFor(column: 10, row: 10)
+        bodyPart7.position = pointFor(column: 10, row: 10)
+        
+        
+        bodyPart.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart.name = "Red"
+        bodyPart2.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart2.name = "Orange"
+        bodyPart3.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart3.name = "Yellow"
+        bodyPart4.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart4.name = "Green"
+        bodyPart5.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart5.name = "Blue"
+        bodyPart6.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart6.name = "Indigo"
+        bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
+        bodyPart7.name = "Purple"
+        
+
         player.sprite = playerSprite
         
         
@@ -275,40 +303,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch player.playerDirection{
         case "up":
-            if(headPositionRow != 24)
+            if(player.playerBodyPositions[0].y < pointFor(column: 4, row: 24).y)
             {
             player.playerBodyPartsRow.insert(headPositionRow + 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
+                
+                let x: CGFloat = player.playerBodyPositions[0].x
+                let y: CGFloat = round((player.playerBodyPositions[0].y + 4.7) * 1000.0) / 1000
+                let newPosition: CGPoint = CGPoint(x: x ,y: y)
+            player.playerBodyPositions.insert( newPosition , at: 0)
+            //player.playerBodyDirections.insert("up", at: 0)
             }
             else {
                 removePlayerFromScreen()
                 reset()
             }
         case "down":
-            if(headPositionRow != 1)
+            if(player.playerBodyPositions[0].y != pointFor(column: 4, row: 1).y)
             {
             player.playerBodyPartsRow.insert(headPositionRow - 1, at: 0)
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
+           // player.playerBodyDirections.insert("down", at: 0)
+                
+            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x ,y: player.playerBodyPositions[0].y - 4.7 )
+            player.playerBodyPositions.insert( newPosition , at: 0)
             }
             else {
                 removePlayerFromScreen()
                 reset()
             }
         case "left":
-            if(headPositionColumn != 1)
+            if(player.playerBodyPositions[0].x != pointFor(column: 1, row: 4).x)
             {
             player.playerBodyPartsColumn.insert(headPositionColumn - 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+                
+            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x - 4.775 ,y: player.playerBodyPositions[0].y)
+            player.playerBodyPositions.insert( newPosition , at: 0)
+                
             }
             else {
                 removePlayerFromScreen()
                 reset()
             }
         case "right":
-            if(headPositionColumn != 14)
+            if(player.playerBodyPositions[0].x != pointFor(column: 14, row: 4).x)
             {
             player.playerBodyPartsColumn.insert(headPositionColumn + 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
+                
+            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x + 4.775 ,y: player.playerBodyPositions[0].y )
+            player.playerBodyPositions.insert( newPosition , at: 0)
+           // player.playerBodyDirections.insert("right", at: 0)
+                
             }
             else {
                 removePlayerFromScreen()
@@ -325,26 +372,102 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func updatePositionOfBodyParts(){
 //        if(playerBody[0].position == pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))
 //        {
-        for i in 0..<player.playerBodyPartsColumn.count{
+        
+        playerBody[0].position = player.playerBodyPositions[0]
+        for i in 1..<player.playerBodyPositions.count{
             
             if i < playerBody.count{
                 
                 //  print("PLAYERCOLUMN - \(i) :  \(player.playerBodyPartsRow[i])")
                 //print("PLAYERBODY  -  \(i) :  \(playerBody[i].position)")
+                
+                
                 let bodyPart = playerBody[i]
-                bodyPart.position = pointFor(column: player.playerBodyPartsColumn[i], row: player.playerBodyPartsRow[i])
+                
+                if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x) == round(playerBody[i-1].position.x))
+                {
+                    // bodyPart.position.y = playerBody[i-1].position.y
+                    bodyPart.position.y = playerBody[i-1].position.y - 47
+                    player.playerBodyDirections[i] = "up"
+                }
+                else if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "right"){
+                    
+                    bodyPart.position.x = bodyPart.position.x + 4.775
+                }
+                else if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "left"){
+                    
+                    bodyPart.position.x = bodyPart.position.x - 4.775
+                }
+                
+                
+                
+                if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x) == round(playerBody[i-1].position.x))
+                {
+                    // bodyPart.position.y = playerBody[i-1].position.y
+                    bodyPart.position.y = playerBody[i-1].position.y + 47
+                    player.playerBodyDirections[i] = "down"
+                }
+                else if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "right"){
+                    
+                    bodyPart.position.x = bodyPart.position.x + 4.775
+                }
+                else if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "left"){
+                    
+                    bodyPart.position.x = bodyPart.position.x - 4.775
+                }
+                
+                
+                
+                
+                if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y) == round(playerBody[i-1].position.y))
+                {
+                   // bodyPart.position.y = playerBody[i-1].position.y
+                    bodyPart.position.x = playerBody[i-1].position.x - 47.75
+                    player.playerBodyDirections[i] = "right"
+                }
+                else if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "up"){
+                    
+                    bodyPart.position.y = bodyPart.position.y + 4.7
+                }
+                else if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "down"){
+                    
+                    bodyPart.position.y = bodyPart.position.y - 4.7
+                }
+                
+                
+                
+                if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y) == round(playerBody[i-1].position.y))
+                {
+                    // bodyPart.position.y = playerBody[i-1].position.y
+                    bodyPart.position.x = playerBody[i-1].position.x + 47.75
+                    player.playerBodyDirections[i] = "left"
+                }
+                else if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "up"){
+                    
+                    bodyPart.position.y = bodyPart.position.y + 4.7
+                }
+                else if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "down"){
+                    
+                    bodyPart.position.y = bodyPart.position.y - 4.7
+                }
+                
+                
                 //print("BODY  -  \(i) :  \(bodyPart.position)")
                 
+                //print(playerBody[i].position)
                 playerBody[i].position = bodyPart.position
                 
-                print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
+                //print("Head Row: \(player.playerBodyPartsRow[0])   Head Column: \(player.playerBodyPartsColumn[0]) ")
               //  print("Head Position: \(pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0]))")
             }
                 
             else{
-                player.playerBodyPartsColumn.removeLast()
-                player.playerBodyPartsRow.removeLast()
+                player.playerBodyPositions.removeLast()
+               //player.playerBodyDirections.removeLast()
             }
+            
+            //print("Body Directions: \(player.playerBodyDirections)")
+            print("First Position: \(playerBody[0].position)")
         }
         //}
         
@@ -463,8 +586,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func growSnakeIfNeeded() {
 //        guard let playerNew = childNode(withName: "playerBodyPartsContainer") else { return }
-        let positionOfHead  = pointFor(column: player.playerBodyPartsColumn[0], row: player.playerBodyPartsRow[0])
+        var positionOfHead  = playerBody[0].position
+        positionOfHead.x = round(playerBody[0].position.x * 1000) / 1000
+        positionOfHead.y = round(playerBody[0].position.y * 1000) / 1000
         
+       // print(positionOfHead.y)
         var partsToBeRemoved: [SKSpriteNode]?
         partsToBeRemoved = []
         
@@ -482,7 +608,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if player.playerDirection == "up"{
             if delta.x == 0 {
-            if delta.y == -47.75 {
+            if delta.y >= -47.75 {
                 
                     
 //              let partForAppending: SKSpriteNode
@@ -517,7 +643,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 partForAppending.position = collectablePart.position
                 partForAppending.size = collectablePart.size
                 partForAppending.name = collectablePart.name
-                
+            
                 playerBody.insert(partForAppending, at: 0)
                 playerLayer.addChild(partForAppending)
                 
@@ -828,8 +954,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 scoreNumber = scoreNumber + 10
                 //print(playerBody[0].name! + playerBody[1].name! + playerBody[2].name! )
-                player.playerBodyPartsColumn[3] = player.playerBodyPartsColumn[3]
-                player.playerBodyPartsRow[3] = player.playerBodyPartsRow[3]
+//                player.playerBodyPartsColumn[3] = player.playerBodyPartsColumn[3]
+//                player.playerBodyPartsRow[3] = player.playerBodyPartsRow[3]
                 for _ in 0...2 {
                     playerBody[0].removeFromParent()
                     playerBody.remove(at: 0)
@@ -1101,7 +1227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func scheduledTimerWithTimerInterval(){
         
-        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.00001, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
     @objc func updateCounting()

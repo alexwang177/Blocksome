@@ -26,6 +26,9 @@ class Player{
     var playerBodyPartsColumn: [Int]
     var playerBodyPartsRow: [Int]
     
+    var playerBodyPositions: [CGPoint]
+    var playerBodyDirections: [String]
+    
     init(column: Int, row: Int)
     {
         self.column = column
@@ -40,6 +43,9 @@ class Player{
         
         playerBodyPartsColumn = [column]
         playerBodyPartsRow = [row]
+        
+        playerBodyPositions = []
+        playerBodyDirections = ["up","up", "up", "up", "up", "up", "up"]
 
         
         self.sprite = SKSpriteNode(imageNamed: "Cupcake")
@@ -61,6 +67,9 @@ class Player{
         
         playerBodyPartsColumn = [column]
         playerBodyPartsRow = [row]
+        
+        playerBodyPositions = []
+        playerBodyDirections = ["up"]
         
         self.sprite = SKSpriteNode(imageNamed: "Cupcake")
     }
