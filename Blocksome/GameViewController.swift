@@ -133,7 +133,7 @@ class GameViewController: UIViewController {
                 GameViewController.scene.player.ySpeed = 0
             
                 GameViewController.scene.player.playerDirection = "right"
-                GameViewController.scene.player.playerBodyDirections[0] = "right"
+               // GameViewController.scene.player.playerBodyDirections[0] = "right"
                 
             }
         
@@ -143,7 +143,7 @@ class GameViewController: UIViewController {
                 GameViewController.scene.player.ySpeed = 0
                 
                 GameViewController.scene.player.playerDirection = "left"
-                GameViewController.scene.player.playerBodyDirections[0] = "left"
+               // GameViewController.scene.player.playerBodyDirections[0] = "left"
             }
         
         
@@ -152,7 +152,7 @@ class GameViewController: UIViewController {
                 GameViewController.scene.player.xSpeed = 0
                 GameViewController.scene.player.ySpeed = 1
                 GameViewController.scene.player.playerDirection = "up"
-                GameViewController.scene.player.playerBodyDirections[0] = "up"
+               // GameViewController.scene.player.playerBodyDirections[0] = "up"
             }
             
             
@@ -162,7 +162,7 @@ class GameViewController: UIViewController {
                 GameViewController.scene.player.ySpeed = -1
                 
                 GameViewController.scene.player.playerDirection = "down"
-                GameViewController.scene.player.playerBodyDirections[0] = "down"
+                //GameViewController.scene.player.playerBodyDirections[0] = "down"
             }
         }
     }

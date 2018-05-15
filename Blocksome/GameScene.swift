@@ -69,6 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var selectedNode = SKSpriteNode()
     
+    var everySingleGridPoint: [CGPoint] = []
     let bodyPart = SKSpriteNode(imageNamed : "RedOrb")
     let bodyPart2 = SKSpriteNode(imageNamed : "OrangeOrb")
     let bodyPart3 = SKSpriteNode(imageNamed : "YellowOrb")
@@ -258,9 +259,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bodyPart7.size = CGSize(width: player.playerWidth, height: player.playerHeight)
         bodyPart7.name = "Purple"
         
-
+        
         player.sprite = playerSprite
         
+        
+        for row in 1...24{
+            for column in 1...14{
+                everySingleGridPoint.append(pointFor(column: column, row: row))
+            }
+        }
+        
+       // print(everySingleGridPoint)
         
        // let playerBodyPartsContainer = SKNode()
         //playerBodyPartsContainer.name = "playerBodyPartsContainer"
@@ -301,7 +310,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         guard let headPositionRow = player.playerBodyPartsRow.first else{return}
         
-        switch player.playerDirection{
+        switch player.playerBodyDirections[0]{
         case "up":
             if(player.playerBodyPositions[0].y < pointFor(column: 4, row: 24).y)
             {
@@ -309,7 +318,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
                 
                 let x: CGFloat = player.playerBodyPositions[0].x
-                let y: CGFloat = round((player.playerBodyPositions[0].y + 4.7) * 1000.0) / 1000
+                let y: CGFloat = round((player.playerBodyPositions[0].y + 4.775) * 1000.0) / 1000
                 let newPosition: CGPoint = CGPoint(x: x ,y: y)
             player.playerBodyPositions.insert( newPosition , at: 0)
             //player.playerBodyDirections.insert("up", at: 0)
@@ -325,7 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.playerBodyPartsColumn.insert(headPositionColumn, at: 0)
            // player.playerBodyDirections.insert("down", at: 0)
                 
-            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x ,y: player.playerBodyPositions[0].y - 4.7 )
+            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x ,y: player.playerBodyPositions[0].y - 4.775 )
             player.playerBodyPositions.insert( newPosition , at: 0)
             }
             else {
@@ -338,7 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.playerBodyPartsColumn.insert(headPositionColumn - 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
                 
-            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x - 4.775 ,y: player.playerBodyPositions[0].y)
+            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x - 4.7 ,y: player.playerBodyPositions[0].y)
             player.playerBodyPositions.insert( newPosition , at: 0)
                 
             }
@@ -352,7 +361,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.playerBodyPartsColumn.insert(headPositionColumn + 1, at: 0)
             player.playerBodyPartsRow.insert(headPositionRow , at: 0)
                 
-            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x + 4.775 ,y: player.playerBodyPositions[0].y )
+            let newPosition: CGPoint = CGPoint(x: player.playerBodyPositions[0].x + 4.7 ,y: player.playerBodyPositions[0].y )
             player.playerBodyPositions.insert( newPosition , at: 0)
            // player.playerBodyDirections.insert("right", at: 0)
                 
@@ -374,6 +383,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        {
         
         playerBody[0].position = player.playerBodyPositions[0]
+        
+        var positionOfHead: CGPoint = playerBody[0].position
+        positionOfHead.x = round(playerBody[0].position.x * 1000) / 1000
+        positionOfHead.y = round(playerBody[0].position.y * 1000) / 1000
+        
+        //print(positionOfHead)
+        if(everySingleGridPoint.contains(positionOfHead)){
+            player.playerBodyDirections[0] = player.playerDirection
+            
+            }
+        
         for i in 1..<player.playerBodyPositions.count{
             
             if i < playerBody.count{
@@ -384,71 +404,75 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 let bodyPart = playerBody[i]
                 
-                if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x) == round(playerBody[i-1].position.x))
+                if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x * 10) / 10 == round(playerBody[i-1].position.x * 10) / 10)
                 {
                     // bodyPart.position.y = playerBody[i-1].position.y
-                    bodyPart.position.y = playerBody[i-1].position.y - 47
+                    bodyPart.position.y = playerBody[i-1].position.y - 47.75
                     player.playerBodyDirections[i] = "up"
                 }
-                else if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "right"){
+                else if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x * 10) / 10 != round(playerBody[i-1].position.x * 10) / 10 && player.playerBodyDirections[i] == "right"){
                     
-                    bodyPart.position.x = bodyPart.position.x + 4.775
+                    bodyPart.position.x = bodyPart.position.x + 4.7
                 }
-                else if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "left"){
+                else if(player.playerBodyDirections[i-1] == "up" && round(bodyPart.position.x * 10) / 10 != round(playerBody[i-1].position.x * 10) / 10 && player.playerBodyDirections[i] == "left"){
                     
-                    bodyPart.position.x = bodyPart.position.x - 4.775
+                    bodyPart.position.x = bodyPart.position.x - 4.7
                 }
                 
                 
                 
-                if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x) == round(playerBody[i-1].position.x))
+                if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x * 10) / 10 == round(playerBody[i-1].position.x * 10) / 10)
                 {
                     // bodyPart.position.y = playerBody[i-1].position.y
-                    bodyPart.position.y = playerBody[i-1].position.y + 47
+                    bodyPart.position.y = playerBody[i-1].position.y + 47.75
                     player.playerBodyDirections[i] = "down"
                 }
-                else if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "right"){
+                else if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x * 10) / 10 != round(playerBody[i-1].position.x * 10) / 10 && player.playerBodyDirections[i] == "right"){
                     
-                    bodyPart.position.x = bodyPart.position.x + 4.775
-                }
-                else if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x) != round(playerBody[i-1].position.x) && player.playerBodyDirections[i] == "left"){
+                    bodyPart.position.x = bodyPart.position.x + 4.7
+                   // ing the index of the previous point minus the displacement opposite to the direction you are going will travrl.
                     
-                    bodyPart.position.x = bodyPart.position.x - 4.775
+                    
+                }
+                else if(player.playerBodyDirections[i-1] == "down" && round(bodyPart.position.x * 10) / 10 != round(playerBody[i-1].position.x * 10) / 10 && player.playerBodyDirections[i] == "left"){
+                    
+                    bodyPart.position.x = bodyPart.position.x - 4.7
                 }
                 
                 
                 
                 
-                if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y) == round(playerBody[i-1].position.y))
+                
+                if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y * 10) / 10 == round(playerBody[i-1].position.y * 10) / 10)
                 {
                    // bodyPart.position.y = playerBody[i-1].position.y
-                    bodyPart.position.x = playerBody[i-1].position.x - 47.75
+                    bodyPart.position.x = playerBody[i-1].position.x - 47
                     player.playerBodyDirections[i] = "right"
                 }
-                else if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "up"){
+                else if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y * 10) / 10 != round(playerBody[i-1].position.y * 10) / 10 && player.playerBodyDirections[i] == "up"){
                     
-                    bodyPart.position.y = bodyPart.position.y + 4.7
+                    bodyPart.position.y = bodyPart.position.y + 4.775
                 }
-                else if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "down"){
+                else if(player.playerBodyDirections[i-1] == "right" && round(bodyPart.position.y * 10) / 10 != round(playerBody[i-1].position.y * 10) / 10 && player.playerBodyDirections[i] == "down"){
                     
-                    bodyPart.position.y = bodyPart.position.y - 4.7
+                    bodyPart.position.y = bodyPart.position.y - 4.775
                 }
                 
                 
                 
-                if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y) == round(playerBody[i-1].position.y))
+                if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y * 10) / 10 == round(playerBody[i-1].position.y * 10) / 10)
                 {
                     // bodyPart.position.y = playerBody[i-1].position.y
-                    bodyPart.position.x = playerBody[i-1].position.x + 47.75
+                    bodyPart.position.x = playerBody[i-1].position.x + 47
                     player.playerBodyDirections[i] = "left"
                 }
-                else if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "up"){
+                else if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y * 10) / 10 != round(playerBody[i-1].position.y * 10) / 10 && player.playerBodyDirections[i] == "up"){
                     
-                    bodyPart.position.y = bodyPart.position.y + 4.7
+                    bodyPart.position.y = bodyPart.position.y + 4.775
                 }
-                else if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y) != round(playerBody[i-1].position.y) && player.playerBodyDirections[i] == "down"){
+                else if(player.playerBodyDirections[i-1] == "left" && round(bodyPart.position.y * 10) / 10 != round(playerBody[i-1].position.y * 10) / 10 && player.playerBodyDirections[i] == "down"){
                     
-                    bodyPart.position.y = bodyPart.position.y - 4.7
+                    bodyPart.position.y = bodyPart.position.y - 4.775
                 }
                 
                 
@@ -467,7 +491,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             //print("Body Directions: \(player.playerBodyDirections)")
-            print("First Position: \(playerBody[0].position)")
+            print("First PositionX: \(round(playerBody[0].position.x))")
+            print("First PositionY: \(round(playerBody[0].position.y))")
+            
+            print("Second PositionX: \(round(playerBody[1].position.x))")
+            print("Second PositionY: \(round(playerBody[1].position.y))")
         }
         //}
         
@@ -525,6 +553,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
+        
+        player.playerBodyDirections.insert(player.playerBodyDirections[0], at: 0)
         newBodyPart.size = CGSize(width: (player.playerWidth), height: player.playerHeight)
         newBodyPart.position = randPosition
         //print("This is the new body part position: \(newBodyPart.position)")
@@ -974,8 +1004,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var isPlayerRunOverItself: Bool {
         var playerBodyPositions: [CGPoint] = []
         
-        for intersect in 0..<player.playerBodyPartsColumn.count{
-            playerBodyPositions.append(pointFor(column:player.playerBodyPartsColumn[intersect], row: player.playerBodyPartsRow[intersect]))
+        for intersect in 0..<player.playerBodyPositions.count{
+            playerBodyPositions.append(player.playerBodyPositions[intersect])
           //  print(intersect)
         }
         
