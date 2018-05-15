@@ -30,7 +30,7 @@
 		F301C394202FB1540035D676 /* Background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F301C381202FB1520035D676 /* Background@3x.png */; };
 		F301C395202FB1540035D676 /* Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F301C382202FB1520035D676 /* Button@3x.png */; };
 		F301C396202FB1540035D676 /* GameOver@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F301C383202FB1520035D676 /* GameOver@3x.png */; };
-		F301C397202FB1540035D676 /* LevelComplete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F301C384202FB1520035D676 /* LevelComplete@3x.png */; };
+		F301C397202FB1540035D676 /* resumeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F301C384202FB1520035D676 /* resumeButton.png */; };
 		F301C398202FB1540035D676 /* Level_0.json in Resources */ = {isa = PBXBuildFile; fileRef = F301C386202FB1520035D676 /* Level_0.json */; };
 		F301C399202FB1540035D676 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = F301C387202FB1520035D676 /* Level_1.json */; };
 		F301C39A202FB1540035D676 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F301C388202FB1520035D676 /* Level_2.json */; };
@@ -43,7 +43,6 @@
 		F301C3A1202FB1540035D676 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F301C390202FB1520035D676 /* Mining by Moonlight.mp3 */; };
 		F301C3A2202FB1540035D676 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = F301C391202FB1520035D676 /* Scrape.wav */; };
 		F301C3A3202FB1540035D676 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F301C392202FB1520035D676 /* Sprites.atlas */; };
-		F3525AE6208E5E3F006CABF0 /* MagicParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = F3525AE4208E5E3F006CABF0 /* MagicParticle.sks */; };
 		F3525AE7208E5E3F006CABF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3525AE5208E5E3F006CABF0 /* Assets.xcassets */; };
 		F36445852098E51400B71F2B /* WhiteRing.png in Resources */ = {isa = PBXBuildFile; fileRef = F36445842098E51300B71F2B /* WhiteRing.png */; };
 		F37BD9162072AB1E00E7444B /* StartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37BD9152072AB1E00E7444B /* StartMenu.swift */; };
@@ -91,7 +90,7 @@
 		F301C381202FB1520035D676 /* Background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@3x.png"; sourceTree = "<group>"; };
 		F301C382202FB1520035D676 /* Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button@3x.png"; sourceTree = "<group>"; };
 		F301C383202FB1520035D676 /* GameOver@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameOver@3x.png"; sourceTree = "<group>"; };
-		F301C384202FB1520035D676 /* LevelComplete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LevelComplete@3x.png"; sourceTree = "<group>"; };
+		F301C384202FB1520035D676 /* resumeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resumeButton.png; sourceTree = "<group>"; };
 		F301C386202FB1520035D676 /* Level_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_0.json; sourceTree = "<group>"; };
 		F301C387202FB1520035D676 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
 		F301C388202FB1520035D676 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
@@ -104,7 +103,6 @@
 		F301C390202FB1520035D676 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		F301C391202FB1520035D676 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
 		F301C392202FB1520035D676 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
-		F3525AE4208E5E3F006CABF0 /* MagicParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MagicParticle.sks; sourceTree = "<group>"; };
 		F3525AE5208E5E3F006CABF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F35A4FC52034BBF60063C5A0 /* Blocksome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocksome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36445842098E51300B71F2B /* WhiteRing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteRing.png; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 		F301C3432020F9260035D676 /* Blocksome */ = {
 			isa = PBXGroup;
 			children = (
-				F3525AE4208E5E3F006CABF0 /* MagicParticle.sks */,
 				F301C3442020F9260035D676 /* AppDelegate.swift */,
 				F3F8BD3920851C81001BA084 /* PauseMenu.sks */,
 				F3F8BD3B20851CBA001BA084 /* PauseMenu.swift */,
@@ -211,7 +208,7 @@
 				F301C381202FB1520035D676 /* Background@3x.png */,
 				F301C382202FB1520035D676 /* Button@3x.png */,
 				F301C383202FB1520035D676 /* GameOver@3x.png */,
-				F301C384202FB1520035D676 /* LevelComplete@3x.png */,
+				F301C384202FB1520035D676 /* resumeButton.png */,
 				F3F8BD35207E8D2A001BA084 /* pauseImage.png */,
 				F3F8BD37207FD469001BA084 /* pauseImageFinal.png */,
 				F3F8BD33207E8B92001BA084 /* pause.png */,
@@ -329,7 +326,7 @@
 				D2221415206AC4FE0012310F /* GreenBlock.png in Resources */,
 				F301C3522020F9260035D676 /* Assets.xcassets in Resources */,
 				F301C396202FB1540035D676 /* GameOver@3x.png in Resources */,
-				F301C397202FB1540035D676 /* LevelComplete@3x.png in Resources */,
+				F301C397202FB1540035D676 /* resumeButton.png in Resources */,
 				F301C394202FB1540035D676 /* Background@3x.png in Resources */,
 				F3A82A6C2086727B00FBAA4F /* PurpleOrb.png in Resources */,
 				F301C395202FB1540035D676 /* Button@3x.png in Resources */,
@@ -345,7 +342,6 @@
 				F37EB14F203CE9F700C9140E /* BackgroundBlue.png in Resources */,
 				F301C3A0202FB1540035D676 /* Ka-Ching.wav in Resources */,
 				F301C39B202FB1540035D676 /* Level_3.json in Resources */,
-				F3525AE6208E5E3F006CABF0 /* MagicParticle.sks in Resources */,
 				F301C393202FB1540035D676 /* Grid.atlas in Resources */,
 				F301C3552020F9260035D676 /* LaunchScreen.storyboard in Resources */,
 			);

@@ -55,8 +55,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var scoreNumber: Int = 0
     
-    var magic = SKEmitterNode(fileNamed: "MagicParticle.sks")
-    
     var playerSprite = SKSpriteNode()
     
     var _possiblePositionsForNewBodyParts: [CGPoint]?
@@ -79,6 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let bodyPart7 = SKSpriteNode(imageNamed : "PurpleOrb")
     
     var playerBody: [SKSpriteNode]!
+    
+    var ring = SKSpriteNode(imageNamed : "WhiteRing")
     
     var glowRadius: Float = 10.0
     
@@ -116,12 +116,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Glowing
         
-        magic?.name = "magic"
-        magic?.position = bodyPart.position
-        
         //magic?.alpha = 0.0
         
-        playerLayer.addChild(magic!)
+        ring.setScale(0.05)
+        
+        playerLayer.addChild(ring)
         
         //bodyPart.addGlow(radius: 10.0)
         //bodyPart2.addGlow()
@@ -193,7 +192,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         blocksLayer.zPosition = 2
         playerLayer.zPosition = 3
         infoLayer.zPosition = 3
-        magic?.particleZPosition = 1
+        //magic?.particleZPosition = 1
         
         // SET GAME INTIALLY UNPAUSED
         self.scene?.view?.isPaused = false
@@ -506,38 +505,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 //magic?.position = positionOfHead
                 
-                magic?.particleColorSequence = nil
-                magic?.particleZPosition = -5
+                /*UIView.animate(withDuration: 1, delay: 0, options: [],
+                               animations: {
+                                self.ring.transform = CGAffin
+                },
+                               completion: nil
+                )*/
                 
-                if collectablePart.name == "Red" {
-                    magic?.particleColor = SKColor.red
+                /*if(collectablePart.name == "Red")
+                {
+                    expandRing(color: UIColor.red)
                 }
-                
-                if collectablePart.name == "Orange" {
-                    magic?.particleColor = SKColor.orange
+                if(collectablePart.name == "Orange")
+                {
+                    expandRing(color: UIColor.orange)
                 }
-
-                if collectablePart.name == "Yellow" {
-                    magic?.particleColor = SKColor.yellow
+                if(collectablePart.name == "Yellow")
+                {
+                    expandRing(color: UIColor.yellow)
                 }
-
-                if collectablePart.name == "Green" {
-                    magic?.particleColor = SKColor.green
+                if(collectablePart.name == "Green")
+                {
+                    expandRing(color: UIColor.green)
                 }
-
-                if collectablePart.name == "Blue" {
-                    magic?.particleColor = SKColor.cyan
+                if(collectablePart.name == "Blue")
+                {
+                    expandRing(color: UIColor.cyan)
                 }
-
-                if collectablePart.name == "Indigo" {
-                    magic?.particleColor = SKColor.blue
+                if(collectablePart.name == "Indigo")
+                {
+                    expandRing(color: UIColor.blue)
                 }
-
-                if collectablePart.name == "Purple" {
-                    magic?.particleColor = SKColor.purple
-                }
-
-                magic?.position = positionOfHead
+                if(collectablePart.name == "Purple")
+                {
+                    expandRing(color: UIColor.purple)
+                }*/
                 
                 //magic?.alpha = 0.2
                     
@@ -567,6 +569,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //          //  print(playerBody.count)
 //                partForAppending.position = collectablePart.position
                 //print(collectablePart)
+                
+                determineRingColor(collectablePart: collectablePart)
                 
                 let partForAppending = SKSpriteNode()
                 partForAppending.texture = collectablePart.texture
@@ -606,39 +610,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 0 {
                 if delta.y == 47.75 {
                     
-                    magic?.particleColorSequence = nil
-                     magic?.particleZPosition = -5
                     
-                    if collectablePart.name == "Red" {
-                        magic?.particleColor = SKColor.red
-                    }
-                    
-                    if collectablePart.name == "Orange" {
-                        magic?.particleColor = SKColor.orange
-                    }
-                    
-                    if collectablePart.name == "Yellow" {
-                        magic?.particleColor = SKColor.yellow
-                    }
-                    
-                    if collectablePart.name == "Green" {
-                        magic?.particleColor = SKColor.green
-                    }
-                    
-                    if collectablePart.name == "Blue" {
-                        magic?.particleColor = SKColor.cyan
-                    }
-                    
-                    if collectablePart.name == "Indigo" {
-                        magic?.particleColor = SKColor.blue
-                    }
-                    
-                    if collectablePart.name == "Purple" {
-                        magic?.particleColor = SKColor.purple
-                    }
-                    
-                    magic?.position = positionOfHead
-
+                    //expandRing(color: UIColor.blue)
                     //magic?.alpha = 0.2
                     
                     //              let partForAppending: SKSpriteNode
@@ -667,6 +640,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //          //  print(playerBody.count)
                     //                partForAppending.position = collectablePart.position
                     //print(collectablePart)
+                    
+                    determineRingColor(collectablePart: collectablePart)
                     
                     let partForAppending = SKSpriteNode()
                     partForAppending.texture = collectablePart.texture
@@ -708,39 +683,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == 47 {
                 if delta.y == 0 {
                     
-                    magic?.particleColorSequence = nil
-                     magic?.particleZPosition = -5
                     
-                    if collectablePart.name == "Red" {
-                        magic?.particleColor = SKColor.red
-                    }
-                    
-                    if collectablePart.name == "Orange" {
-                        magic?.particleColor = SKColor.orange
-                    }
-                    
-                    if collectablePart.name == "Yellow" {
-                        magic?.particleColor = SKColor.yellow
-                    }
-                    
-                    if collectablePart.name == "Green" {
-                        magic?.particleColor = SKColor.green
-                    }
-                    
-                    if collectablePart.name == "Blue" {
-                        magic?.particleColor = SKColor.cyan
-                    }
-                    
-                    if collectablePart.name == "Indigo" {
-                        magic?.particleColor = SKColor.blue
-                    }
-                    
-                    if collectablePart.name == "Purple" {
-                        magic?.particleColor = SKColor.purple
-                    }
-                    
-                    magic?.position = positionOfHead
-
+                    //expandRing(color: UIColor.green)
                     //magic?.alpha = 0.2
                     
                     //              let partForAppending: SKSpriteNode
@@ -769,6 +713,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //          //  print(playerBody.count)
                     //                partForAppending.position = collectablePart.position
                     //print(collectablePart)
+                    
+                    determineRingColor(collectablePart: collectablePart)
                     
                     let partForAppending = SKSpriteNode()
                     partForAppending.texture = collectablePart.texture
@@ -809,39 +755,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if delta.x == -47 {
                 if delta.y == 0 {
                     
-                    magic?.particleColorSequence = nil
-                     magic?.particleZPosition = -5
-                    
-                    if collectablePart.name == "Red" {
-                        magic?.particleColor = SKColor.red
-                    }
-                    
-                    if collectablePart.name == "Orange" {
-                        magic?.particleColor = SKColor.orange
-                    }
-                    
-                    if collectablePart.name == "Yellow" {
-                        magic?.particleColor = SKColor.yellow
-                    }
-                    
-                    if collectablePart.name == "Green" {
-                        magic?.particleColor = SKColor.green
-                    }
-                    
-                    if collectablePart.name == "Blue" {
-                        magic?.particleColor = SKColor.cyan
-                    }
-                    
-                    if collectablePart.name == "Indigo" {
-                        magic?.particleColor = SKColor.blue
-                    }
-                    
-                    if collectablePart.name == "Purple" {
-                        magic?.particleColor = SKColor.purple
-                    }
-                    
-                    magic?.position = positionOfHead
-
+                    //expandRing(color: UIColor.brown)
                     //magic?.alpha = 0.2
                     //              let partForAppending: SKSpriteNode
                     //
@@ -869,6 +783,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //          //  print(playerBody.count)
                     //                partForAppending.position = collectablePart.position
                     //print(collectablePart)
+                    
+                    determineRingColor(collectablePart: collectablePart)
                     
                     let partForAppending = SKSpriteNode()
                     partForAppending.texture = collectablePart.texture
@@ -1159,8 +1075,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if(self.scene?.view?.isPaused == false)
                 {
-                    self.scene?.view?.isPaused = true
+                     print("Transitioning to pause menu")
+                    
+                    //self.scene?.view?.isPaused = true
                     GameScene.gameIsPaused = true
+                    
+                    //print("Transitioning to pause menu")
+                
+                    let pauseMenu = PauseMenu(fileNamed: "PauseMenu")
+                    
+                    let reveal = SKTransition.fade(withDuration: 1)
+                    
+                    view!.presentScene(pauseMenu!, transition: reveal)
+                    
                 }
                     
                 else if(self.scene?.view?.isPaused == true)
@@ -1266,6 +1193,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
     
+    func determineRingColor(collectablePart: SKSpriteNode)
+    {
+        if(collectablePart.name == "Red")
+        {
+            expandRing(color: UIColor.red)
+        }
+        if(collectablePart.name == "Orange")
+        {
+            expandRing(color: UIColor.orange)
+        }
+        if(collectablePart.name == "Yellow")
+        {
+            expandRing(color: UIColor.yellow)
+        }
+        if(collectablePart.name == "Green")
+        {
+            expandRing(color: UIColor.green)
+        }
+        if(collectablePart.name == "Blue")
+        {
+            expandRing(color: UIColor.cyan)
+        }
+        if(collectablePart.name == "Indigo")
+        {
+            expandRing(color: UIColor.blue)
+        }
+        if(collectablePart.name == "Purple")
+        {
+            expandRing(color: UIColor.purple)
+        }
+    }
+    
+    func expandRing(color: UIColor)
+    {
+        
+        ring.position = playerBody[0].position
+        
+        ring.setScale(0.05)
+        ring.alpha = 1.0
+        ring.color = UIColor.white
+        
+        let scaleAction = SKAction.scale(to: 1.0, duration: 0.4)
+        let fadeAction = SKAction.fadeAlpha(to: 0, duration: 0.4)
+        let colorAction = SKAction.colorize(with: color, colorBlendFactor: 1, duration: 0.3)
+        
+        ring.removeAllActions()
+        
+        ring.run(scaleAction)
+        ring.run(fadeAction)
+        ring.run(colorAction)
+        
+        
+    }
+    
     @objc func updateCounting()
     {
         //NSLog("counting... \(g)")
@@ -1298,7 +1279,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         updatePositionOfBodyParts()
         putNewBodyPartIfNeeded()
             
-        magic?.position = playerBody[0].position
+        ring.position = playerBody[0].position
+            
         
         //UPDATE SCORE
         
